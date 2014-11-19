@@ -1,0 +1,3 @@
+parameters:
+    netgen_open_graph.default.content_type_handlers: []
+    netgen_open_graph.default.facebook_app_id: ~

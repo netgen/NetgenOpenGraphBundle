@@ -1,0 +1,39 @@
+parameters:
+    netgen_open_graph.handler.abstract.class: Netgen\Bundle\OpenGraphBundle\Handler\Handler
+    netgen_open_graph.handler.field_type.abstract.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler
+
+    netgen_open_graph.handler.literal.text.class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text
+    netgen_open_graph.handler.field_type.text_line.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
+    netgen_open_graph.handler.field_type.text_block.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock
+
+services:
+    netgen_open_graph.handler.abstract:
+        class: %netgen_open_graph.handler.abstract.class%
+
+    netgen_open_graph.handler.field_type.abstract:
+        class: %netgen_open_graph.handler.field_type.abstract.class%
+        parent: netgen_open_graph.handler.abstract
+        arguments:
+            - @ezpublish.field_helper
+            - @ezpublish.translation_helper
+
+    netgen_open_graph.handler.literal.text:
+        class: %netgen_open_graph.handler.literal.text.class%
+        parent: netgen_open_graph.handler.abstract
+        lazy: true
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: literal/text }
+
+    netgen_open_graph.handler.field_type.text_line:
+        class: %netgen_open_graph.handler.field_type.text_line.class%
+        parent: netgen_open_graph.handler.field_type.abstract
+        lazy: true
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezstring }
+
+    netgen_open_graph.handler.field_type.text_block:
+        class: %netgen_open_graph.handler.field_type.text_block.class%
+        parent: netgen_open_graph.handler.field_type.abstract
+        lazy: true
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/eztext }
