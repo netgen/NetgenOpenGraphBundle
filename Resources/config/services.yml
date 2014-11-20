@@ -1,13 +1,13 @@
 parameters:
     netgen_open_graph.handler_registry.class: Netgen\Bundle\OpenGraphBundle\Handler\Registry
-    netgen_open_graph.handler_collector.class: Netgen\Bundle\OpenGraphBundle\Handler\Collector
+    netgen_open_graph.meta_tag_collector.class: Netgen\Bundle\OpenGraphBundle\MetaTag\Collector
 
 services:
     netgen_open_graph.handler_registry:
         class: %netgen_open_graph.handler_registry.class%
 
-    netgen_open_graph.handler_collector:
-        class: %netgen_open_graph.handler_collector.class%
+    netgen_open_graph.meta_tag_collector:
+        class: %netgen_open_graph.meta_tag_collector.class%
         arguments:
             - @netgen_open_graph.handler_registry
             - @ezpublish.api.service.content_type
