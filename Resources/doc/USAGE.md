@@ -56,7 +56,7 @@ This handler will return the value of `TextLine` field type. You can specify the
 The following config:
 
 ```yaml
-{ handler: field_type/ezstring, tag: 'og:title', params: ['title'] }
+{ handler: field_type/ezstring, tag: 'og:title', params: ['title', 'My fallback title'] }
 ```
 
 Will result in following meta tag:
@@ -67,6 +67,12 @@ Will result in following meta tag:
 
 where `My super cool title` is the value of `title` field.
 
+In cases where `title` field is empty, meta tag will look like this:
+
+```html
+<meta property="og:title" content="My fallback title" />
+```
+
 ### field_type/eztext
 
 This handler will return the value of `TextBlock` field type. You can specify the field definition identifier as a first parameter, and optionally, a fallback value if the field is empty.
@@ -74,7 +80,7 @@ This handler will return the value of `TextBlock` field type. You can specify th
 The following config:
 
 ```yaml
-{ handler: field_type/eztext, tag: 'og:description', params: ['short_description'] }
+{ handler: field_type/eztext, tag: 'og:description', params: ['short_description', 'My fallback description'] }
 ```
 
 Will result in following meta tag:
@@ -85,6 +91,12 @@ Will result in following meta tag:
 
 where `My super cool description` is the value of `short_description` field.
 
+In cases where `short_description` field is empty, meta tag will look like this:
+
+```html
+<meta property="og:description" content="My fallback description" />
+```
+
 ### field_type/ezxmltext
 
 This handler will return the value of `XmlText` field type. You can specify the field definition identifier as a first parameter, and optionally, a fallback value if the field is empty.
@@ -92,7 +104,7 @@ This handler will return the value of `XmlText` field type. You can specify the 
 The following config:
 
 ```yaml
-{ handler: field_type/ezxmltext, tag: 'og:description', params: ['description'] }
+{ handler: field_type/ezxmltext, tag: 'og:description', params: ['description', 'My fallback description'] }
 ```
 
 Will result in following meta tag:
@@ -102,6 +114,12 @@ Will result in following meta tag:
 ```
 
 where `My super cool description` is the value of `description` field.
+
+In cases where `description` field is empty, meta tag will look like this:
+
+```html
+<meta property="og:description" content="My fallback description" />
+```
 
 ### field_type/ezimage
 
@@ -117,6 +135,12 @@ Will result in following meta tag:
 
 ```html
 <meta property="og:image" content="http://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_opengraph.png" />
+```
+
+In cases where `image` field is empty, meta tag will look like this:
+
+```html
+<meta property="og:image" content="http://mysite.com/bundles/site/images/opengraph_default_image.png" />
 ```
 
 ## Implementing your own handlers
