@@ -18,7 +18,7 @@ class XmlText extends Handler
     {
         /** @var \eZ\Publish\Core\FieldType\XmlText\Value $value */
         $value = $field->value;
-        return str_replace( "\n", " ", strip_tags( trim( $value->xml->saveXML() ) ) );
+        return trim( str_replace( "\n", " ", strip_tags( $value->xml->saveXML() ) ) );
     }
 
     /**
