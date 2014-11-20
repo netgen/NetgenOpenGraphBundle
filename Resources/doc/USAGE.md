@@ -160,7 +160,7 @@ Alternatively, you can extend an abstract `Netgen\Bundle\OpenGraphBundle\Handler
 implements both of the interfaces (and provides the default implementation of `setContent` method from `ContentAware`),
 so you only need to write your own `getMetaTags` method from `HandlerInterface`:
 
-```
+```php
 <?php
 
 namespace Vendor\Bundle\SiteBundle\OpenGraphHandler;
