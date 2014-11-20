@@ -68,7 +68,7 @@ class Collector
                 $metaTagHandler->setContent( $content );
             }
 
-            $newMetaTags = $metaTagHandler->getMetaTags( $contentTypeHandler['params'] );
+            $newMetaTags = $metaTagHandler->getMetaTags( $contentTypeHandler['tag'], $contentTypeHandler['params'] );
             foreach ( $newMetaTags as $metaTag )
             {
                 if ( !$metaTag instanceof Item )

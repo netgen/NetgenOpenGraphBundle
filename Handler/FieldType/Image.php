@@ -10,6 +10,7 @@ use eZ\Publish\SPI\Variation\VariationHandler;
 use Symfony\Component\HttpFoundation\RequestStack;
 use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Exception;
 
@@ -58,13 +59,22 @@ class Image extends Handler
      * Returns the field value, converted to string
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
+     * @param string $tagName
      * @param array $params
      *
      * @return string
      */
-    protected function getFieldValue( Field $field, array $params = array() )
+    protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        $variationName = !empty( $params[2] ) ? $params[2] : 'opengraph';
+        if ( !isset( $params[1] ) )
+        {
+            throw new InvalidArgumentException(
+                '$params[1]',
+                'Image field type handler requires at least two parameters: field identifier and image variation.'
+            );
+        }
+
+        $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
 
         try
         {
@@ -96,9 +106,9 @@ class Image extends Handler
             }
         }
 
-        if ( !empty( $params[3] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
+        if ( !empty( $params[2] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
         {
-            return $request->getUriForPath( '/' . ltrim( $params[3], '/' ) );
+            return $request->getUriForPath( '/' . ltrim( $params[2], '/' ) );
         }
 
         return '';

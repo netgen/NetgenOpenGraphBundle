@@ -36,49 +36,50 @@ abstract class Handler extends BaseHandler
     /**
      * Returns the array of meta tags
      *
+     * @param string $tagName
      * @param array $params
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags( array $params = array() )
+    public function getMetaTags( $tagName, array $params = array() )
     {
-        if ( count( $params ) < 2 )
+        if ( !isset( $params[0] ) )
         {
             throw new InvalidArgumentException(
-                '$params',
-                'Field type handlers require at least two parameters, meta tag name and field name.'
+                '$params[0]',
+                'Field type handlers require at least a field identifier.'
             );
         }
 
-        $field = $this->translationHelper->getTranslatedField( $this->content, $params[1] );
+        $field = $this->translationHelper->getTranslatedField( $this->content, $params[0] );
         if ( !$field instanceof Field )
         {
-            throw new InvalidArgumentException( '$params[1]', 'Field \'' . $params[1] . '\' does not exist in content.' );
+            throw new InvalidArgumentException( '$params[0]', 'Field \'' . $params[0] . '\' does not exist in content.' );
         }
 
         if ( !$this->supports( $field ) )
         {
             throw new InvalidArgumentException(
-                '$params[1]',
+                '$params[0]',
                 get_class($this) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
             );
         }
 
         $metaTagValue = '';
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[1] ) )
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
         {
-            $metaTagValue = $this->getFieldValue( $field, $params );
+            $metaTagValue = $this->getFieldValue( $field, $tagName, $params );
         }
-        else if ( !empty( $params[2] ) )
+        else if ( !empty( $params[1] ) )
         {
-            $metaTagValue = (string)$params[2];
+            $metaTagValue = (string)$params[1];
         }
 
         return array(
             new Item(
-                $params[0],
+                $tagName,
                 $metaTagValue
             )
         );
@@ -88,11 +89,12 @@ abstract class Handler extends BaseHandler
      * Returns the field value, converted to string
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
+     * @param string $tagName
      * @param array $params
      *
      * @return string
      */
-    protected function getFieldValue( Field $field, array $params = array() )
+    protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
         return (string)$field->value;
     }
