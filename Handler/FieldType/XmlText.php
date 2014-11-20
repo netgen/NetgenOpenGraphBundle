@@ -11,10 +11,11 @@ class XmlText extends Handler
      * Returns the field value, converted to string
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
+     * @param array $params
      *
      * @return string
      */
-    protected function getFieldValue( Field $field )
+    protected function getFieldValue( Field $field, array $params = array() )
     {
         /** @var \eZ\Publish\Core\FieldType\XmlText\Value $value */
         $value = $field->value;

@@ -69,7 +69,7 @@ abstract class Handler extends BaseHandler
         $metaTagValue = '';
         if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[1] ) )
         {
-            $metaTagValue = $this->getFieldValue( $field );
+            $metaTagValue = $this->getFieldValue( $field, $params );
         }
         else if ( !empty( $params[2] ) )
         {
@@ -88,10 +88,11 @@ abstract class Handler extends BaseHandler
      * Returns the field value, converted to string
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
+     * @param array $params
      *
      * @return string
      */
-    protected function getFieldValue( Field $field )
+    protected function getFieldValue( Field $field, array $params = array() )
     {
         return (string)$field->value;
     }
