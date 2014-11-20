@@ -6,6 +6,7 @@ parameters:
     netgen_open_graph.handler.field_type.text_line.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
     netgen_open_graph.handler.field_type.text_block.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock
     netgen_open_graph.handler.field_type.xml_text.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
+    netgen_open_graph.handler.field_type.image.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
 
 services:
     netgen_open_graph.handler.abstract:
@@ -45,3 +46,14 @@ services:
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
+
+    netgen_open_graph.handler.field_type.image:
+        class: %netgen_open_graph.handler.field_type.image.class%
+        parent: netgen_open_graph.handler.field_type.abstract
+        lazy: true
+        arguments:
+            - @ezpublish.fieldtype.ezimage.variation_service
+            - @request_stack
+            - @?logger
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezimage }
