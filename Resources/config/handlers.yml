@@ -5,6 +5,7 @@ parameters:
     netgen_open_graph.handler.literal.text.class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text
     netgen_open_graph.handler.field_type.text_line.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
     netgen_open_graph.handler.field_type.text_block.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock
+    netgen_open_graph.handler.field_type.xml_text.class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
 
 services:
     netgen_open_graph.handler.abstract:
@@ -37,3 +38,10 @@ services:
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/eztext }
+
+    netgen_open_graph.handler.field_type.xml_text:
+        class: %netgen_open_graph.handler.field_type.xml_text.class%
+        parent: netgen_open_graph.handler.field_type.abstract
+        lazy: true
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
