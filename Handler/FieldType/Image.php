@@ -66,43 +66,46 @@ class Image extends Handler
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        if ( !isset( $params[1] ) )
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
         {
-            throw new InvalidArgumentException(
-                '$params[1]',
-                'Image field type handler requires at least two parameters: field identifier and image variation.'
-            );
-        }
-
-        $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
-
-        try
-        {
-            return $this->imageVariationService->getVariation( $field, $this->content->versionInfo, $variationName )->uri;
-        }
-        catch ( InvalidVariationException $e )
-        {
-            if ( $this->logger !== null )
+            if ( !isset( $params[1] ) )
             {
-                $this->logger->error( "Open Graph image handler: Couldn't get variation '{$variationName}' for image with id {$field->value->id}" );
-            }
-        }
-        catch ( SourceImageNotFoundException $e )
-        {
-            if ( $this->logger !== null )
-            {
-                $this->logger->error(
-                    "Open Graph image handler: Couldn't create variation '{$variationName}' for image with id {$field->value->id} because source image can't be found"
+                throw new InvalidArgumentException(
+                    '$params[1]',
+                    'Image field type handler requires at least two parameters: field identifier and image variation.'
                 );
             }
-        }
-        catch ( Exception $e )
-        {
-            if ( $this->logger !== null )
+
+            $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
+
+            try
             {
-                $this->logger->error(
-                    "Open Graph image handler: Error while getting variation '{$variationName}' for image with id {$field->value->id}: " . $e->getMessage()
-                );
+                return $this->imageVariationService->getVariation( $field, $this->content->versionInfo, $variationName )->uri;
+            }
+            catch ( InvalidVariationException $e )
+            {
+                if ( $this->logger !== null )
+                {
+                    $this->logger->error( "Open Graph image handler: Couldn't get variation '{$variationName}' for image with id {$field->value->id}" );
+                }
+            }
+            catch ( SourceImageNotFoundException $e )
+            {
+                if ( $this->logger !== null )
+                {
+                    $this->logger->error(
+                        "Open Graph image handler: Couldn't create variation '{$variationName}' for image with id {$field->value->id} because source image can't be found"
+                    );
+                }
+            }
+            catch ( Exception $e )
+            {
+                if ( $this->logger !== null )
+                {
+                    $this->logger->error(
+                        "Open Graph image handler: Error while getting variation '{$variationName}' for image with id {$field->value->id}: " . $e->getMessage()
+                    );
+                }
             }
         }
 

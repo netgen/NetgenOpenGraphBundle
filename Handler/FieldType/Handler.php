@@ -67,20 +67,10 @@ abstract class Handler extends BaseHandler
             );
         }
 
-        $metaTagValue = '';
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
-        {
-            $metaTagValue = $this->getFieldValue( $field, $tagName, $params );
-        }
-        else if ( !empty( $params[1] ) )
-        {
-            $metaTagValue = (string)$params[1];
-        }
-
         return array(
             new Item(
                 $tagName,
-                $metaTagValue
+                $this->getFieldValue( $field, $tagName, $params )
             )
         );
     }
@@ -96,7 +86,16 @@ abstract class Handler extends BaseHandler
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        return (string)$field->value;
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
+        {
+            return (string)$field->value;
+        }
+        else if ( !empty( $params[1] ) )
+        {
+            return (string)$params[1];
+        }
+
+        return '';
     }
 
     /**

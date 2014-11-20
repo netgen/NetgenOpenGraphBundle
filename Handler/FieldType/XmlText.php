@@ -18,9 +18,16 @@ class XmlText extends Handler
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        /** @var \eZ\Publish\Core\FieldType\XmlText\Value $value */
-        $value = $field->value;
-        return trim( str_replace( "\n", " ", strip_tags( $value->xml->saveXML() ) ) );
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
+        {
+            return trim( str_replace( "\n", " ", strip_tags( $field->value->xml->saveXML() ) ) );
+        }
+        else if ( !empty( $params[1] ) )
+        {
+            return (string)$params[1];
+        }
+
+        return '';
     }
 
     /**
