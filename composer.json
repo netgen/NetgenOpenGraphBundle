@@ -12,6 +12,6 @@
         "ezsystems/ezpublish-api": ">=5.4|>=2014.11"
     },
     "autoload": {
-        "psr-4": {"Netgen\\Bundle\\OpenGraphBundle": ""}
+        "psr-4": {"Netgen\\Bundle\\OpenGraphBundle\\": ""}
     }
 }
