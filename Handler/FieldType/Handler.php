@@ -60,7 +60,10 @@ abstract class Handler extends BaseHandler
 
         if ( !$this->supports( $field ) )
         {
-            return array();
+            throw new InvalidArgumentException(
+                '$params[1]',
+                get_class($this) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
+            );
         }
 
         $metaTagValue = '';
