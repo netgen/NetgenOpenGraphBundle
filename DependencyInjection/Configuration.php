@@ -41,6 +41,23 @@ class Configuration extends SiteAccessConfiguration
                     ->end()
                 ->end()
             ->end()
+            ->arrayNode( 'global_handlers' )
+                ->prototype( 'array' )
+                    ->children()
+                        ->scalarNode( 'handler' )
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode( 'tag' )
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->arrayNode( 'params' )
+                            ->prototype( 'variable' )->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
             ->scalarNode( 'facebook_app_id' )->end();
 
         return $treeBuilder;

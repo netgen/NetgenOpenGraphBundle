@@ -52,29 +52,34 @@ class Collector
     {
         $metaTags = array();
 
+        $allHandlers = $this->configResolver->getParameter( 'global_handlers', 'netgen_open_graph' );
+
         $contentType = $this->contentTypeService->loadContentType( $content->contentInfo->contentTypeId );
         $contentTypeHandlers = $this->configResolver->getParameter( 'content_type_handlers', 'netgen_open_graph' );
 
-        if ( !isset( $contentTypeHandlers[$contentType->identifier] ) )
+        if ( isset( $contentTypeHandlers[$contentType->identifier] ) )
         {
-            return array();
+            $allHandlers = array_merge(
+                $allHandlers,
+                $contentTypeHandlers[$contentType->identifier]
+            );
         }
 
-        foreach ( $contentTypeHandlers[$contentType->identifier] as $contentTypeHandler )
+        foreach ( $allHandlers as $handler )
         {
-            $metaTagHandler = $this->metaTagHandlers->getHandler( $contentTypeHandler['handler'] );
+            $metaTagHandler = $this->metaTagHandlers->getHandler( $handler['handler'] );
             if ( $metaTagHandler instanceof ContentAware )
             {
                 $metaTagHandler->setContent( $content );
             }
 
-            $newMetaTags = $metaTagHandler->getMetaTags( $contentTypeHandler['tag'], $contentTypeHandler['params'] );
+            $newMetaTags = $metaTagHandler->getMetaTags( $handler['tag'], $handler['params'] );
             foreach ( $newMetaTags as $metaTag )
             {
                 if ( !$metaTag instanceof Item )
                 {
                     throw new LogicException(
-                        '\'' . $contentTypeHandler['handler'] . '\' handler returned wrong value.' .
+                        '\'' . $handler['handler'] . '\' handler returned wrong value.' .
                         ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class( $metaTag ) . '\'.' );
                 }
 

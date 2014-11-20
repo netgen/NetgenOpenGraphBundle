@@ -18,15 +18,15 @@ netgen_open_graph:
             content_type_handlers:
                 blog_post:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
-                    - { handler: literal/text, tag: 'og:site_name', params: ['My cool site'] }
                     - { handler: field_type/ezstring, tag: 'og:title', params: ['title'] }
                     - { handler: field_type/ezimage, tag: 'og:image', params: ['image', 'opengraph'] }
                 article:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
-                    - { handler: literal/text, tag: 'og:site_name', params: ['My cool site'] }
                     - { handler: field_type/ezstring, tag: 'og:title', params: ['short_title'] }
                     - { handler: field_type/ezxmltext, tag: 'og:description', params: ['short_intro'] }
                     - { handler: field_type/ezimage, tag: 'og:image', params: ['line_image', 'opengraph'] }
+            global_handlers:
+                - { handler: literal/text, tag: 'og:site_name', params: ['My cool site'] }
 ```
 
 What happens here is that each element in `content_type_handlers` array corresponds to one content type in your
@@ -34,6 +34,8 @@ database, and for each content type, you define a list of handlers together with
 parameters. Each of the handlers returns one or more meta tags (for example, `og:video` tag can have multiple
 subtags, like `og:video:type` or `og:video:width`) to be rendered, and the bundle collects all meta tags from
 all handlers and displays them.
+
+The handlers defined in `global_handlers` list will be applied to all content types.
 
 For the list of available handlers and available parameters, see below.
 
