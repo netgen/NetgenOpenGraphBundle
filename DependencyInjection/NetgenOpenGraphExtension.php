@@ -28,6 +28,7 @@ class NetgenOpenGraphExtension extends Extension
         $loader->load( 'services.yml' );
         $loader->load( 'handlers.yml' );
         $loader->load( 'defaults.yml' );
+        $loader->load( 'templating.yml' );
 
         $processor = new ConfigurationProcessor( $container, 'netgen_open_graph' );
         $processor->mapConfig(

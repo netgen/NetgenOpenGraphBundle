@@ -1,0 +1,10 @@
+parameters:
+    netgen_open_graph.templating.twig.extension.class: Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
+
+services:
+    netgen_open_graph.templating.twig.extension:
+        class: %netgen_open_graph.templating.twig.extension.class%
+        arguments:
+            - @service_container
+        tags:
+            - { name: twig.extension }
