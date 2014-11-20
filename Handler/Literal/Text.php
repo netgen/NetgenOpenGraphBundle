@@ -3,7 +3,7 @@
 namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
-use Netgen\Bundle\OpenGraphBundle\Value\MetaTag;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
 class Text implements HandlerInterface
@@ -15,7 +15,7 @@ class Text implements HandlerInterface
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
      *
-     * @return \Netgen\Bundle\OpenGraphBundle\Value\MetaTag[]
+     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
     public function getMetaTags( array $params = array() )
     {
@@ -28,7 +28,7 @@ class Text implements HandlerInterface
         }
 
         return array(
-            new MetaTag(
+            new Item(
                 $params[0],
                 $params[1]
             )

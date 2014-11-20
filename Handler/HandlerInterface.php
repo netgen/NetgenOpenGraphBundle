@@ -9,7 +9,7 @@ interface HandlerInterface
      *
      * @param array $params
      *
-     * @return \Netgen\Bundle\OpenGraphBundle\Value\MetaTag[]
+     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
     public function getMetaTags( array $params = array() );
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\OpenGraphBundle\Value;
+namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
-class MetaTag
+class Item
 {
     /**
      * @var string

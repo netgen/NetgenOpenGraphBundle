@@ -5,7 +5,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\API\Repository\Values\Content\Field;
-use Netgen\Bundle\OpenGraphBundle\Value\MetaTag;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
@@ -40,7 +40,7 @@ abstract class Handler extends BaseHandler
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
      *
-     * @return \Netgen\Bundle\OpenGraphBundle\Value\MetaTag[]
+     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
     public function getMetaTags( array $params = array() )
     {
@@ -74,7 +74,7 @@ abstract class Handler extends BaseHandler
         }
 
         return array(
-            new MetaTag(
+            new Item(
                 $params[0],
                 $metaTagValue
             )

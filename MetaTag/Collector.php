@@ -5,7 +5,7 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\OpenGraphBundle\Value\MetaTag;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use LogicException;
@@ -46,7 +46,7 @@ class Collector
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
-     * @return \Netgen\Bundle\OpenGraphBundle\Value\MetaTag[]
+     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
     public function collect( Content $content )
     {
@@ -71,11 +71,11 @@ class Collector
             $newMetaTags = $metaTagHandler->getMetaTags( $contentTypeHandler['params'] );
             foreach ( $newMetaTags as $metaTag )
             {
-                if ( !$metaTag instanceof MetaTag )
+                if ( !$metaTag instanceof Item )
                 {
                     throw new LogicException(
                         '\'' . $contentTypeHandler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\Value\MetaTag\', got \'' . get_class( $metaTag ) . '\'.' );
+                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class( $metaTag ) . '\'.' );
                 }
 
                 $metaTagValue = $metaTag->getTagValue();
