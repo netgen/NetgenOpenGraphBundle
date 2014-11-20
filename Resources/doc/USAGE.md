@@ -81,6 +81,7 @@ Will result in following meta tag:
 
 ```html
 <meta property="og:description" content="My super cool description" />
+```
 
 where `My super cool description` is the value of `short_description` field.
 
@@ -98,6 +99,7 @@ Will result in following meta tag:
 
 ```html
 <meta property="og:description" content="My super cool description" />
+```
 
 where `My super cool description` is the value of `description` field.
 
@@ -115,5 +117,6 @@ Will result in following meta tag:
 
 ```html
 <meta property="og:image" content="http://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_opengraph.png" />
+```
 
 ## Implementing your own handlers
