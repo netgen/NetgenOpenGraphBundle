@@ -13,7 +13,8 @@ Installation steps
 
 Installation of this bundle is pretty straightforward.
 
-Add the following to your composer.json and run `php composer.phar update netgen/open-graph-bundle` to refresh dependencies:
+Add the following to your composer.json and run `php composer.phar update netgen/open-graph-bundle`
+to refresh dependencies:
 
 ```json
 "require": {

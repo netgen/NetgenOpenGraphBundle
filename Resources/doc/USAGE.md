@@ -5,7 +5,9 @@ Netgen Open Graph Bundle documentation
 
 ## Configuring content type handlers
 
-This bundle uses semantic configuration to define how meta tags will look for specific content type. Additionally, semantic configuration is [site access aware](https://doc.ez.no/display/EZP/How+to+expose+SiteAccess+aware+configuration+for+your+bundle), so you can specify different meta tags for different site accesses.
+This bundle uses semantic configuration to define how meta tags will look for specific content type. Additionally,
+semantic configuration is [site access aware][1], so you can specify different meta tags for different content types,
+per site access.
 
 To configure meta tags for your content types, you can use semantic config similar to the following:
 
@@ -27,7 +29,11 @@ netgen_open_graph:
                     - { handler: field_type/ezimage, tag: 'og:image', params: ['line_image', 'opengraph'] }
 ```
 
-What happens here is that each element in `content_type_handlers` array corresponds to one content type in your database, and for each content type, you define a list of handlers together with the meta tag name and handler parameters. Each of the handlers returns one or more meta tags (for example, `og:video` tag can have multiple subtags, like `og:video:type` or `og:video:width`) to be rendered, and the bundle collects all meta tags from all handlers and displays them.
+What happens here is that each element in `content_type_handlers` array corresponds to one content type in your
+database, and for each content type, you define a list of handlers together with the meta tag name and handler
+parameters. Each of the handlers returns one or more meta tags (for example, `og:video` tag can have multiple
+subtags, like `og:video:type` or `og:video:width`) to be rendered, and the bundle collects all meta tags from
+all handlers and displays them.
 
 For the list of available handlers and available parameters, see below.
 
@@ -51,7 +57,8 @@ Will result in following meta tag:
 
 ### field_type/ezstring
 
-This handler will return the value of `TextLine` field type. You can specify the field definition identifier as a first parameter, and optionally, a fallback value if the field is empty.
+This handler will return the value of `TextLine` field type. You can specify the field definition identifier
+as a first parameter, and optionally, a fallback value if the field is empty.
 
 The following config:
 
@@ -75,7 +82,8 @@ In cases where `title` field is empty, meta tag will look like this:
 
 ### field_type/eztext
 
-This handler will return the value of `TextBlock` field type. You can specify the field definition identifier as a first parameter, and optionally, a fallback value if the field is empty.
+This handler will return the value of `TextBlock` field type. You can specify the field definition identifier
+as a first parameter, and optionally, a fallback value if the field is empty.
 
 The following config:
 
@@ -99,7 +107,8 @@ In cases where `short_description` field is empty, meta tag will look like this:
 
 ### field_type/ezxmltext
 
-This handler will return the value of `XmlText` field type. You can specify the field definition identifier as a first parameter, and optionally, a fallback value if the field is empty.
+This handler will return the value of `XmlText` field type. You can specify the field definition identifier
+as a first parameter, and optionally, a fallback value if the field is empty.
 
 The following config:
 
@@ -123,7 +132,9 @@ In cases where `description` field is empty, meta tag will look like this:
 
 ### field_type/ezimage
 
-This handler will return the path to the image stored in `Image` field type. You can specify the field definition identifier as a first parameter, and optionally, image variation to use as a second parameter (`opengraph` variation will be used by default), and a fallback path to an image if the field is empty.
+This handler will return the path to the image stored in `Image` field type. You can specify the field definition
+identifier as a first parameter, and optionally, image variation to use as a second parameter (`opengraph` variation
+will be used by default), and a fallback path to an image if the field is empty.
 
 The following config:
 
@@ -244,3 +255,5 @@ protected function getFieldValue( Field $field, $tagName, array $params = array(
     return '';
 }
 ```
+
+[1]: https://doc.ez.no/display/EZP/How+to+expose+SiteAccess+aware+configuration+for+your+bundle
