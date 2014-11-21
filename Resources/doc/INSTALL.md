@@ -42,3 +42,26 @@ public function registerBundles()
    ...
 }
 ```
+
+### Use the bundle
+
+Add the following in your pagelayout template to output the Open Graph meta tags:
+
+```twig
+{% if content is defined %}
+    {{ render_netgen_open_graph( content ) }}
+{% endif %}
+```
+
+Alternatively, you can use `get_netgen_open_graph( content )` to just return the tags
+and render them manually, for example:
+
+```twig
+{% if content is defined %}
+    {% set metaTags = get_netgen_open_graph( content ) %}
+
+    {% for metaTag in metaTags %}
+        <meta property="{{ metaTag.tagName|trim }}" content="{{ metaTag.tagValue|trim }}" />
+    {% endfor %}
+{% endif %}
+```
