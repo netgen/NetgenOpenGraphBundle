@@ -160,15 +160,15 @@ In cases where `image` field is empty, meta tag will look like this:
 
 ### Creating a tagged service
 
-All handlers (even the built in ones) are full blown services, so you can require any dependencies you need.
-To register a handler in the container and have it loaded automatically, you need to tag it with
-`netgen_open_graph.meta_tag_handler` tag. See sections below to check out the examples of tagged services.
+If provided handlers are not enough for you, you can implement your own. All handlers (even the built in ones)
+are full blown services, so you can require any dependencies you need. To register a handler in the container
+and have it loaded automatically, you need to tag it with `netgen_open_graph.meta_tag_handler` tag.
+See below for an example on how to create a service with the required tag.
 
 ### Generic handlers
 
-If provided handlers are not enough for you, you can implement your own. To properly define the handler,
-you need to implement `Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface` interface, which defines
-one method `getMetaTags`.
+To properly define the handler, you need to implement `Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface`
+interface, which defines one method `getMetaTags`.
 
 However, implementing this interface won't give you access to the `Content` object by default. In some cases
 this will be enough, but for the most of the use cases, you will want to have access to it. In that case, you
