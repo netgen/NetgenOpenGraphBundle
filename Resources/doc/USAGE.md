@@ -216,9 +216,9 @@ One special category of meta tag handlers are field type handlers. The bundle pr
 The process is similar when implementing generic handlers, but this time around, you need to extend the provided
 `Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler` abstract handler. This handler will give you access to
 `Content` and `Field` objects with which you can generate meta tags. The only requirement is that the first parameter
-always needs to be the identifier of the field to use. 
+passed to your handler via configuration always needs to be the identifier of the field to use. 
 
-In your handler, you need to at least implement `supports()` method, which defines which field type your handler
+In your handler, you need to at least implement `supports()` method, which defines which field types your handler
 supports, for example:
 
 ```php
@@ -263,6 +263,8 @@ protected function getFieldValue( Field $field, $tagName, array $params = array(
     return '';
 }
 ```
+
+### Registering your handlers
 
 To register the handlers in the container, you can tag them something like this:
 
