@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "ezsystems/ezpublish-api": ">=5.4|>=2014.11"
+        "ezsystems/ezpublish-kernel": "*"
     },
     "autoload": {
         "psr-4": {"Netgen\\Bundle\\OpenGraphBundle\\": ""}
