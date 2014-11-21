@@ -158,11 +158,17 @@ In cases where `image` field is empty, meta tag will look like this:
 
 ## Implementing your own handlers
 
+### Creating a tagged service
+
+All handlers (even the built in ones) are full blown services, so you can require any dependencies you need.
+To register a handler in the container and have it loaded automatically, you need to tag it with
+`netgen_open_graph.meta_tag_handler` tag. See sections below to check out the examples of tagged services.
+
 ### Generic handlers
 
-If provided handlers are not enough for you, you can implement your own. Handlers are full blown services,
-so you can require any dependencies you need. To properly define the handler, you need to implement
-`Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface` interface, which defines one method `getMetaTags`.
+If provided handlers are not enough for you, you can implement your own. To properly define the handler,
+you need to implement `Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface` interface, which defines
+one method `getMetaTags`.
 
 However, implementing this interface won't give you access to the `Content` object by default. In some cases
 this will be enough, but for the most of the use cases, you will want to have access to it. In that case, you
@@ -257,5 +263,20 @@ protected function getFieldValue( Field $field, $tagName, array $params = array(
     return '';
 }
 ```
+
+To register the handlers in the container, you can tag them something like this:
+
+```yaml
+site_bundle.meta_tag_handler.my_custom_handler:
+    class: Vendor\Bundle\SiteBundle\OpenGraphHandler\MyCustomHandler
+    parent: netgen_open_graph.handler.abstract
+    lazy: true
+    tags:
+        - { name: netgen_open_graph.meta_tag_handler, alias: my_site/my_handler }
+```
+
+Take care to specify the right parent for your handler type. If you're creating a generic handler, your parent
+needs to be `netgen_open_graph.handler.abstract`. Alternatively, if you're developing a field type handler, you
+need to specify `netgen_open_graph.handler.field_type.abstract` as a parent.
 
 [1]: https://doc.ez.no/display/EZP/How+to+expose+SiteAccess+aware+configuration+for+your+bundle
