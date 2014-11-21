@@ -1,9 +1,7 @@
 Netgen Open Graph Bundle documentation
 ======================================
 
-## Basic configuration
-
-## Configuring content type handlers
+## Meta tag configuration
 
 This bundle uses semantic configuration to define how meta tags will look for specific content type. Additionally,
 semantic configuration is [site access aware][1], so you can specify different meta tags for different content types,
@@ -15,6 +13,8 @@ To configure meta tags for your content types, you can use semantic config simil
 netgen_open_graph:
     system:
         frontend_group:
+            global_handlers:
+                - { handler: literal/text, tag: 'og:site_name', params: ['My cool site'] }
             content_type_handlers:
                 blog_post:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
@@ -25,8 +25,6 @@ netgen_open_graph:
                     - { handler: field_type/ezstring, tag: 'og:title', params: ['short_title'] }
                     - { handler: field_type/ezxmltext, tag: 'og:description', params: ['short_intro'] }
                     - { handler: field_type/ezimage, tag: 'og:image', params: ['line_image', 'opengraph'] }
-            global_handlers:
-                - { handler: literal/text, tag: 'og:site_name', params: ['My cool site'] }
 ```
 
 What happens here is that each element in `content_type_handlers` array corresponds to one content type in your
