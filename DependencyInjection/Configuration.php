@@ -18,18 +18,20 @@ class Configuration extends SiteAccessConfiguration
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root( 'netgen_open_graph' );
+        $rootNode = $treeBuilder->root( 'netgen_open_graph' )
+            ->fixXmlConfig( 'content_type_handler' )
+            ->fixXmlConfig( 'global_handler' );
 
         $this->generateScopeBaseNode( $rootNode )
             ->arrayNode( 'content_type_handlers' )
+                ->useAttributeAsKey( 'content_type' )
+                ->normalizeKeys( false )
                 ->prototype( 'array' )
                     ->requiresAtLeastOneElement()
+                    ->useAttributeAsKey( 'handler' )
+                    ->normalizeKeys( false )
                     ->prototype( 'array' )
                         ->children()
-                            ->scalarNode( 'handler' )
-                                ->isRequired()
-                                ->cannotBeEmpty()
-                            ->end()
                             ->scalarNode( 'tag' )
                                 ->isRequired()
                                 ->cannotBeEmpty()
@@ -42,12 +44,10 @@ class Configuration extends SiteAccessConfiguration
                 ->end()
             ->end()
             ->arrayNode( 'global_handlers' )
+                ->useAttributeAsKey( 'handler' )
+                ->normalizeKeys( false )
                 ->prototype( 'array' )
                     ->children()
-                        ->scalarNode( 'handler' )
-                            ->isRequired()
-                            ->cannotBeEmpty()
-                        ->end()
                         ->scalarNode( 'tag' )
                             ->isRequired()
                             ->cannotBeEmpty()
@@ -57,8 +57,7 @@ class Configuration extends SiteAccessConfiguration
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-            ->scalarNode( 'facebook_app_id' )->end();
+            ->end();
 
         return $treeBuilder;
     }

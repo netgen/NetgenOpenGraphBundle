@@ -65,9 +65,9 @@ class Collector
             );
         }
 
-        foreach ( $allHandlers as $handler )
+        foreach ( $allHandlers as $handlerName => $handler )
         {
-            $metaTagHandler = $this->metaTagHandlers->getHandler( $handler['handler'] );
+            $metaTagHandler = $this->metaTagHandlers->getHandler( $handlerName );
             if ( $metaTagHandler instanceof ContentAware )
             {
                 $metaTagHandler->setContent( $content );
@@ -79,7 +79,7 @@ class Collector
                 if ( !$metaTag instanceof Item )
                 {
                     throw new LogicException(
-                        '\'' . $handler['handler'] . '\' handler returned wrong value.' .
+                        '\'' . $handlerName . '\' handler returned wrong value.' .
                         ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class( $metaTag ) . '\'.' );
                 }
 
