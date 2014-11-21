@@ -41,9 +41,13 @@ class NetgenOpenGraphExtension extends Twig_Extension
     {
         return array(
             new Twig_SimpleFunction(
-                'netgen_open_graph',
+                'render_netgen_open_graph',
                 array( $this, 'renderOpenGraphTags' ),
                 array( 'is_safe' => array( 'html' ) )
+            ),
+            new Twig_SimpleFunction(
+                'get_netgen_open_graph',
+                array( $this, 'getOpenGraphTags' )
             )
         );
     }
@@ -63,5 +67,19 @@ class NetgenOpenGraphExtension extends Twig_Extension
         return $tagRenderer->render(
             $tagCollector->collect( $content )
         );
+    }
+
+    /**
+     * Returns Open Graph tags for provided content
+     *
+     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     *
+     * @return string
+     */
+    public function getOpenGraphTags( Content $content )
+    {
+        $tagCollector = $this->container->get( 'netgen_open_graph.meta_tag_collector' );
+
+        return $tagCollector->collect( $content );
     }
 }
