@@ -43,5 +43,6 @@ class NetgenOpenGraphExtension extends Extension
         );
 
         $processor->mapConfigArray( 'content_type_handlers', $config );
+        $processor->mapConfigArray( 'global_handlers', $config );
     }
 }
