@@ -176,7 +176,7 @@ need to also implement `Netgen\Bundle\OpenGraphBundle\Handler\ContentAware` inte
 to the `Content` object.
 
 Alternatively, you can extend an abstract `Netgen\Bundle\OpenGraphBundle\Handler\Handler` class, which already
-implements both of the interfaces (and provides the default implementation of `setContent` method from `ContentAware`),
+implements both of the interfaces and provides the default implementation of `setContent` method from `ContentAware`,
 so you only need to write your own `getMetaTags` method from `HandlerInterface`:
 
 ```php
