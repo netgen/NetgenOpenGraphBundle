@@ -145,7 +145,7 @@ The following config:
 Will result in following meta tag:
 
 ```html
-<meta property="og:image" content="http://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_opengraph.png" />
+<meta property="og:image" content="http://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_my_variation.png" />
 ```
 
 In cases where `image` field is empty, meta tag will look like this:
