@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.0.1 (22.04.2015)
+
+* Fix issue with being able to add only one handler of the same type
+
 ## 1.0 (21.11.2014)
 
 * Initial release
