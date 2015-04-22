@@ -68,14 +68,6 @@ class Image extends Handler
     {
         if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
         {
-            if ( !isset( $params[1] ) )
-            {
-                throw new InvalidArgumentException(
-                    '$params[1]',
-                    'Image field type handler requires at least two parameters: field identifier and image variation.'
-                );
-            }
-
             $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
 
             try
