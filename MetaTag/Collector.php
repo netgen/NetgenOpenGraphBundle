@@ -60,7 +60,7 @@ class Collector
         if ( isset( $contentTypeHandlers[$contentType->identifier] ) )
         {
             $allHandlers = array_merge(
-                $allHandlers,
+                $allHandlers['all_content_types'],
                 $contentTypeHandlers[$contentType->identifier]
             );
         }

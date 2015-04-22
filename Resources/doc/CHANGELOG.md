@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.0.2 (22.04.2015)
+
+* Fix an edge case bug where some handler configuration could be duplicated
+
 ## 1.0.1 (22.04.2015)
 
 * Remove need for specifying image alias in `ezimage` field type handler

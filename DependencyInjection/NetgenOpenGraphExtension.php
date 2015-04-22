@@ -30,6 +30,23 @@ class NetgenOpenGraphExtension extends Extension
         $loader->load( 'defaults.yml' );
         $loader->load( 'templating.yml' );
 
+        // The following block is a workaround for eZ Publish configuration processor
+        // not being able to merge arrays with numeric indexes.
+        // It works by inserting a dummy 'all_content_types' subkey, basically converting
+        // the array from numeric based indexes to string based indexes.
+        if ( !empty( $config['system'] ) )
+        {
+            foreach ( $config['system'] as $scope => &$handlers )
+            {
+                if ( !empty( $handlers['global_handlers'] ) )
+                {
+                    $handlers['global_handlers'] = array(
+                        'all_content_types' => $handlers['global_handlers']
+                    );
+                }
+            }
+        }
+
         $processor = new ConfigurationProcessor( $container, 'netgen_open_graph' );
         $processor->mapConfig(
             $config,
