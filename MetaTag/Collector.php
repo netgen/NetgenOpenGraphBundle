@@ -64,6 +64,10 @@ class Collector
                 $contentTypeHandlers[$contentType->identifier]
             );
         }
+        else
+        {
+            $allHandlers = $allHandlers['all_content_types'];
+        }
 
         foreach ( $allHandlers as $handler )
         {

@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.0.3 (22.04.2015)
+
+* Fix exception on pages where open graph tags are not configured (caused by fix in `1.0.2`)
+
 ## 1.0.2 (22.04.2015)
 
 * Fix an edge case bug where some handler configuration could be duplicated
