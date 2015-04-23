@@ -8,6 +8,7 @@ use eZ\Publish\API\Repository\Values\Content\Field;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 
 abstract class Handler extends BaseHandler
 {
@@ -53,24 +54,28 @@ abstract class Handler extends BaseHandler
             );
         }
 
-        $field = $this->translationHelper->getTranslatedField( $this->content, $params[0] );
-        if ( !$field instanceof Field )
-        {
-            throw new InvalidArgumentException( '$params[0]', 'Field \'' . $params[0] . '\' does not exist in content.' );
-        }
+        $fieldIdentifiers = is_array( $params[0] ) ? $params[0] : array( $params[0] );
+        $fieldValue = $this->getFallbackValue( $tagName, $params );
 
-        if ( !$this->supports( $field ) )
+        foreach ( $fieldIdentifiers as $fieldIdentifier )
         {
-            throw new InvalidArgumentException(
-                '$params[0]',
-                get_class($this) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
-            );
+            $field = $this->validateField( $fieldIdentifier );
+
+            try
+            {
+                $fieldValue = $this->getFieldValue( $field, $tagName, $params );
+                break;
+            }
+            catch ( FieldEmptyException $e )
+            {
+                // do nothing
+            }
         }
 
         return array(
             new Item(
                 $tagName,
-                $this->getFieldValue( $field, $tagName, $params )
+                $fieldValue
             )
         );
     }
@@ -82,20 +87,64 @@ abstract class Handler extends BaseHandler
      * @param string $tagName
      * @param array $params
      *
+     * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
+     *
      * @return string
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $field->fieldDefIdentifier ) )
         {
             return (string)$field->value;
         }
-        else if ( !empty( $params[1] ) )
+
+        throw new FieldEmptyException( $field->fieldDefIdentifier );
+    }
+
+    /**
+     * Returns fallback value
+     *
+     * @param string $tagName
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function getFallbackValue( $tagName, array $params = array() )
+    {
+        if ( !empty( $params[1] ) )
         {
             return (string)$params[1];
         }
 
         return '';
+    }
+
+    /**
+     * Validates field by field identifier.
+     *
+     * @param string $fieldIdentifier
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If field does not exist, or the handler does not support it
+     *
+     * @returns \eZ\Publish\API\Repository\Values\Content\Field
+     */
+    protected function validateField( $fieldIdentifier )
+    {
+        $field = $this->translationHelper->getTranslatedField( $this->content, $fieldIdentifier );
+        if ( !$field instanceof Field )
+        {
+            throw new InvalidArgumentException( '$params[0]', 'Field \'' . $fieldIdentifier . '\' does not exist in content.' );
+        }
+
+        if ( !$this->supports( $field ) )
+        {
+            throw new InvalidArgumentException(
+                '$params[0]',
+                get_class( $this ) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
+            );
+        }
+
+        return $field;
     }
 
     /**
