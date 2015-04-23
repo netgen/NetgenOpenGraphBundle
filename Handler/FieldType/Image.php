@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Psr\Log\LoggerInterface;
 use Exception;
 
@@ -62,11 +63,13 @@ class Image extends Handler
      * @param string $tagName
      * @param array $params
      *
+     * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
+     *
      * @return string
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $field->fieldDefIdentifier ) )
         {
             $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
 
@@ -101,6 +104,19 @@ class Image extends Handler
             }
         }
 
+        throw new FieldEmptyException( $field->fieldDefIdentifier );
+    }
+
+    /**
+     * Returns fallback value
+     *
+     * @param string $tagName
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function getFallbackValue( $tagName, array $params = array() )
+    {
         if ( !empty( $params[2] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
         {
             return $request->getUriForPath( '/' . ltrim( $params[2], '/' ) );

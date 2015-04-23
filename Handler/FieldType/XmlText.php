@@ -4,6 +4,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\XmlText\Value;
+use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 
 class XmlText extends Handler
 {
@@ -14,20 +15,18 @@ class XmlText extends Handler
      * @param string $tagName
      * @param array $params
      *
+     * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
+     *
      * @return string
      */
     protected function getFieldValue( Field $field, $tagName, array $params = array() )
     {
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
+        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $field->fieldDefIdentifier ) )
         {
             return trim( str_replace( "\n", " ", strip_tags( $field->value->xml->saveXML() ) ) );
         }
-        else if ( !empty( $params[1] ) )
-        {
-            return (string)$params[1];
-        }
 
-        return '';
+        throw new FieldEmptyException( $field->fieldDefIdentifier );
     }
 
     /**

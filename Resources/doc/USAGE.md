@@ -245,6 +245,8 @@ the method `getFieldValue()`. For example `XmlText` field type handler has the f
  * @param string $tagName
  * @param array $params
  *
+ * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
+ *
  * @return string
  */
 protected function getFieldValue( Field $field, $tagName, array $params = array() )
@@ -253,9 +255,33 @@ protected function getFieldValue( Field $field, $tagName, array $params = array(
     {
         return trim( str_replace( "\n", " ", strip_tags( $field->value->xml->saveXML() ) ) );
     }
-    else if ( !empty( $params[1] ) )
+
+    throw new FieldEmptyException( $field->fieldDefIdentifier );
+}
+```
+
+Notice that in case of field value being empty `getFieldValue` method throws
+`\Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException` exception.
+
+If you need more complicated handling of fallback value, you can also override `getFallbackValue` method. Just like already
+implemented `getFieldValue`, the default implementation of this method simply casts second parameter (`$params[1]`) to string.
+
+For example, `ezimage` field type handler has the following custom implementation:
+
+```
+/**
+ * Returns fallback value
+ *
+ * @param string $tagName
+ * @param array $params
+ *
+ * @return string
+ */
+protected function getFallbackValue( $tagName, array $params = array() )
+{
+    if ( !empty( $params[2] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
     {
-        return (string)$params[1];
+        return $request->getUriForPath( '/' . ltrim( $params[2], '/' ) );
     }
 
     return '';
