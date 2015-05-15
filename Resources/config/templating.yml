@@ -5,7 +5,10 @@ services:
     netgen_open_graph.templating.twig.extension:
         class: %netgen_open_graph.templating.twig.extension.class%
         arguments:
-            - @service_container
+            - @netgen_open_graph.meta_tag_collector
+            - @netgen_open_graph.meta_tag_renderer
             - @?logger
+         calls:
+             - [setThrowExceptions, [%kernel.debug%]]
         tags:
             - { name: twig.extension }

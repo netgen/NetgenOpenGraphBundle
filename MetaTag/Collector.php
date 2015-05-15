@@ -9,7 +9,7 @@ use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use LogicException;
 
-class Collector
+class Collector implements CollectorInterface
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Handler\Registry

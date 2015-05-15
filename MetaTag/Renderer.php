@@ -4,12 +4,15 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
-class Renderer
+class Renderer implements RendererInterface
 {
     /**
      * Renders provided meta tags
      *
      * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If meta tag is not an instance of
+     *         \Netgen\Bundle\OpenGraphBundle\MetaTag\Item
      *
      * @return string
      */
