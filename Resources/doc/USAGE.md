@@ -214,7 +214,8 @@ One special category of meta tag handlers are field type handlers. The bundle pr
 The process is similar when implementing generic handlers, but this time around, you need to extend the provided
 `Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler` abstract handler. This handler will give you access to
 `Content` and `Field` objects with which you can generate meta tags. The only requirement is that the first parameter
-passed to your handler via configuration always needs to be the identifier of the field to use. 
+passed to your handler via configuration always needs to be the identifier of the field to use or an array of
+field identifiers. In case the array of field identifiers is provided, the first field that has a value will be used.
 
 In your handler, you need to at least implement `supports()` method, which defines which field types your handler
 supports, for example:
