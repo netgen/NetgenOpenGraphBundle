@@ -4,8 +4,10 @@ namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Twig_Extension;
+use Psr\Log\LoggerInterface;
 use Twig_SimpleFunction;
+use Twig_Extension;
+use Exception;
 
 class NetgenOpenGraphExtension extends Twig_Extension
 {
@@ -15,11 +17,18 @@ class NetgenOpenGraphExtension extends Twig_Extension
     protected $container;
 
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @var \Psr\Log\LoggerInterface
      */
-    public function __construct( ContainerInterface $container )
+    protected $logger;
+
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @param \Psr\Log\LoggerInterface $logger
+     */
+    public function __construct( ContainerInterface $container, LoggerInterface $logger = null )
     {
         $this->container = $container;
+        $this->logger = $logger;
     }
 
     /**
@@ -64,9 +73,23 @@ class NetgenOpenGraphExtension extends Twig_Extension
         $tagCollector = $this->container->get( 'netgen_open_graph.meta_tag_collector' );
         $tagRenderer = $this->container->get( 'netgen_open_graph.meta_tag_renderer' );
 
-        return $tagRenderer->render(
-            $tagCollector->collect( $content )
-        );
+        try
+        {
+            return $tagRenderer->render(
+                $tagCollector->collect( $content )
+            );
+        }
+        catch ( Exception $e )
+        {
+            if ( !$this->logger instanceof LoggerInterface || $this->container->getParameter( 'kernel.debug' ) )
+            {
+                throw $e;
+            }
+
+            $this->logger->error( $e->getMessage() );
+        }
+
+        return "";
     }
 
     /**
@@ -74,12 +97,26 @@ class NetgenOpenGraphExtension extends Twig_Extension
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
-     * @return string
+     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
     public function getOpenGraphTags( Content $content )
     {
         $tagCollector = $this->container->get( 'netgen_open_graph.meta_tag_collector' );
 
-        return $tagCollector->collect( $content );
+        try
+        {
+            return $tagCollector->collect( $content );
+        }
+        catch ( Exception $e )
+        {
+            if ( !$this->logger instanceof LoggerInterface || $this->container->getParameter( 'kernel.debug' ) )
+            {
+                throw $e;
+            }
+
+            $this->logger->error( $e->getMessage() );
+        }
+
+        return array();
     }
 }

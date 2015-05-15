@@ -6,5 +6,6 @@ services:
         class: %netgen_open_graph.templating.twig.extension.class%
         arguments:
             - @service_container
+            - @?logger
         tags:
             - { name: twig.extension }
