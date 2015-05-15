@@ -4,6 +4,7 @@ Netgen Open Graph Bundle changelog
 ## 1.1 (15.05.2015)
 
 * Implement the ability to define the array of field identifiers to be used in field type handlers
+* Add the ability to silence exceptions in Twig functions based on %kernel.debug% parameter
 
 ## 1.0.3 (22.04.2015)
 
