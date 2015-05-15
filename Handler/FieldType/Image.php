@@ -10,7 +10,6 @@ use eZ\Publish\SPI\Variation\VariationHandler;
 use Symfony\Component\HttpFoundation\RequestStack;
 use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Psr\Log\LoggerInterface;
 use Exception;
