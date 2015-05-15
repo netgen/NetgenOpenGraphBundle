@@ -102,7 +102,7 @@ class NetgenOpenGraphExtension extends Twig_Extension
         try
         {
             return $this->tagRenderer->render(
-                $this->tagCollector->collect( $content )
+                $this->getOpenGraphTags( $content )
             );
         }
         catch ( Exception $e )
