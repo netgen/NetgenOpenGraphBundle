@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.1.1 (17.08.2015)
+
+* Make sure `ezimage` field type handler generates full image URI even when variation returns the relative URI
+
 ## 1.1 (15.05.2015)
 
 * Implement the ability to define the array of field identifiers to be used in field type handlers

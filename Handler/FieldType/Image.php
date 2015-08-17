@@ -74,7 +74,14 @@ class Image extends Handler
 
             try
             {
-                return $this->imageVariationService->getVariation( $field, $this->content->versionInfo, $variationName )->uri;
+                $variationUri = $this->imageVariationService->getVariation( $field, $this->content->versionInfo, $variationName )->uri;
+
+                if ( $variationUri[0] === '/' && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
+                {
+                    $variationUri = $request->getUriForPath( '/' . ltrim( $variationUri, '/' ) );
+                }
+
+                return $variationUri;
             }
             catch ( InvalidVariationException $e )
             {
