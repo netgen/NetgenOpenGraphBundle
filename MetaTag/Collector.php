@@ -51,10 +51,14 @@ class Collector implements CollectorInterface
     {
         $metaTags = array();
 
-        $allHandlers = $this->configResolver->getParameter( 'global_handlers', 'netgen_open_graph' );
+        $allHandlers = $this->configResolver->hasParameter( 'global_handlers', 'netgen_open_graph' ) ?
+            $this->configResolver->getParameter( 'global_handlers', 'netgen_open_graph' ) :
+            array( 'all_content_types' => array() );
 
         $contentType = $this->contentTypeService->loadContentType( $content->contentInfo->contentTypeId );
-        $contentTypeHandlers = $this->configResolver->getParameter( 'content_type_handlers', 'netgen_open_graph' );
+        $contentTypeHandlers = $this->configResolver->hasParameter( 'content_type_handlers', 'netgen_open_graph' ) ?
+            $this->configResolver->getParameter( 'content_type_handlers', 'netgen_open_graph' ) :
+            array();
 
         if ( isset( $contentTypeHandlers[$contentType->identifier] ) )
         {

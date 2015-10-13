@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.1.2 (13.10.2015)
+
+* Fix `E_WARNING` in meta tag collector if semantic config does not exist
+
 ## 1.1.1 (17.08.2015)
 
 * Make sure `ezimage` field type handler generates full image URI even when variation returns the relative URI
