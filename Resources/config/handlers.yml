@@ -16,8 +16,8 @@ services:
         class: %netgen_open_graph.handler.field_type.abstract.class%
         parent: netgen_open_graph.handler.abstract
         arguments:
-            - @ezpublish.field_helper
-            - @ezpublish.translation_helper
+            - "@ezpublish.field_helper"
+            - "@ezpublish.translation_helper"
 
     netgen_open_graph.handler.literal.text:
         class: %netgen_open_graph.handler.literal.text.class%
@@ -52,8 +52,8 @@ services:
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         arguments:
-            - @ezpublish.fieldtype.ezimage.variation_service
-            - @request_stack
-            - @?logger
+            - "@ezpublish.fieldtype.ezimage.variation_service"
+            - "@request_stack"
+            - "@?logger"
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezimage }
