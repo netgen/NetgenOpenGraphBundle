@@ -4,7 +4,7 @@ Netgen Open Graph Bundle installation instructions
 Requirements
 ------------
 
-* eZ Publish 5.4+ / eZ Publish Community Project 2014.11+
+* eZ Publish 5.4+ / eZ Publish Community Project 2014.11+ / eZ Platform 1.0+
 
 Installation steps
 ------------------
