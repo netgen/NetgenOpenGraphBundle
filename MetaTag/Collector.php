@@ -53,7 +53,7 @@ class Collector implements CollectorInterface
 
         $allHandlers = $this->configResolver->hasParameter( 'global_handlers', 'netgen_open_graph' ) ?
             $this->configResolver->getParameter( 'global_handlers', 'netgen_open_graph' ) :
-            array( 'all_content_types' => array() );
+            array();
 
         $contentType = $this->contentTypeService->loadContentType( $content->contentInfo->contentTypeId );
         $contentTypeHandlers = $this->configResolver->hasParameter( 'content_type_handlers', 'netgen_open_graph' ) ?
@@ -63,13 +63,13 @@ class Collector implements CollectorInterface
         if ( isset( $contentTypeHandlers[$contentType->identifier] ) )
         {
             $allHandlers = array_merge(
-                $allHandlers['all_content_types'],
+                isset( $allHandlers['all_content_types'] ) ? $allHandlers['all_content_types'] : array(),
                 $contentTypeHandlers[$contentType->identifier]
             );
         }
         else
         {
-            $allHandlers = $allHandlers['all_content_types'];
+            $allHandlers = isset( $allHandlers['all_content_types'] ) ? $allHandlers['all_content_types'] : array();
         }
 
         foreach ( $allHandlers as $handler )
