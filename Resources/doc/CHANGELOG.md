@@ -1,6 +1,11 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.1.3 (12.12.2015)
+
+* Real fix for `E_WARNING` in meta tag collector if semantic config does not exist
+* Remove deprecated unquoted service references in YML files
+
 ## 1.1.2 (13.10.2015)
 
 * Fix `E_WARNING` in meta tag collector if semantic config does not exist
