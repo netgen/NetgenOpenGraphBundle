@@ -7,11 +7,11 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 interface CollectorInterface
 {
     /**
-     * Collects meta tags from all handlers registered for provided content
+     * Collects meta tags from all handlers registered for provided content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function collect( Content $content );
+    public function collect(Content $content);
 }

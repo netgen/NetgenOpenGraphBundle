@@ -7,9 +7,9 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 interface ContentAware
 {
     /**
-     * Sets the content
+     * Sets the content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      */
-    public function setContent( Content $content );
+    public function setContent(Content $content);
 }

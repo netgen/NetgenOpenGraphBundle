@@ -23,19 +23,19 @@ abstract class Handler extends BaseHandler
     protected $translationHelper;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param \eZ\Publish\Core\Helper\FieldHelper $fieldHelper
      * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
      */
-    public function __construct( FieldHelper $fieldHelper, TranslationHelper $translationHelper )
+    public function __construct(FieldHelper $fieldHelper, TranslationHelper $translationHelper)
     {
         $this->fieldHelper = $fieldHelper;
         $this->translationHelper = $translationHelper;
     }
 
     /**
-     * Returns the array of meta tags
+     * Returns the array of meta tags.
      *
      * @param string $tagName
      * @param array $params
@@ -44,30 +44,25 @@ abstract class Handler extends BaseHandler
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags( $tagName, array $params = array() )
+    public function getMetaTags($tagName, array $params = array())
     {
-        if ( !isset( $params[0] ) )
-        {
+        if (!isset($params[0])) {
             throw new InvalidArgumentException(
                 '$params[0]',
                 'Field type handlers require at least a field identifier.'
             );
         }
 
-        $fieldIdentifiers = is_array( $params[0] ) ? $params[0] : array( $params[0] );
-        $fieldValue = $this->getFallbackValue( $tagName, $params );
+        $fieldIdentifiers = is_array($params[0]) ? $params[0] : array($params[0]);
+        $fieldValue = $this->getFallbackValue($tagName, $params);
 
-        foreach ( $fieldIdentifiers as $fieldIdentifier )
-        {
-            $field = $this->validateField( $fieldIdentifier );
+        foreach ($fieldIdentifiers as $fieldIdentifier) {
+            $field = $this->validateField($fieldIdentifier);
 
-            try
-            {
-                $fieldValue = $this->getFieldValue( $field, $tagName, $params );
+            try {
+                $fieldValue = $this->getFieldValue($field, $tagName, $params);
                 break;
-            }
-            catch ( FieldEmptyException $e )
-            {
+            } catch (FieldEmptyException $e) {
                 // do nothing
             }
         }
@@ -76,12 +71,12 @@ abstract class Handler extends BaseHandler
             new Item(
                 $tagName,
                 $fieldValue
-            )
+            ),
         );
     }
 
     /**
-     * Returns the field value, converted to string
+     * Returns the field value, converted to string.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
      * @param string $tagName
@@ -91,28 +86,26 @@ abstract class Handler extends BaseHandler
      *
      * @return string
      */
-    protected function getFieldValue( Field $field, $tagName, array $params = array() )
+    protected function getFieldValue(Field $field, $tagName, array $params = array())
     {
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $field->fieldDefIdentifier ) )
-        {
+        if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
             return (string)$field->value;
         }
 
-        throw new FieldEmptyException( $field->fieldDefIdentifier );
+        throw new FieldEmptyException($field->fieldDefIdentifier);
     }
 
     /**
-     * Returns fallback value
+     * Returns fallback value.
      *
      * @param string $tagName
      * @param array $params
      *
      * @return string
      */
-    protected function getFallbackValue( $tagName, array $params = array() )
+    protected function getFallbackValue($tagName, array $params = array())
     {
-        if ( !empty( $params[1] ) )
-        {
+        if (!empty($params[1])) {
             return (string)$params[1];
         }
 
@@ -128,19 +121,17 @@ abstract class Handler extends BaseHandler
      *
      * @returns \eZ\Publish\API\Repository\Values\Content\Field
      */
-    protected function validateField( $fieldIdentifier )
+    protected function validateField($fieldIdentifier)
     {
-        $field = $this->translationHelper->getTranslatedField( $this->content, $fieldIdentifier );
-        if ( !$field instanceof Field )
-        {
-            throw new InvalidArgumentException( '$params[0]', 'Field \'' . $fieldIdentifier . '\' does not exist in content.' );
+        $field = $this->translationHelper->getTranslatedField($this->content, $fieldIdentifier);
+        if (!$field instanceof Field) {
+            throw new InvalidArgumentException('$params[0]', 'Field \'' . $fieldIdentifier . '\' does not exist in content.');
         }
 
-        if ( !$this->supports( $field ) )
-        {
+        if (!$this->supports($field)) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                get_class( $this ) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
+                get_class($this) . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
             );
         }
 
@@ -148,11 +139,11 @@ abstract class Handler extends BaseHandler
     }
 
     /**
-     * Returns if this field type handler supports current field
+     * Returns if this field type handler supports current field.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
      *
      * @return bool
      */
-    abstract protected function supports( Field $field );
+    abstract protected function supports(Field $field);
 }

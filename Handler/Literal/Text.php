@@ -9,7 +9,7 @@ use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 class Text implements HandlerInterface
 {
     /**
-     * Returns the array of meta tags
+     * Returns the array of meta tags.
      *
      * @param string $tagName
      * @param array $params
@@ -18,10 +18,9 @@ class Text implements HandlerInterface
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags( $tagName, array $params = array() )
+    public function getMetaTags($tagName, array $params = array())
     {
-        if ( !isset( $params[0] ) )
-        {
+        if (!isset($params[0])) {
             throw new InvalidArgumentException(
                 '$params[0]',
                 'Literal text handler requires the text to output.'
@@ -32,7 +31,7 @@ class Text implements HandlerInterface
             new Item(
                 $tagName,
                 $params[0]
-            )
+            ),
         );
     }
 }

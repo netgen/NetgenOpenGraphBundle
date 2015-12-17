@@ -8,13 +8,13 @@ use eZ\Publish\Core\FieldType\TextLine\Value;
 class TextLine extends Handler
 {
     /**
-     * Returns if this field type handler supports current field
+     * Returns if this field type handler supports current field.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
      *
      * @return bool
      */
-    protected function supports( Field $field )
+    protected function supports(Field $field)
     {
         return $field->value instanceof Value;
     }

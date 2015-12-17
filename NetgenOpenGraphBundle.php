@@ -9,14 +9,14 @@ use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCo
 class NetgenOpenGraphBundle extends Bundle
 {
     /**
-     * Builds the bundle
+     * Builds the bundle.
      *
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    public function build( ContainerBuilder $container )
+    public function build(ContainerBuilder $container)
     {
-        parent::build( $container );
+        parent::build($container);
 
-        $container->addCompilerPass( new MetaTagHandlersCompilerPass() );
+        $container->addCompilerPass(new MetaTagHandlersCompilerPass());
     }
 }

@@ -27,13 +27,13 @@ class Collector implements CollectorInterface
     protected $configResolver;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param \Netgen\Bundle\OpenGraphBundle\Handler\Registry $metaTagHandlers
      * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
      */
-    public function __construct( Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver )
+    public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
     {
         $this->metaTagHandlers = $metaTagHandlers;
         $this->contentTypeService = $contentTypeService;
@@ -41,58 +41,50 @@ class Collector implements CollectorInterface
     }
 
     /**
-     * Collects meta tags from all handlers registered for provided content
+     * Collects meta tags from all handlers registered for provided content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function collect( Content $content )
+    public function collect(Content $content)
     {
         $metaTags = array();
 
-        $allHandlers = $this->configResolver->hasParameter( 'global_handlers', 'netgen_open_graph' ) ?
-            $this->configResolver->getParameter( 'global_handlers', 'netgen_open_graph' ) :
+        $allHandlers = $this->configResolver->hasParameter('global_handlers', 'netgen_open_graph') ?
+            $this->configResolver->getParameter('global_handlers', 'netgen_open_graph') :
             array();
 
-        $contentType = $this->contentTypeService->loadContentType( $content->contentInfo->contentTypeId );
-        $contentTypeHandlers = $this->configResolver->hasParameter( 'content_type_handlers', 'netgen_open_graph' ) ?
-            $this->configResolver->getParameter( 'content_type_handlers', 'netgen_open_graph' ) :
+        $contentType = $this->contentTypeService->loadContentType($content->contentInfo->contentTypeId);
+        $contentTypeHandlers = $this->configResolver->hasParameter('content_type_handlers', 'netgen_open_graph') ?
+            $this->configResolver->getParameter('content_type_handlers', 'netgen_open_graph') :
             array();
 
-        if ( isset( $contentTypeHandlers[$contentType->identifier] ) )
-        {
+        if (isset($contentTypeHandlers[$contentType->identifier])) {
             $allHandlers = array_merge(
-                isset( $allHandlers['all_content_types'] ) ? $allHandlers['all_content_types'] : array(),
+                isset($allHandlers['all_content_types']) ? $allHandlers['all_content_types'] : array(),
                 $contentTypeHandlers[$contentType->identifier]
             );
-        }
-        else
-        {
-            $allHandlers = isset( $allHandlers['all_content_types'] ) ? $allHandlers['all_content_types'] : array();
+        } else {
+            $allHandlers = isset($allHandlers['all_content_types']) ? $allHandlers['all_content_types'] : array();
         }
 
-        foreach ( $allHandlers as $handler )
-        {
-            $metaTagHandler = $this->metaTagHandlers->getHandler( $handler['handler'] );
-            if ( $metaTagHandler instanceof ContentAware )
-            {
-                $metaTagHandler->setContent( $content );
+        foreach ($allHandlers as $handler) {
+            $metaTagHandler = $this->metaTagHandlers->getHandler($handler['handler']);
+            if ($metaTagHandler instanceof ContentAware) {
+                $metaTagHandler->setContent($content);
             }
 
-            $newMetaTags = $metaTagHandler->getMetaTags( $handler['tag'], $handler['params'] );
-            foreach ( $newMetaTags as $metaTag )
-            {
-                if ( !$metaTag instanceof Item )
-                {
+            $newMetaTags = $metaTagHandler->getMetaTags($handler['tag'], $handler['params']);
+            foreach ($newMetaTags as $metaTag) {
+                if (!$metaTag instanceof Item) {
                     throw new LogicException(
                         '\'' . $handler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class( $metaTag ) . '\'.' );
+                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.');
                 }
 
                 $metaTagValue = $metaTag->getTagValue();
-                if ( !empty( $metaTagValue ) )
-                {
+                if (!empty($metaTagValue)) {
                     $metaTags[] = $metaTag;
                 }
             }

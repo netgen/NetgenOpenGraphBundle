@@ -12,21 +12,20 @@ class Registry
     protected $metaTagHandlers = array();
 
     /**
-     * Adds a handler to the registry
+     * Adds a handler to the registry.
      *
      * @param string $identifier
      * @param \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface $metaTagHandler
      */
-    public function addHandler( $identifier, HandlerInterface $metaTagHandler )
+    public function addHandler($identifier, HandlerInterface $metaTagHandler)
     {
-        if ( !isset( $this->metaTagHandlers[$identifier] ) )
-        {
+        if (!isset($this->metaTagHandlers[$identifier])) {
             $this->metaTagHandlers[$identifier] = $metaTagHandler;
         }
     }
 
     /**
-     * Returns handler by its identifier
+     * Returns handler by its identifier.
      *
      * @param string $identifier
      *
@@ -34,13 +33,12 @@ class Registry
      *
      * @return \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface
      */
-    public function getHandler( $identifier )
+    public function getHandler($identifier)
     {
-        if ( isset( $this->metaTagHandlers[$identifier] ) )
-        {
+        if (isset($this->metaTagHandlers[$identifier])) {
             return $this->metaTagHandlers[$identifier];
         }
 
-        throw new HandlerNotFoundException( $identifier );
+        throw new HandlerNotFoundException($identifier);
     }
 }

@@ -33,7 +33,7 @@ class NetgenOpenGraphExtension extends Twig_Extension
     protected $throwExceptions = true;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface $tagCollector
      * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface $tagRenderer
@@ -43,19 +43,18 @@ class NetgenOpenGraphExtension extends Twig_Extension
         CollectorInterface $tagCollector,
         RendererInterface $tagRenderer,
         LoggerInterface $logger = null
-    )
-    {
+    ) {
         $this->tagCollector = $tagCollector;
         $this->tagRenderer = $tagRenderer;
         $this->logger = $logger;
     }
 
     /**
-     * Sets the flag that determines if the exceptions will thrown instead of logged
+     * Sets the flag that determines if the exceptions will thrown instead of logged.
      *
      * @param bool $throwExceptions
      */
-    public function setThrowExceptions( $throwExceptions = true )
+    public function setThrowExceptions($throwExceptions = true)
     {
         $this->throwExceptions = $throwExceptions;
     }
@@ -80,65 +79,57 @@ class NetgenOpenGraphExtension extends Twig_Extension
         return array(
             new Twig_SimpleFunction(
                 'render_netgen_open_graph',
-                array( $this, 'renderOpenGraphTags' ),
-                array( 'is_safe' => array( 'html' ) )
+                array($this, 'renderOpenGraphTags'),
+                array('is_safe' => array('html'))
             ),
             new Twig_SimpleFunction(
                 'get_netgen_open_graph',
-                array( $this, 'getOpenGraphTags' )
-            )
+                array($this, 'getOpenGraphTags')
+            ),
         );
     }
 
     /**
-     * Renders Open Graph tags for provided content
+     * Renders Open Graph tags for provided content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
      * @return string
      */
-    public function renderOpenGraphTags( Content $content )
+    public function renderOpenGraphTags(Content $content)
     {
-        try
-        {
+        try {
             return $this->tagRenderer->render(
-                $this->getOpenGraphTags( $content )
+                $this->getOpenGraphTags($content)
             );
-        }
-        catch ( Exception $e )
-        {
-            if ( $this->throwExceptions || !$this->logger instanceof LoggerInterface )
-            {
+        } catch (Exception $e) {
+            if ($this->throwExceptions || !$this->logger instanceof LoggerInterface) {
                 throw $e;
             }
 
-            $this->logger->error( $e->getMessage() );
+            $this->logger->error($e->getMessage());
         }
 
-        return "";
+        return '';
     }
 
     /**
-     * Returns Open Graph tags for provided content
+     * Returns Open Graph tags for provided content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getOpenGraphTags( Content $content )
+    public function getOpenGraphTags(Content $content)
     {
-        try
-        {
-            return $this->tagCollector->collect( $content );
-        }
-        catch ( Exception $e )
-        {
-            if ( $this->throwExceptions || !$this->logger instanceof LoggerInterface )
-            {
+        try {
+            return $this->tagCollector->collect($content);
+        } catch (Exception $e) {
+            if ($this->throwExceptions || !$this->logger instanceof LoggerInterface) {
                 throw $e;
             }
 
-            $this->logger->error( $e->getMessage() );
+            $this->logger->error($e->getMessage());
         }
 
         return array();

@@ -32,7 +32,7 @@ class Image extends Handler
     protected $logger;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param \eZ\Publish\Core\Helper\FieldHelper $fieldHelper
      * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
@@ -46,9 +46,8 @@ class Image extends Handler
         VariationHandler $imageVariationService,
         RequestStack $requestStack,
         LoggerInterface $logger = null
-    )
-    {
-        parent::__construct( $fieldHelper, $translationHelper );
+    ) {
+        parent::__construct($fieldHelper, $translationHelper);
 
         $this->imageVariationService = $imageVariationService;
         $this->requestStack = $requestStack;
@@ -56,7 +55,7 @@ class Image extends Handler
     }
 
     /**
-     * Returns the field value, converted to string
+     * Returns the field value, converted to string.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
      * @param string $tagName
@@ -66,43 +65,31 @@ class Image extends Handler
      *
      * @return string
      */
-    protected function getFieldValue( Field $field, $tagName, array $params = array() )
+    protected function getFieldValue(Field $field, $tagName, array $params = array())
     {
-        if ( !$this->fieldHelper->isFieldEmpty( $this->content, $field->fieldDefIdentifier ) )
-        {
-            $variationName = !empty( $params[1] ) ? $params[1] : 'opengraph';
+        if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
+            $variationName = !empty($params[1]) ? $params[1] : 'opengraph';
 
-            try
-            {
-                $variationUri = $this->imageVariationService->getVariation( $field, $this->content->versionInfo, $variationName )->uri;
+            try {
+                $variationUri = $this->imageVariationService->getVariation($field, $this->content->versionInfo, $variationName)->uri;
 
-                if ( $variationUri[0] === '/' && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
-                {
-                    $variationUri = $request->getUriForPath( '/' . ltrim( $variationUri, '/' ) );
+                if ($variationUri[0] === '/' && ($request = $this->requestStack->getCurrentRequest()) !== null) {
+                    $variationUri = $request->getUriForPath('/' . ltrim($variationUri, '/'));
                 }
 
                 return $variationUri;
-            }
-            catch ( InvalidVariationException $e )
-            {
-                if ( $this->logger !== null )
-                {
-                    $this->logger->error( "Open Graph image handler: Couldn't get variation '{$variationName}' for image with id {$field->value->id}" );
+            } catch (InvalidVariationException $e) {
+                if ($this->logger !== null) {
+                    $this->logger->error("Open Graph image handler: Couldn't get variation '{$variationName}' for image with id {$field->value->id}");
                 }
-            }
-            catch ( SourceImageNotFoundException $e )
-            {
-                if ( $this->logger !== null )
-                {
+            } catch (SourceImageNotFoundException $e) {
+                if ($this->logger !== null) {
                     $this->logger->error(
                         "Open Graph image handler: Couldn't create variation '{$variationName}' for image with id {$field->value->id} because source image can't be found"
                     );
                 }
-            }
-            catch ( Exception $e )
-            {
-                if ( $this->logger !== null )
-                {
+            } catch (Exception $e) {
+                if ($this->logger !== null) {
                     $this->logger->error(
                         "Open Graph image handler: Error while getting variation '{$variationName}' for image with id {$field->value->id}: " . $e->getMessage()
                     );
@@ -110,35 +97,34 @@ class Image extends Handler
             }
         }
 
-        throw new FieldEmptyException( $field->fieldDefIdentifier );
+        throw new FieldEmptyException($field->fieldDefIdentifier);
     }
 
     /**
-     * Returns fallback value
+     * Returns fallback value.
      *
      * @param string $tagName
      * @param array $params
      *
      * @return string
      */
-    protected function getFallbackValue( $tagName, array $params = array() )
+    protected function getFallbackValue($tagName, array $params = array())
     {
-        if ( !empty( $params[2] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
-        {
-            return $request->getUriForPath( '/' . ltrim( $params[2], '/' ) );
+        if (!empty($params[2]) && ($request = $this->requestStack->getCurrentRequest()) !== null) {
+            return $request->getUriForPath('/' . ltrim($params[2], '/'));
         }
 
         return '';
     }
 
     /**
-     * Returns if this field type handler supports current field
+     * Returns if this field type handler supports current field.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Field $field
      *
      * @return bool
      */
-    protected function supports( Field $field )
+    protected function supports(Field $field)
     {
         return $field->value instanceof Value;
     }

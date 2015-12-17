@@ -12,11 +12,11 @@ abstract class Handler implements HandlerInterface, ContentAware
     protected $content;
 
     /**
-     * Sets the content
+     * Sets the content.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      */
-    public function setContent( Content $content )
+    public function setContent(Content $content)
     {
         $this->content = $content;
     }

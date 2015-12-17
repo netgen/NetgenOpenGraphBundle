@@ -7,12 +7,12 @@ use Exception;
 class HandlerNotFoundException extends Exception
 {
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $handlerIdentifier
      */
-    public function __construct( $handlerIdentifier )
+    public function __construct($handlerIdentifier)
     {
-        parent::__construct( "Meta tag handler with '$handlerIdentifier' identifier not found." );
+        parent::__construct("Meta tag handler with '$handlerIdentifier' identifier not found.");
     }
 }
