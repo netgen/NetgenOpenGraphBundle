@@ -9,6 +9,6 @@ services:
             - "@netgen_open_graph.meta_tag_renderer"
             - "@?logger"
         calls:
-            - [setThrowExceptions, [%kernel.debug%]]
+            - [setThrowExceptions, ["%kernel.debug%"]]
         tags:
             - { name: twig.extension }
