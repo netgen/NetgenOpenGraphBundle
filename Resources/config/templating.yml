@@ -3,7 +3,7 @@ parameters:
 
 services:
     netgen_open_graph.templating.twig.extension:
-        class: %netgen_open_graph.templating.twig.extension.class%
+        class: "%netgen_open_graph.templating.twig.extension.class%"
         arguments:
             - "@netgen_open_graph.meta_tag_collector"
             - "@netgen_open_graph.meta_tag_renderer"

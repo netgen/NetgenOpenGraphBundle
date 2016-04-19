@@ -5,14 +5,14 @@ parameters:
 
 services:
     netgen_open_graph.handler_registry:
-        class: %netgen_open_graph.handler_registry.class%
+        class: "%netgen_open_graph.handler_registry.class%"
 
     netgen_open_graph.meta_tag_collector:
-        class: %netgen_open_graph.meta_tag_collector.class%
+        class: "%netgen_open_graph.meta_tag_collector.class%"
         arguments:
             - "@netgen_open_graph.handler_registry"
             - "@ezpublish.api.service.content_type"
             - "@ezpublish.config.resolver"
 
     netgen_open_graph.meta_tag_renderer:
-        class: %netgen_open_graph.meta_tag_renderer.class%
+        class: "%netgen_open_graph.meta_tag_renderer.class%"

@@ -10,45 +10,45 @@ parameters:
 
 services:
     netgen_open_graph.handler.abstract:
-        class: %netgen_open_graph.handler.abstract.class%
+        class: "%netgen_open_graph.handler.abstract.class%"
 
     netgen_open_graph.handler.field_type.abstract:
-        class: %netgen_open_graph.handler.field_type.abstract.class%
+        class: "%netgen_open_graph.handler.field_type.abstract.class%"
         parent: netgen_open_graph.handler.abstract
         arguments:
             - "@ezpublish.field_helper"
             - "@ezpublish.translation_helper"
 
     netgen_open_graph.handler.literal.text:
-        class: %netgen_open_graph.handler.literal.text.class%
+        class: "%netgen_open_graph.handler.literal.text.class%"
         parent: netgen_open_graph.handler.abstract
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: literal/text }
 
     netgen_open_graph.handler.field_type.text_line:
-        class: %netgen_open_graph.handler.field_type.text_line.class%
+        class: "%netgen_open_graph.handler.field_type.text_line.class%"
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezstring }
 
     netgen_open_graph.handler.field_type.text_block:
-        class: %netgen_open_graph.handler.field_type.text_block.class%
+        class: "%netgen_open_graph.handler.field_type.text_block.class%"
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/eztext }
 
     netgen_open_graph.handler.field_type.xml_text:
-        class: %netgen_open_graph.handler.field_type.xml_text.class%
+        class: "%netgen_open_graph.handler.field_type.xml_text.class%"
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
 
     netgen_open_graph.handler.field_type.image:
-        class: %netgen_open_graph.handler.field_type.image.class%
+        class: "%netgen_open_graph.handler.field_type.image.class%"
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         arguments:
