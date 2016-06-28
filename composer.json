@@ -11,6 +11,9 @@
     "require": {
         "ezsystems/ezpublish-kernel": "*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
     "autoload": {
         "psr-4": {"Netgen\\Bundle\\OpenGraphBundle\\": ""}
     }
