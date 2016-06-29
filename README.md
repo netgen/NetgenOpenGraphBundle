@@ -1,6 +1,8 @@
 Netgen Open Graph Bundle
 ========================
 
+[![Build Status](https://img.shields.io/travis/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](https://travis-ci.org/netgen/NetgenOpenGraphBundle)
+
 Netgen Open Graph Bundle is an eZ Publish / eZ Platform bundle that provides simple integration with Open Graph protocol.
 It uses `Content` object which is currently displayed to generate Open Graph meta tags, according to configuration.
 
