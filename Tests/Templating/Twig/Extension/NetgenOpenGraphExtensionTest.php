@@ -44,7 +44,10 @@ class NetgenOpenGraphExtensionTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('render'))
             ->getMock();
 
-        $this->logger = $this->createMock(NullLogger::class);
+        $this->logger = $this->getMockBuilder(NullLogger::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('error'))
+            ->getMock();
 
         $this->extension = new NetgenOpenGraphExtension($this->collector, $this->renderer, $this->logger);
     }

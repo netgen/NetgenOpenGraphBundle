@@ -58,7 +58,10 @@ class NetgenOpenGraphExtensionTwigTest extends \Twig_Test_IntegrationTestCase
         $this->renderer->method('render')
             ->willReturn($html);
 
-        $this->logger = $this->createMock(NullLogger::class);
+        $this->logger = $this->getMockBuilder(NullLogger::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('error'))
+            ->getMock();
 
         $this->extension = new NetgenOpenGraphExtension($this->collector, $this->renderer, $this->logger);
     }
