@@ -1,0 +1,10 @@
+--TEST--
+"render_netgen_open_graph" function
+--TEMPLATE--
+{{ render_netgen_open_graph(content) }}
+--DATA--
+return array(
+'content' => new \eZ\Publish\Core\Repository\Values\Content\Content(array()),
+)
+--EXPECT--
+<meta property="tag1" content="some_value" />
