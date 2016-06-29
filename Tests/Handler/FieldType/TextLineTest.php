@@ -16,8 +16,8 @@ class TextLineTest extends HandlerBaseTest
      * @var TextLine
      */
     protected $textLine;
-    
-    public function setUp() 
+
+    public function setUp()
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()

@@ -77,15 +77,15 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
             ->willReturn(true);
 
         $handlers = array(
-            "article" => array(
+            'article' => array(
                 array(
-                    "handler" => "literal/text",
-                    "tag" => "og:type",
-                    "params" => array(
-                        "article"
-                    )
+                    'handler' => 'literal/text',
+                    'tag' => 'og:type',
+                    'params' => array(
+                        'article',
+                    ),
                 ),
-            )
+            ),
         );
 
         $this->config->expects($this->at(3))
@@ -104,7 +104,7 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
 
         $content = new Content(
             array(
-                'versionInfo' => $versionInfo
+                'versionInfo' => $versionInfo,
             )
         );
 
@@ -135,8 +135,8 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
 
         $items = array(
             new Item(
-                "og:type",
-                array("article")
+                'og:type',
+                array('article')
             ),
         );
 
@@ -159,11 +159,11 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
     {
         $handlerArray = array(
             array(
-                "handler" => "literal/text",
-                "tag" => "og:type",
-                "params" => array(
-                    "article"
-                )
+                'handler' => 'literal/text',
+                'tag' => 'og:type',
+                'params' => array(
+                    'article',
+                ),
             ),
         );
 
@@ -193,7 +193,7 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
 
         $content = new Content(
             array(
-                'versionInfo' => $versionInfo
+                'versionInfo' => $versionInfo,
             )
         );
 
