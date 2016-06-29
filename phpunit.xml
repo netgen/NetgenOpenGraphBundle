@@ -19,7 +19,6 @@
                 <directory>Resources</directory>
                 <directory>Tests</directory>
                 <directory>vendor</directory>
-                <file>NetgenOpenGraphBundleBundle.php</file>
             </exclude>
         </whitelist>
     </filter>
