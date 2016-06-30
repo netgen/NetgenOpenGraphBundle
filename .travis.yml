@@ -22,7 +22,8 @@ before_install:
     - phpenv config-add travis.php.ini
 
 # install dependencies
-install: composer install
+install:
+    - travis_wait composer install
 
 # execute phpunit as the script command
 script:
