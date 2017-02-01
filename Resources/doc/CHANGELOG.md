@@ -1,6 +1,12 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.1.4 (01.02.2017)
+
+* Removed deprecated YML syntax
+* Full test coverage
+* Switched CS to PSR-2
+
 ## 1.1.3 (12.12.2015)
 
 * Real fix for `E_WARNING` in meta tag collector if semantic config does not exist
