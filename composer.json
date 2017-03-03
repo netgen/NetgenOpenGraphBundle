@@ -1,6 +1,7 @@
 {
     "name": "netgen/open-graph-bundle",
     "description": "Netgen Open Graph Bundle is an eZ Publish / eZ Platform bundle that allows simple integration with Open Graph protocol.",
+    "type": "ezplatform-bundle",
     "license": "GPL-2.0",
     "authors": [
         {
