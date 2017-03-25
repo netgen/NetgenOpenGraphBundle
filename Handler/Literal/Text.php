@@ -2,9 +2,9 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
 class Text implements HandlerInterface
 {

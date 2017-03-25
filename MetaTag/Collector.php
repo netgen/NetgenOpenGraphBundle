@@ -2,12 +2,12 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\ContentTypeService;
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
-use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use LogicException;
+use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
+use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 
 class Collector implements CollectorInterface
 {

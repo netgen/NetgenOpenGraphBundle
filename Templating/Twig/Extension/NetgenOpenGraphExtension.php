@@ -2,13 +2,13 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
+use Exception;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Psr\Log\LoggerInterface;
-use Twig_SimpleFunction;
 use Twig_Extension;
-use Exception;
+use Twig_SimpleFunction;
 
 class NetgenOpenGraphExtension extends Twig_Extension
 {

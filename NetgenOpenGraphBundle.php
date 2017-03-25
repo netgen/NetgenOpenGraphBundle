@@ -2,9 +2,9 @@
 
 namespace Netgen\Bundle\OpenGraphBundle;
 
+use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCompilerPass;
 
 class NetgenOpenGraphBundle extends Bundle
 {

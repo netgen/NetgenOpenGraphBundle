@@ -2,13 +2,13 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
+use eZ\Publish\API\Repository\Values\Content\Field;
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
-use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
+use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 
 abstract class Handler extends BaseHandler
 {
@@ -89,7 +89,7 @@ abstract class Handler extends BaseHandler
     protected function getFieldValue(Field $field, $tagName, array $params = array())
     {
         if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
-            return (string)$field->value;
+            return (string) $field->value;
         }
 
         throw new FieldEmptyException($field->fieldDefIdentifier);
@@ -106,7 +106,7 @@ abstract class Handler extends BaseHandler
     protected function getFallbackValue($tagName, array $params = array())
     {
         if (!empty($params[1])) {
-            return (string)$params[1];
+            return (string) $params[1];
         }
 
         return '';

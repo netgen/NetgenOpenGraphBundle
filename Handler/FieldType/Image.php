@@ -2,17 +2,17 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
+use Exception;
+use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\Image\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use eZ\Publish\SPI\Variation\VariationHandler;
-use Symfony\Component\HttpFoundation\RequestStack;
-use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
+use eZ\Publish\SPI\Variation\VariationHandler;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Psr\Log\LoggerInterface;
-use Exception;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class Image extends Handler
 {

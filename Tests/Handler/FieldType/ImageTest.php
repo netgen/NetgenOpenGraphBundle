@@ -4,12 +4,12 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
 use eZ\Bundle\EzPublishCoreBundle\Imagine\AliasGenerator;
 use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
+use eZ\Publish\API\Repository\Values\Content\Field;
+use eZ\Publish\Core\FieldType\Image\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Image\Value;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\SPI\Variation\Values\Variation;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image;

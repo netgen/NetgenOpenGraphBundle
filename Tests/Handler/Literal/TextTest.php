@@ -36,7 +36,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->text->getMetaTags('some_tag', array('some_param'));
 
-        $this->assertTrue(is_array($result));
+        $this->assertInternalType('array', $result);
         $this->assertInstanceOf(Item::class, $result[0]);
         $this->assertEquals('some_tag', $result[0]->getTagName());
         $this->assertEquals('some_param', $result[0]->getTagValue());
