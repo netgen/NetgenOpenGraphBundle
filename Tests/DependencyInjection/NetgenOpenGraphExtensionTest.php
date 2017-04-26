@@ -7,79 +7,79 @@ use Netgen\Bundle\OpenGraphBundle\DependencyInjection\NetgenOpenGraphExtension;
 
 class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
-    {
-        return [
-            new NetgenOpenGraphExtension(),
-        ];
-    }
-
     public function testItSetsValidContainerParameters()
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', []);
+        $this->container->setParameter('ezpublish.siteaccess.list', array());
         $this->load();
+    }
+
+    protected function getContainerExtensions()
+    {
+        return array(
+            new NetgenOpenGraphExtension(),
+        );
     }
 
     protected function getMinimalConfiguration()
     {
-        return [
-            'system' => [
-                'default' => [
-                    'content_type_handlers' => [
-                        'content_type_one' => [
-                            [
+        return array(
+            'system' => array(
+                'default' => array(
+                    'content_type_handlers' => array(
+                        'content_type_one' => array(
+                            array(
                                 'handler' => 'literal/text',
                                 'tag' => 'og:type',
-                                'params' => [
+                                'params' => array(
                                     'one',
                                     'two',
                                     'three',
-                                ]
-                            ],
-                            [
+                                ),
+                            ),
+                            array(
                                 'handler' => 'field_type/ezstring',
                                 'tag' => 'og:title',
-                                'params' => [
+                                'params' => array(
                                     'one',
                                     'two',
                                     'three',
-                                ]
-                            ],
-                        ],
-                        'content_type_two' => [
-                            [
+                                ),
+                            ),
+                        ),
+                        'content_type_two' => array(
+                            array(
                                 'handler' => 'field_type/ezstring',
                                 'tag' => 'og:title',
-                                'params' => [
+                                'params' => array(
                                     'one',
                                     'two',
                                     'three',
-                                ]
-                            ],
-                        ],
-                    ],
-                    'global_handlers' => [
-                        [
+                                ),
+                            ),
+                        ),
+                    ),
+                    'global_handlers' => array(
+                        array(
                             'handler' => 'literal/text',
                             'tag' => 'og:type',
-                            'params' => [
+                            'params' => array(
                                 'one',
                                 'two',
                                 'three',
-                            ]
-                        ],
-                        [
+                            ),
+                        ),
+                        array(
                             'handler' => 'field_type/ezstring',
                             'tag' => 'og:title',
-                            'params' => [
+                            'params' => array(
                                 'one',
                                 'two',
                                 'three',
-                            ]
-                        ],
-                    ],
-                ],
-            ],
-        ];
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 }

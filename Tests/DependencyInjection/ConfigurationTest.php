@@ -3,612 +3,612 @@
 namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
-use PHPUnit\Framework\TestCase;
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Configuration;
+use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    protected function getConfiguration()
-    {
-        return new Configuration();
-    }
-
     public function testConfigurationValuesAreOkAndValid()
     {
         $this->assertConfigurationIsValid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'literal/text',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'literal/text',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ]
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            )
         );
     }
 
     public function testConfigurationWithoutRequiredHandlerInContentTypeHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'literal/text',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.content_type_handlers.content_type_one"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
         );
     }
 
     public function testConfigurationWithHandlerEmptyInContentTypeHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => '',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'literal/text',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.content_type_handlers.content_type_one"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
         );
     }
 
     public function testConfigurationWithoutRequiredTagInContentTypeHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'literal/text',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.content_type_handlers.content_type_one"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
         );
     }
 
     public function testConfigurationWithTagEmptyInContentTypeHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => '',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'literal/text',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.content_type_handlers.content_type_one"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
         );
     }
 
     public function testConfigurationWithoutRequiredHandlerInGlobalHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.global_handlers"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.global_handlers'
         );
     }
 
     public function testConfigurationWithHandlerEmptyInGlobalHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => '',
                                     'tag' => 'og:type',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.global_handlers"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.global_handlers'
         );
     }
 
     public function testConfigurationWithoutRequiredTagInGlobalHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'field_type/ezstring',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.global_handlers"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.global_handlers'
         );
     }
 
     public function testConfigurationWithTagEmptyInGlobalHandlers()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_graph' => [
-                    'system' => [
-                        'default' => [
-                            'content_type_handlers' => [
-                                'content_type_one' => [
-                                    [
+            array(
+                'netgen_open_graph' => array(
+                    'system' => array(
+                        'default' => array(
+                            'content_type_handlers' => array(
+                                'content_type_one' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:type',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                    [
+                                        ),
+                                    ),
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                                'content_type_two' => [
-                                    [
+                                        ),
+                                    ),
+                                ),
+                                'content_type_two' => array(
+                                    array(
                                         'handler' => 'field_type/ezstring',
                                         'tag' => 'og:title',
-                                        'params' => [
+                                        'params' => array(
                                             'one',
                                             'two',
                                             'three',
-                                        ]
-                                    ],
-                                ],
-                            ],
-                            'global_handlers' => [
-                                [
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'global_handlers' => array(
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => '',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                                [
+                                    ),
+                                ),
+                                array(
                                     'handler' => 'field_type/ezstring',
                                     'tag' => 'og:title',
-                                    'params' => [
+                                    'params' => array(
                                         'one',
                                         'two',
                                         'three',
-                                    ]
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            "netgen_open_graph.system.default.global_handlers"
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'netgen_open_graph.system.default.global_handlers'
         );
+    }
+
+    protected function getConfiguration()
+    {
+        return new Configuration();
     }
 }

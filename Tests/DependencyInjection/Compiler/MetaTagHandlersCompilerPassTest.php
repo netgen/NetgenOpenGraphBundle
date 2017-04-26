@@ -10,22 +10,17 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    protected function registerCompilerPass(ContainerBuilder $container)
-    {
-        $container->addCompilerPass(new MetaTagHandlersCompilerPass());
-    }
-
     public function testCompilerPassCollectsValidServices()
     {
         $handlerRegistry = new Definition();
         $this->setDefinition('netgen_open_graph.handler_registry', $handlerRegistry);
 
         $handlerOne = new Definition();
-        $handlerOne->addTag('netgen_open_graph.meta_tag_handler', ['alias' => 'field_type/eztext']);
+        $handlerOne->addTag('netgen_open_graph.meta_tag_handler', array('alias' => 'field_type/eztext'));
         $this->setDefinition('handler_one', $handlerOne);
 
         $handlerTwo = new Definition();
-        $handlerTwo->addTag('netgen_open_graph.meta_tag_handler', ['alias' => 'literal/text']);
+        $handlerTwo->addTag('netgen_open_graph.meta_tag_handler', array('alias' => 'literal/text'));
         $this->setDefinition('handler_two', $handlerTwo);
 
         $this->compile();
@@ -33,19 +28,19 @@ class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'netgen_open_graph.handler_registry',
             'addHandler',
-            [
+            array(
                 'field_type/eztext',
-                new Reference('handler_one')
-            ]
+                new Reference('handler_one'),
+            )
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'netgen_open_graph.handler_registry',
             'addHandler',
-            [
+            array(
                 'literal/text',
-                new Reference('handler_two')
-            ]
+                new Reference('handler_two'),
+            )
         );
     }
 
@@ -67,9 +62,14 @@ class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'netgen_open_graph.handler_registry',
             'addHandler',
-            [
-                new Reference('handler_one')
-            ]
+            array(
+                new Reference('handler_one'),
+            )
         );
+    }
+
+    protected function registerCompilerPass(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new MetaTagHandlersCompilerPass());
     }
 }
