@@ -1,6 +1,11 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.1.5 (26.04.2017)
+
+* PHP CS Fixer 2
+* Fix deprecation in YML
+
 ## 1.1.4 (01.02.2017)
 
 * Removed deprecated YML syntax
