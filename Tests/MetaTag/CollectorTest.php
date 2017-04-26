@@ -14,8 +14,9 @@ use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+use PHPUnit\Framework\TestCase;
 
-class CollectorTest extends \PHPUnit_Framework_TestCase
+class CollectorTest extends TestCase
 {
     /**
      * @var Collector

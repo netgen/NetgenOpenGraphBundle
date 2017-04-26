@@ -4,9 +4,10 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests;
 
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCompilerPass;
 use Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class NetgenOpenGraphBundleTest extends \PHPUnit_Framework_TestCase
+class NetgenOpenGraphBundleTest extends TestCase
 {
     public function testItAddsCompilerPass()
     {

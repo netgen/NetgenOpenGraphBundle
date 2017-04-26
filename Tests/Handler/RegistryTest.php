@@ -4,8 +4,9 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler;
 
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
+use PHPUnit\Framework\TestCase;
 
-class RegistryTest extends \PHPUnit_Framework_TestCase
+class RegistryTest extends TestCase
 {
     /**
      * @var Registry
