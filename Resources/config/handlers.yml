@@ -52,7 +52,7 @@ services:
         parent: netgen_open_graph.handler.field_type.abstract
         lazy: true
         arguments:
-            - "@ezpublish.fieldtype.ezimage.variation_service"
+            - "@ezpublish.fieldType.ezimage.variation_service"
             - "@request_stack"
             - "@?logger"
         tags:
