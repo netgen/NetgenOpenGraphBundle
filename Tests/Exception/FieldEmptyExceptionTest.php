@@ -3,8 +3,9 @@
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Exception;
 
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
+use PHPUnit\Framework\TestCase;
 
-class FieldEmptyExceptionTest extends \PHPUnit_Framework_TestCase
+class FieldEmptyExceptionTest extends TestCase
 {
     /**
      * @expectedException \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException

@@ -7,10 +7,11 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Twig_SimpleFunction;
 
-class NetgenOpenGraphExtensionTest extends \PHPUnit_Framework_TestCase
+class NetgenOpenGraphExtensionTest extends TestCase
 {
     /**
      * @var NetgenOpenGraphExtension

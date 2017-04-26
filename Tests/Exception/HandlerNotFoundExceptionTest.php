@@ -3,8 +3,9 @@
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Exception;
 
 use Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException;
+use PHPUnit\Framework\TestCase;
 
-class HandlerNotFoundExceptionTest extends \PHPUnit_Framework_TestCase
+class HandlerNotFoundExceptionTest extends TestCase
 {
     /**
      * @expectedException \Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException

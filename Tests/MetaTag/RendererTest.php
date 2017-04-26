@@ -5,8 +5,9 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
+use PHPUnit\Framework\TestCase;
 
-class RendererTest extends \PHPUnit_Framework_TestCase
+class RendererTest extends TestCase
 {
     /**
      * @var Renderer

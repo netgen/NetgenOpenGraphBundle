@@ -2,9 +2,9 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler;
 
-use LogicException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Reference;
 
 class MetaTagHandlersCompilerPass implements CompilerPassInterface

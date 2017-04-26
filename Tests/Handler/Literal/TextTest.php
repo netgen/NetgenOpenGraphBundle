@@ -5,8 +5,9 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\Literal;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+use PHPUnit\Framework\TestCase;
 
-class TextTest extends \PHPUnit_Framework_TestCase
+class TextTest extends TestCase
 {
     /**
      * @var Text
