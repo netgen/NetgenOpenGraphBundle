@@ -3,6 +3,7 @@ Netgen Open Graph Bundle
 
 [![Build Status](https://img.shields.io/travis/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](https://travis-ci.org/netgen/NetgenOpenGraphBundle)
 [![Code Coverage](https://img.shields.io/codecov/c/github/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](https://codecov.io/gh/netgen/NetgenOpenGraphBundle)
+[![Quality Score](https://img.shields.io/scrutinizer/g/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/netgen/NetgenOpenGraphBundle)
 [![Downloads](https://img.shields.io/packagist/dt/netgen/open-graph-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-graph-bundle)
 [![Latest stable](https://img.shields.io/packagist/v/netgen/open-graph-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-graph-bundle)
 [![License](https://img.shields.io/packagist/l/netgen/open-graph-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-graph-bundle)
