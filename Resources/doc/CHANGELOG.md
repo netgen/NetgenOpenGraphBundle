@@ -1,6 +1,10 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## master
+
+* enabled Scrutinizer service
+
 ## 1.1.5 (26.04.2017)
 
 * PHP CS Fixer 2
