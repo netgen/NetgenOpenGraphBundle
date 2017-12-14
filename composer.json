@@ -33,5 +33,10 @@
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit --colors=always"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
     }
 }
