@@ -22,6 +22,8 @@ class RegistryTest extends TestCase
     {
         $handler = $this->getMockForAbstractClass(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
+
+        $this->assertEquals($this->registry->getHandler('some_handler'), $handler);
     }
 
     public function testGettingHandlers()

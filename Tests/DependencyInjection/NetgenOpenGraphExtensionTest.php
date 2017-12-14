@@ -7,6 +7,9 @@ use Netgen\Bundle\OpenGraphBundle\DependencyInjection\NetgenOpenGraphExtension;
 
 class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testItSetsValidContainerParameters()
     {
         $this->container->setParameter('ezpublish.siteaccess.list', array());

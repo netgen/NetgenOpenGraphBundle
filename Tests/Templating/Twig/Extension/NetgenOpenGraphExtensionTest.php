@@ -63,6 +63,9 @@ class NetgenOpenGraphExtensionTest extends TestCase
         $this->assertEquals('netgen_open_graph', $this->extension->getName());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetThrowExceptions()
     {
         $this->extension->setThrowExceptions(true);
