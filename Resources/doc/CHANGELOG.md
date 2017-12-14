@@ -1,9 +1,13 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
-## master
+## 1.2.0 (14.12.2017)
 
-* enabled Scrutinizer service
+* Dropped support for eZ Publish 5 and lower
+* Removed all `*.class` parameters
+* All services marked as private
+* Enabled Scrutinizer service
+* Updates to tests
 
 ## 1.1.5 (26.04.2017)
 
