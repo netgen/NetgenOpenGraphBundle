@@ -1,18 +1,13 @@
-parameters:
-    netgen_open_graph.handler_registry.class: Netgen\Bundle\OpenGraphBundle\Handler\Registry
-    netgen_open_graph.meta_tag_collector.class: Netgen\Bundle\OpenGraphBundle\MetaTag\Collector
-    netgen_open_graph.meta_tag_renderer.class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
-
 services:
     netgen_open_graph.handler_registry:
-        class: "%netgen_open_graph.handler_registry.class%"
+        class: Netgen\Bundle\OpenGraphBundle\Handler\Registry
 
     netgen_open_graph.meta_tag_collector:
-        class: "%netgen_open_graph.meta_tag_collector.class%"
+        class: Netgen\Bundle\OpenGraphBundle\MetaTag\Collector
         arguments:
             - "@netgen_open_graph.handler_registry"
             - "@ezpublish.api.service.content_type"
             - "@ezpublish.config.resolver"
 
     netgen_open_graph.meta_tag_renderer:
-        class: "%netgen_open_graph.meta_tag_renderer.class%"
+        class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
