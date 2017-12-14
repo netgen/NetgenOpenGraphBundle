@@ -1,9 +1,11 @@
 services:
     netgen_open_graph.handler_registry:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Registry
+        public: false
 
     netgen_open_graph.meta_tag_collector:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Collector
+        public: false
         arguments:
             - "@netgen_open_graph.handler_registry"
             - "@ezpublish.api.service.content_type"
@@ -11,3 +13,4 @@ services:
 
     netgen_open_graph.meta_tag_renderer:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
+        public: false
