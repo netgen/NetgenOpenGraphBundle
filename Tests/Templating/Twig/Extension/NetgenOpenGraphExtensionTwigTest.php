@@ -6,14 +6,22 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension;
+use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
 use Psr\Log\NullLogger;
+use Twig\RuntimeLoader\FactoryRuntimeLoader;
+use Twig\Test\IntegrationTestCase;
 
-class NetgenOpenGraphExtensionTwigTest extends \Twig_Test_IntegrationTestCase
+class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 {
     /**
-     * @var NetgenOpenGraphExtension
+     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
      */
     protected $extension;
+
+    /**
+     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
+     */
+    protected $runtime;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -63,7 +71,8 @@ class NetgenOpenGraphExtensionTwigTest extends \Twig_Test_IntegrationTestCase
             ->setMethods(array('error'))
             ->getMock();
 
-        $this->extension = new NetgenOpenGraphExtension($this->collector, $this->renderer, $this->logger);
+        $this->extension = new NetgenOpenGraphExtension();
+        $this->runtime = new NetgenOpenGraphRuntime($this->collector, $this->renderer, $this->logger);
     }
 
     /**
@@ -74,11 +83,21 @@ class NetgenOpenGraphExtensionTwigTest extends \Twig_Test_IntegrationTestCase
         return __DIR__ . '/_fixtures/';
     }
 
-    /**
-     * @return \Twig_ExtensionInterface[]
-     */
     protected function getExtensions()
     {
         return array($this->extension);
+    }
+
+    protected function getRuntimeLoaders()
+    {
+        return array(
+            new FactoryRuntimeLoader(
+                array(
+                    NetgenOpenGraphRuntime::class => function () {
+                        return $this->runtime;
+                    },
+                )
+            ),
+        );
     }
 }

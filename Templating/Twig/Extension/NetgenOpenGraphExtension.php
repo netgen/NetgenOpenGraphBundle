@@ -2,73 +2,11 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
-use Exception;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
-use Psr\Log\LoggerInterface;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class NetgenOpenGraphExtension extends Twig_Extension
+class NetgenOpenGraphExtension extends AbstractExtension
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface
-     */
-    protected $tagCollector;
-
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface
-     */
-    protected $tagRenderer;
-
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var bool
-     */
-    protected $throwExceptions = true;
-
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface $tagCollector
-     * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface $tagRenderer
-     * @param \Psr\Log\LoggerInterface $logger
-     */
-    public function __construct(
-        CollectorInterface $tagCollector,
-        RendererInterface $tagRenderer,
-        LoggerInterface $logger = null
-    ) {
-        $this->tagCollector = $tagCollector;
-        $this->tagRenderer = $tagRenderer;
-        $this->logger = $logger;
-    }
-
-    /**
-     * Sets the flag that determines if the exceptions will thrown instead of logged.
-     *
-     * @param bool $throwExceptions
-     */
-    public function setThrowExceptions($throwExceptions = true)
-    {
-        $this->throwExceptions = $throwExceptions;
-    }
-
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
-    public function getName()
-    {
-        return 'netgen_open_graph';
-    }
-
     /**
      * Returns a list of functions to add to the existing list.
      *
@@ -77,61 +15,15 @@ class NetgenOpenGraphExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction(
+            new TwigFunction(
                 'render_netgen_open_graph',
-                array($this, 'renderOpenGraphTags'),
+                array(NetgenOpenGraphRuntime::class, 'renderOpenGraphTags'),
                 array('is_safe' => array('html'))
             ),
-            new Twig_SimpleFunction(
+            new TwigFunction(
                 'get_netgen_open_graph',
-                array($this, 'getOpenGraphTags')
+                array(NetgenOpenGraphRuntime::class, 'getOpenGraphTags')
             ),
         );
-    }
-
-    /**
-     * Renders Open Graph tags for provided content.
-     *
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
-     *
-     * @return string
-     */
-    public function renderOpenGraphTags(Content $content)
-    {
-        try {
-            return $this->tagRenderer->render(
-                $this->getOpenGraphTags($content)
-            );
-        } catch (Exception $e) {
-            if ($this->throwExceptions || !$this->logger instanceof LoggerInterface) {
-                throw $e;
-            }
-
-            $this->logger->error($e->getMessage());
-        }
-
-        return '';
-    }
-
-    /**
-     * Returns Open Graph tags for provided content.
-     *
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     */
-    public function getOpenGraphTags(Content $content)
-    {
-        try {
-            return $this->tagCollector->collect($content);
-        } catch (Exception $e) {
-            if ($this->throwExceptions || !$this->logger instanceof LoggerInterface) {
-                throw $e;
-            }
-
-            $this->logger->error($e->getMessage());
-        }
-
-        return array();
     }
 }
