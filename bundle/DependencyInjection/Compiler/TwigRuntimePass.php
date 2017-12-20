@@ -16,6 +16,10 @@ class TwigRuntimePass implements CompilerPassInterface
             return;
         }
 
+        if (!$container->has('twig')) {
+            return;
+        }
+
         $twig = $container->findDefinition('twig');
 
         $twig->addMethodCall(

@@ -12,16 +12,14 @@
 >
     <testsuites>
         <testsuite name="Netgen\OpenGraphBundle\Tests">
-            <directory>Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>.</directory>
+            <directory suffix=".php">bundle</directory>
             <exclude>
-                <directory>Resources</directory>
-                <directory>Tests</directory>
-                <directory>vendor</directory>
+                <directory>bundle/Resources</directory>
             </exclude>
         </whitelist>
     </filter>

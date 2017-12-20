@@ -16,11 +16,11 @@ It uses `Content` object which is currently displayed to generate Open Graph met
 
 To get started, read the docs available in `Resources/doc` folder inside the bundle:
 
-* [Installation instructions](Resources/doc/INSTALL.md)
+* [Installation instructions](bundle/Resources/doc/INSTALL.md)
 
-* [Documentation](Resources/doc/USAGE.md)
+* [Documentation](bundle/Resources/doc/USAGE.md)
 
-* [Changelog](Resources/doc/CHANGELOG.md)
+* [Changelog](bundle/Resources/doc/CHANGELOG.md)
 
 ## License
 

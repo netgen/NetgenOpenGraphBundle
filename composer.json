@@ -30,11 +30,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Netgen\\Bundle\\OpenGraphBundle\\": ""
+            "Netgen\\Bundle\\OpenGraphBundle\\": "bundle"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Netgen\\Bundle\\OpenGraphBundle\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "@php vendor/bin/phpunit --colors=always"
+        "test": "@php vendor/bin/phpunit --colors=always",
+        "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit --colors=always"
     },
     "extra": {
         "branch-alias": {
