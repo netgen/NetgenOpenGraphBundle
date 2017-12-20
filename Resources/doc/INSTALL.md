@@ -19,7 +19,7 @@ $ composer require netgen/open-graph-bundle
 
 ### Activate the bundle
 
-Activate the `Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle` bundle in `app/AppKernel.php` file:
+Activate the `Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle` bundle in `app/AppKernel.php` file.
 
 ### Use the bundle
 
