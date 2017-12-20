@@ -15,11 +15,11 @@ return PhpCsFixer\Config::create()
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_align' => false,
         'phpdoc_order' => true,
-        'phpdoc_no_alias_tag' => false,
         'psr4' => true,
         'semicolon_after_instruction' => true,
         'strict_comparison' => true,
         'strict_param' => true,
+        'yoda_style' => false,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
