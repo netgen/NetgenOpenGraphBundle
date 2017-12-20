@@ -29,5 +29,5 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
                 new Reference('netgen_open_graph.templating.twig.runtime.loader'),
             )
         );
-    }git
+    }
 }
