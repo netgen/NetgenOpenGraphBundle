@@ -30,4 +30,12 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
             )
         );
     }
+
+    public function testCompilerPassWithTwigRuntimeLoaderService()
+    {
+        $twig = new Definition();
+        $this->setDefinition('twig.runtime_loader', $twig);
+
+        $this->compile();
+    }
 }
