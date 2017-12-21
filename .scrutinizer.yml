@@ -1,7 +1,10 @@
 filter:
+    paths:
+        - 'bundle/*'
     excluded_paths:
-        - 'Tests/*'
+        - 'tests/*'
         - 'vendor/*'
+        - 'build/*'
 tools:
     php_analyzer: true
     sensiolabs_security_checker: true
