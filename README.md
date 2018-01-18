@@ -6,7 +6,7 @@ Netgen Open Graph Bundle
 [![Quality Score](https://img.shields.io/scrutinizer/g/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/netgen/NetgenOpenGraphBundle)
 [![Downloads](https://img.shields.io/packagist/dt/netgen/open-graph-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-graph-bundle/stats)
 [![Latest stable](https://img.shields.io/packagist/v/netgen/open-graph-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-graph-bundle)
-[![License](https://img.shields.io/packagist/l/netgen/open-graph-bundle.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](LICENSE)
 [![PHP](https://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg?style=flat-square)](https://secure.php.net/)
 
 Netgen Open Graph Bundle is an eZ Publish / eZ Platform bundle that provides simple integration with Open Graph protocol.
