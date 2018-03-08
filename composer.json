@@ -23,10 +23,10 @@
         "twig/twig": "^1.35|^2.4.4"
     },
     "require-dev": {
-        "ezsystems/ezplatform-xmltext-fieldtype": "^1.4",
-        "phpunit/phpunit": "^5.7|^6.5",
-        "matthiasnoback/symfony-config-test": "^2.2|^3.1",
-        "matthiasnoback/symfony-dependency-injection-test": "^1.2|^2.3"
+        "ezsystems/ezplatform-xmltext-fieldtype": "^1.5",
+        "phpunit/phpunit": "^5.7|^7.0",
+        "matthiasnoback/symfony-config-test": "^2.2|^4.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.2|^3.0"
     },
     "autoload": {
         "psr-4": {

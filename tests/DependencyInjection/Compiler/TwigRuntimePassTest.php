@@ -32,6 +32,9 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
         $this->setDefinition('twig.runtime_loader', $twig);
 
         $this->compile();
+
+        // Fake assertion to disable risky warning
+        $this->assertTrue(true);
     }
 
     protected function registerCompilerPass(ContainerBuilder $container)
