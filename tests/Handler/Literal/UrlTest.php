@@ -72,4 +72,32 @@ class UrlTest extends TestCase
             array('', 'https://domain.com/'),
         );
     }
+
+    /**
+     * @dataProvider validResultProviderWithoutRequest
+     *
+     * @param string $input
+     * @param string $output
+     */
+    public function testGettingTagsWithValidResultAndWithoutRequest($input, $output)
+    {
+        $result = $this->url->getMetaTags('some_tag', array($input));
+
+        $this->assertInternalType('array', $result);
+        $this->assertInstanceOf(Item::class, $result[0]);
+        $this->assertEquals('some_tag', $result[0]->getTagName());
+        $this->assertEquals($output, $result[0]->getTagValue());
+    }
+
+    public function validResultProviderWithoutRequest()
+    {
+        return array(
+            array('https://other.domain.com/some/path', 'https://other.domain.com/some/path'),
+            array('http://other.domain.com/some/path', 'http://other.domain.com/some/path'),
+            array('/some/path', '/some/path'),
+            array('some/path', 'some/path'),
+            array('/', '/'),
+            array('', ''),
+        );
+    }
 }
