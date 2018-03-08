@@ -1,6 +1,15 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.3.0 (08.03.2018)
+
+* Added `literal/url` handler which can generate the absolute URL based on current request
+* Separated Twig runtime from Twig extension
+* Use Twig namespaces
+* Updates to tests
+* PSR-4 project structure
+* Dropped support for PHP 5.5
+
 ## 1.2.0 (14.12.2017)
 
 * Dropped support for eZ Publish 5 and lower
