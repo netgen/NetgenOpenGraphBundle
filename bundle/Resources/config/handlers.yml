@@ -19,6 +19,16 @@ services:
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: literal/text }
 
+    netgen_open_graph.handler.literal.url:
+        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Url
+        public: false
+        parent: netgen_open_graph.handler.abstract
+        lazy: true
+        arguments:
+            - "@request_stack"
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: literal/url }
+
     netgen_open_graph.handler.field_type.text_line:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
         public: false

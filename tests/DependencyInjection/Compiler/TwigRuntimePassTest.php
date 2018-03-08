@@ -3,18 +3,13 @@
 namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
+use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\TwigRuntimePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
-use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\TwigRuntimePass;
 
 class TwigRuntimePassTest extends AbstractCompilerPassTestCase
 {
-    protected function registerCompilerPass(ContainerBuilder $container)
-    {
-        $container->addCompilerPass(new TwigRuntimePass());
-    }
-
     public function testCompilerPassCollectsValidServices()
     {
         $twig = new Definition();
@@ -37,5 +32,10 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
         $this->setDefinition('twig.runtime_loader', $twig);
 
         $this->compile();
+    }
+
+    protected function registerCompilerPass(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new TwigRuntimePass());
     }
 }
