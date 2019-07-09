@@ -8,17 +8,7 @@ use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
 class Renderer implements RendererInterface
 {
-    /**
-     * Renders provided meta tags.
-     *
-     * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If meta tag is not an instance of
-     *         \Netgen\Bundle\OpenGraphBundle\MetaTag\Item
-     *
-     * @return string
-     */
-    public function render(array $metaTags = [])
+    public function render(array $metaTags = []): string
     {
         $html = '';
 
@@ -27,8 +17,8 @@ class Renderer implements RendererInterface
                 throw new InvalidArgumentException('metaTags', 'Cannot render meta tag, not an instance of \Netgen\Bundle\OpenGraphBundle\MetaTag\Item');
             }
 
-            $tagName = htmlspecialchars($metaTag->getTagName(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-            $tagValue = htmlspecialchars($metaTag->getTagValue(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $tagName = htmlspecialchars($metaTag->getTagName(), ENT_QUOTES | ENT_SUBSTITUTE);
+            $tagValue = htmlspecialchars($metaTag->getTagValue(), ENT_QUOTES | ENT_SUBSTITUTE);
 
             if (!empty($tagName) && !empty($tagValue)) {
                 $html .= "<meta property=\"{$tagName}\" content=\"{$tagValue}\" />\n";

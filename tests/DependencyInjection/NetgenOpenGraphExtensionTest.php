@@ -12,7 +12,7 @@ class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testItSetsValidContainerParameters()
+    public function testItSetsValidContainerParameters(): void
     {
         $this->container->setParameter('ezpublish.siteaccess.list', []);
         $this->load();

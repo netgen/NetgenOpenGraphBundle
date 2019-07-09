@@ -55,20 +55,12 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         $this->runtime = new NetgenOpenGraphRuntime($this->collector, $this->renderer, $this->logger);
     }
 
-    public function testInstanceOfTwigExtensionInterface()
+    public function testInstanceOfTwigExtensionInterface(): void
     {
         self::assertInstanceOf(NetgenOpenGraphRuntime::class, $this->runtime);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
-    public function testSetThrowExceptions()
-    {
-        $this->runtime->setThrowExceptions(true);
-    }
-
-    public function testGetOpenGraphTags()
+    public function testGetOpenGraphTags(): void
     {
         $items = [
             new Item('tag1', 'some_value'),
@@ -83,23 +75,22 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         self::assertSame($items, $result);
     }
 
-    public function testGetOpenGraphTagsWithThrowedException()
+    public function testGetOpenGraphTagsWithThrownException(): void
     {
         $this->expectException(Exception::class);
 
         $this->collector->expects(self::once())
             ->method('collect')
-            ->willThrowException(new \Exception());
+            ->willThrowException(new Exception());
 
-        $this->runtime->setThrowExceptions(true);
         $this->runtime->getOpenGraphTags(new Content());
     }
 
-    public function testGetOpenGraphTagsWithLoggedException()
+    public function testGetOpenGraphTagsWithLoggedException(): void
     {
         $this->collector->expects(self::once())
             ->method('collect')
-            ->willThrowException(new \Exception());
+            ->willThrowException(new Exception());
 
         $this->logger->expects(self::once())
             ->method('error');
@@ -108,7 +99,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         $this->runtime->getOpenGraphTags(new Content());
     }
 
-    public function testRenderOpenGraphTags()
+    public function testRenderOpenGraphTags(): void
     {
         $items = [
             new Item('tag1', 'some_value'),
@@ -129,7 +120,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         self::assertSame($resultString, $result);
     }
 
-    public function testRenderOpenGraphTagsWithThrowedException()
+    public function testRenderOpenGraphTagsWithThrownException(): void
     {
         $this->expectException(Exception::class);
 
@@ -139,13 +130,12 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
         $this->renderer->expects(self::once())
             ->method('render')
-            ->willThrowException(new \Exception());
+            ->willThrowException(new Exception());
 
-        $this->runtime->setThrowExceptions(true);
         $this->runtime->renderOpenGraphTags(new Content());
     }
 
-    public function testRenderOpenGraphTagsWithLoggedException()
+    public function testRenderOpenGraphTagsWithLoggedException(): void
     {
         $this->collector->expects(self::once())
             ->method('collect')
@@ -153,7 +143,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
         $this->renderer->expects(self::once())
             ->method('render')
-            ->willThrowException(new \Exception());
+            ->willThrowException(new Exception());
 
         $this->logger->expects(self::once())
             ->method('error');

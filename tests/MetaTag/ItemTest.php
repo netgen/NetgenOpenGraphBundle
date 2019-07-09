@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ItemTest extends TestCase
 {
-    public function testItemGettersAndConstruct()
+    public function testItemGettersAndConstruct(): void
     {
         $item = new Item('name', 'value');
 

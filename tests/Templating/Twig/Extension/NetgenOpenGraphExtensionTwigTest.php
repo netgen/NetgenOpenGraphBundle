@@ -77,20 +77,17 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
         $this->runtime = new NetgenOpenGraphRuntime($this->collector, $this->renderer, $this->logger);
     }
 
-    /**
-     * @return string
-     */
-    protected function getFixturesDir()
+    protected function getFixturesDir(): string
     {
         return __DIR__ . '/_fixtures/';
     }
 
-    protected function getExtensions()
+    protected function getExtensions(): array
     {
         return [$this->extension];
     }
 
-    protected function getRuntimeLoaders()
+    protected function getRuntimeLoaders(): array
     {
         return [
             new FactoryRuntimeLoader(

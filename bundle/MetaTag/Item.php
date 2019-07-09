@@ -16,13 +16,7 @@ class Item
      */
     protected $tagValue;
 
-    /**
-     * Constructor.
-     *
-     * @param string $tagName
-     * @param string $tagValue
-     */
-    public function __construct($tagName, $tagValue)
+    public function __construct(string $tagName, string $tagValue)
     {
         $this->tagName = $tagName;
         $this->tagValue = $tagValue;
@@ -30,20 +24,16 @@ class Item
 
     /**
      * Returns tag name.
-     *
-     * @return string
      */
-    public function getTagName()
+    public function getTagName(): string
     {
         return $this->tagName;
     }
 
     /**
      * Returns tag value.
-     *
-     * @return string
      */
-    public function getTagValue()
+    public function getTagValue(): string
     {
         return $this->tagValue;
     }

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class FieldEmptyExceptionTest extends TestCase
 {
-    public function testExceptionThrow()
+    public function testExceptionThrow(): void
     {
         $this->expectException(FieldEmptyException::class);
         $this->expectExceptionMessage("Field with identifier 'test' has empty value.");

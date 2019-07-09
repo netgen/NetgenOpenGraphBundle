@@ -15,9 +15,9 @@ use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class CollectorTest extends TestCase
 {
@@ -61,12 +61,7 @@ class CollectorTest extends TestCase
         $this->collector = new Collector($this->registry, $this->contentTypeService, $this->config);
     }
 
-    public function testInstanceOfCollectorInterface()
-    {
-        self::assertInstanceOf(CollectorInterface::class, $this->collector);
-    }
-
-    public function testCollect()
+    public function testCollect(): void
     {
         $this->config->expects(self::at(0))
             ->method('hasParameter')
@@ -140,7 +135,7 @@ class CollectorTest extends TestCase
         $items = [
             new Item(
                 'og:type',
-                ['article']
+                'article'
             ),
         ];
 
@@ -155,7 +150,7 @@ class CollectorTest extends TestCase
         $this->collector->collect($content);
     }
 
-    public function testCollectWithLogicException()
+    public function testCollectWithLogicException(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage("'literal/text' handler returned wrong value. Expected 'Netgen\\Bundle\\OpenGraphBundle\\MetaTag\\Item', got 'stdClass'.");
@@ -227,7 +222,7 @@ class CollectorTest extends TestCase
 
         $handler->expects(self::once())
             ->method('getMetaTags')
-            ->willReturn([new \stdClass()]);
+            ->willReturn([new stdClass()]);
 
         $this->registry->expects(self::once())
             ->method('getHandler')

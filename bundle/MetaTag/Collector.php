@@ -28,13 +28,6 @@ class Collector implements CollectorInterface
      */
     protected $configResolver;
 
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\Bundle\OpenGraphBundle\Handler\Registry $metaTagHandlers
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
-     * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
-     */
     public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
     {
         $this->metaTagHandlers = $metaTagHandlers;
@@ -42,14 +35,7 @@ class Collector implements CollectorInterface
         $this->configResolver = $configResolver;
     }
 
-    /**
-     * Collects meta tags from all handlers registered for provided content.
-     *
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     */
-    public function collect(Content $content)
+    public function collect(Content $content): array
     {
         $metaTags = [];
 

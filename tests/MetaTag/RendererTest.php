@@ -22,19 +22,19 @@ class RendererTest extends TestCase
         $this->renderer = new Renderer();
     }
 
-    public function testInstanceOfRendererInterface()
+    public function testInstanceOfRendererInterface(): void
     {
         self::assertInstanceOf(RendererInterface::class, $this->renderer);
     }
 
-    public function testRenderWithEmptyArray()
+    public function testRenderWithEmptyArray(): void
     {
         $result = $this->renderer->render([]);
 
         self::assertSame('', $result);
     }
 
-    public function testRenderWithInvalidItem()
+    public function testRenderWithInvalidItem(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument 'metaTags' is invalid: Cannot render meta tag, not an instance of \\Netgen\\Bundle\\OpenGraphBundle\\MetaTag\\Item");
@@ -42,7 +42,7 @@ class RendererTest extends TestCase
         $this->renderer->render(['test']);
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $item = new Item('name', 'value');
         $result = $this->renderer->render([$item]);
@@ -50,7 +50,7 @@ class RendererTest extends TestCase
         self::assertSame("<meta property=\"name\" content=\"value\" />\n", $result);
     }
 
-    public function testItProperlyEscapesValue()
+    public function testItProperlyEscapesValue(): void
     {
         $item = new Item('name', 'val<javascript></javascript>ue');
         $result = $this->renderer->render([$item]);

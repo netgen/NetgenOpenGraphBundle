@@ -13,5 +13,5 @@ interface ContentAware
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Content $content
      */
-    public function setContent(Content $content);
+    public function setContent(Content $content): void;
 }

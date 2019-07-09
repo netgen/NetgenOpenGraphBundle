@@ -8,12 +8,7 @@ use Exception;
 
 class FieldEmptyException extends Exception
 {
-    /**
-     * Constructor.
-     *
-     * @param string $fieldIdentifier
-     */
-    public function __construct($fieldIdentifier)
+    public function __construct(string $fieldIdentifier)
     {
         parent::__construct("Field with identifier '{$fieldIdentifier}' has empty value.");
     }

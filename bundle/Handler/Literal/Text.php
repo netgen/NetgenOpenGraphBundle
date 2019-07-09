@@ -10,17 +10,7 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 
 class Text implements HandlerInterface
 {
-    /**
-     * Returns the array of meta tags.
-     *
-     * @param string $tagName
-     * @param array $params
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     */
-    public function getMetaTags($tagName, array $params = [])
+    public function getMetaTags(string $tagName, array $params = []): array
     {
         if (!isset($params[0])) {
             throw new InvalidArgumentException(

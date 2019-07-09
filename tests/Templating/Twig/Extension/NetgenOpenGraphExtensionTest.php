@@ -21,12 +21,12 @@ class NetgenOpenGraphExtensionTest extends TestCase
         $this->extension = new NetgenOpenGraphExtension();
     }
 
-    public function testInstanceOfTwigExtensionInterface()
+    public function testInstanceOfTwigExtensionInterface(): void
     {
         self::assertInstanceOf(ExtensionInterface::class, $this->extension);
     }
 
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
         foreach ($this->extension->getFunctions() as $function) {
             self::assertInstanceOf(TwigFunction::class, $function);

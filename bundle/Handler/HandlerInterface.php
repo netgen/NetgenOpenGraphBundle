@@ -14,5 +14,5 @@ interface HandlerInterface
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags($tagName, array $params = []);
+    public function getMetaTags(string $tagName, array $params = []): array;
 }

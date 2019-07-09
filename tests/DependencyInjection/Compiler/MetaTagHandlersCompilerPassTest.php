@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function testCompilerPassCollectsValidServices()
+    public function testCompilerPassCollectsValidServices(): void
     {
         $handlerRegistry = new Definition();
         $this->setDefinition('netgen_open_graph.handler_registry', $handlerRegistry);
@@ -47,7 +47,7 @@ class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    public function testCompilerPassMustThrowExceptionIfActionServiceHasntGotAlias()
+    public function testCompilerPassMustThrowExceptionIfActionServiceDoesNotHaveAlias(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.');

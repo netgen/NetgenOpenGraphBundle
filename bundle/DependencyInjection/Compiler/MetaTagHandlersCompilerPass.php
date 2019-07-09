@@ -13,10 +13,8 @@ class MetaTagHandlersCompilerPass implements CompilerPassInterface
 {
     /**
      * Adds all registered meta tag handlers to the registry.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $metaTagHandlers = $container->findTaggedServiceIds('netgen_open_graph.meta_tag_handler');
         if (!empty($metaTagHandlers) && $container->hasDefinition('netgen_open_graph.handler_registry')) {

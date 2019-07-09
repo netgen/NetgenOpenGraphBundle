@@ -15,11 +15,8 @@ class Registry
 
     /**
      * Adds a handler to the registry.
-     *
-     * @param string $identifier
-     * @param \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface $metaTagHandler
      */
-    public function addHandler($identifier, HandlerInterface $metaTagHandler)
+    public function addHandler(string $identifier, HandlerInterface $metaTagHandler): void
     {
         if (!isset($this->metaTagHandlers[$identifier])) {
             $this->metaTagHandlers[$identifier] = $metaTagHandler;
@@ -29,13 +26,9 @@ class Registry
     /**
      * Returns handler by its identifier.
      *
-     * @param string $identifier
-     *
      * @throws \Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException If the handler is not found
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface
      */
-    public function getHandler($identifier)
+    public function getHandler(string $identifier): HandlerInterface
     {
         if (isset($this->metaTagHandlers[$identifier])) {
             return $this->metaTagHandlers[$identifier];

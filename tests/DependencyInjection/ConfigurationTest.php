@@ -12,7 +12,7 @@ class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    public function testConfigurationValuesAreOkAndValid()
+    public function testConfigurationValuesAreOkAndValid(): void
     {
         $this->assertConfigurationIsValid(
             [
@@ -79,7 +79,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithoutRequiredHandlerInContentTypeHandlers()
+    public function testConfigurationWithoutRequiredHandlerInContentTypeHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -146,7 +146,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithHandlerEmptyInContentTypeHandlers()
+    public function testConfigurationWithHandlerEmptyInContentTypeHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -214,7 +214,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithoutRequiredTagInContentTypeHandlers()
+    public function testConfigurationWithoutRequiredTagInContentTypeHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -276,7 +276,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithTagEmptyInContentTypeHandlers()
+    public function testConfigurationWithTagEmptyInContentTypeHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -339,7 +339,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithoutRequiredHandlerInGlobalHandlers()
+    public function testConfigurationWithoutRequiredHandlerInGlobalHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -406,7 +406,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithHandlerEmptyInGlobalHandlers()
+    public function testConfigurationWithHandlerEmptyInGlobalHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -474,7 +474,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithoutRequiredTagInGlobalHandlers()
+    public function testConfigurationWithoutRequiredTagInGlobalHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -541,7 +541,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    public function testConfigurationWithTagEmptyInGlobalHandlers()
+    public function testConfigurationWithTagEmptyInGlobalHandlers(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -609,7 +609,7 @@ class ConfigurationTest extends TestCase
         );
     }
 
-    protected function getConfiguration()
+    protected function getConfiguration(): Configuration
     {
         return new Configuration();
     }

@@ -30,26 +30,23 @@ class UrlTest extends TestCase
         $this->url = new Url($this->requestStack);
     }
 
-    public function testInstanceOfHandlerInterface()
+    public function testInstanceOfHandlerInterface(): void
     {
         self::assertInstanceOf(HandlerInterface::class, $this->url);
     }
 
-    public function testGettingTagsWithEmptyParams()
+    public function testGettingTagsWithEmptyParams(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal URL handler requires the path to output.");
 
-        $this->url->getMetaTags('some_tag', []);
+        $this->url->getMetaTags('some_tag');
     }
 
     /**
      * @dataProvider validResultProvider
-     *
-     * @param string $input
-     * @param string $output
      */
-    public function testGettingTagsWithValidResult($input, $output)
+    public function testGettingTagsWithValidResult(string $input, string $output): void
     {
         $request = Request::create('https://domain.com');
 
@@ -63,7 +60,7 @@ class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProvider()
+    public function validResultProvider(): array
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
@@ -77,11 +74,8 @@ class UrlTest extends TestCase
 
     /**
      * @dataProvider validResultProviderWithoutRequest
-     *
-     * @param string $input
-     * @param string $output
      */
-    public function testGettingTagsWithValidResultAndWithoutRequest($input, $output)
+    public function testGettingTagsWithValidResultAndWithoutRequest(string $input, string $output): void
     {
         $result = $this->url->getMetaTags('some_tag', [$input]);
 
@@ -91,7 +85,7 @@ class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProviderWithoutRequest()
+    public function validResultProviderWithoutRequest(): array
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],

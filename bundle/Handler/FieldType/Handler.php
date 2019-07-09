@@ -24,29 +24,13 @@ abstract class Handler extends BaseHandler
      */
     protected $translationHelper;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\Core\Helper\FieldHelper $fieldHelper
-     * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
-     */
     public function __construct(FieldHelper $fieldHelper, TranslationHelper $translationHelper)
     {
         $this->fieldHelper = $fieldHelper;
         $this->translationHelper = $translationHelper;
     }
 
-    /**
-     * Returns the array of meta tags.
-     *
-     * @param string $tagName
-     * @param array $params
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     */
-    public function getMetaTags($tagName, array $params = [])
+    public function getMetaTags(string $tagName, array $params = []): array
     {
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
@@ -81,15 +65,9 @@ abstract class Handler extends BaseHandler
     /**
      * Returns the field value, converted to string.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Field $field
-     * @param string $tagName
-     * @param array $params
-     *
      * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
-     *
-     * @return string
      */
-    protected function getFieldValue(Field $field, $tagName, array $params = [])
+    protected function getFieldValue(Field $field, string $tagName, array $params = []): string
     {
         if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
             return (string) $field->value;
@@ -100,13 +78,8 @@ abstract class Handler extends BaseHandler
 
     /**
      * Returns fallback value.
-     *
-     * @param string $tagName
-     * @param array $params
-     *
-     * @return string
      */
-    protected function getFallbackValue($tagName, array $params = [])
+    protected function getFallbackValue(string $tagName, array $params = []): string
     {
         if (!empty($params[1])) {
             return (string) $params[1];
@@ -118,13 +91,9 @@ abstract class Handler extends BaseHandler
     /**
      * Validates field by field identifier.
      *
-     * @param string $fieldIdentifier
-     *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If field does not exist, or the handler does not support it
-     *
-     * @returns \eZ\Publish\API\Repository\Values\Content\Field
      */
-    protected function validateField($fieldIdentifier)
+    protected function validateField(string $fieldIdentifier): Field
     {
         $field = $this->translationHelper->getTranslatedField($this->content, $fieldIdentifier);
         if (!$field instanceof Field) {
@@ -143,10 +112,6 @@ abstract class Handler extends BaseHandler
 
     /**
      * Returns if this field type handler supports current field.
-     *
-     * @param \eZ\Publish\API\Repository\Values\Content\Field $field
-     *
-     * @return bool
      */
-    abstract protected function supports(Field $field);
+    abstract protected function supports(Field $field): bool;
 }

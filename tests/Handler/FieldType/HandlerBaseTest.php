@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
 use PHPUnit\Framework\TestCase;
 
 abstract class HandlerBaseTest extends TestCase
@@ -25,7 +24,7 @@ abstract class HandlerBaseTest extends TestCase
     protected $content;
 
     /**
-     * @var Field
+     * @var \eZ\Publish\API\Repository\Values\Content\Field
      */
     protected $field;
 }

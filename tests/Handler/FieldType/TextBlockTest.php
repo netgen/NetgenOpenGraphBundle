@@ -43,20 +43,20 @@ class TextBlockTest extends HandlerBaseTest
         $this->field = new Field(['value' => new Value()]);
     }
 
-    public function testInstanceOfHandlerInterface()
+    public function testInstanceOfHandlerInterface(): void
     {
         self::assertInstanceOf(HandlerInterface::class, $this->textBlock);
     }
 
-    public function testGettingTagsWithoutFieldIdentifier()
+    public function testGettingTagsWithoutFieldIdentifier(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field type handlers require at least a field identifier.");
 
-        $this->textBlock->getMetaTags('some_tag', []);
+        $this->textBlock->getMetaTags('some_tag');
     }
 
-    public function testGettingTagsWithNonExistentField()
+    public function testGettingTagsWithNonExistentField(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field 'some_value' does not exist in content.");
@@ -68,7 +68,7 @@ class TextBlockTest extends HandlerBaseTest
         $this->textBlock->getMetaTags('some_tag', ['some_value']);
     }
 
-    public function testGettingTagsWithUnsupportedField()
+    public function testGettingTagsWithUnsupportedField(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\TextBlock field type handler does not support field with identifier ''.");
@@ -80,7 +80,7 @@ class TextBlockTest extends HandlerBaseTest
         $this->textBlock->getMetaTags('some_tag', ['some_value']);
     }
 
-    public function testGettingTagsWithEmptyField()
+    public function testGettingTagsWithEmptyField(): void
     {
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
@@ -93,7 +93,7 @@ class TextBlockTest extends HandlerBaseTest
         $this->textBlock->getMetaTags('some_tag', ['some_value']);
     }
 
-    public function testGettingTags()
+    public function testGettingTags(): void
     {
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
@@ -102,7 +102,7 @@ class TextBlockTest extends HandlerBaseTest
         $this->textBlock->getMetaTags('some_tag', ['some_value']);
     }
 
-    public function testGettingTagsWithMultipleArgumentsInArray()
+    public function testGettingTagsWithMultipleArgumentsInArray(): void
     {
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')

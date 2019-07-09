@@ -22,12 +22,12 @@ class TextTest extends TestCase
         $this->text = new Text();
     }
 
-    public function testInstanceOfHandlerInterface()
+    public function testInstanceOfHandlerInterface(): void
     {
         self::assertInstanceOf(HandlerInterface::class, $this->text);
     }
 
-    public function testGettingTagsWithEmptyParams()
+    public function testGettingTagsWithEmptyParams(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal text handler requires the text to output.");
@@ -35,7 +35,7 @@ class TextTest extends TestCase
         $this->text->getMetaTags('some_tag', []);
     }
 
-    public function testGettingTagsWithValidResult()
+    public function testGettingTagsWithValidResult(): void
     {
         $result = $this->text->getMetaTags('some_tag', ['some_param']);
 

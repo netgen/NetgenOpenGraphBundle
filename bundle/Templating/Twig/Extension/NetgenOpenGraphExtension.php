@@ -9,12 +9,7 @@ use Twig\TwigFunction;
 
 class NetgenOpenGraphExtension extends AbstractExtension
 {
-    /**
-     * Returns a list of functions to add to the existing list.
-     *
-     * @return array An array of functions
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction(

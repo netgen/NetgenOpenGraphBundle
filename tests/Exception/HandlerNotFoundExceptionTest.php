@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class HandlerNotFoundExceptionTest extends TestCase
 {
-    public function testExceptionThrow()
+    public function testExceptionThrow(): void
     {
         $this->expectException(HandlerNotFoundException::class);
         $this->expectExceptionMessage("Meta tag handler with 'test' identifier not found.");

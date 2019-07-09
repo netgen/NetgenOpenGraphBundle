@@ -22,17 +22,7 @@ class Url implements HandlerInterface
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * Returns the array of meta tags.
-     *
-     * @param string $tagName
-     * @param array $params
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If number of params is incorrect
-     *
-     * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
-     */
-    public function getMetaTags($tagName, array $params = [])
+    public function getMetaTags(string $tagName, array $params = []): array
     {
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
@@ -44,7 +34,7 @@ class Url implements HandlerInterface
         $path = $params[0];
         $request = $this->requestStack->getCurrentRequest();
 
-        if (!preg_match('/^https?:\/\//', $path) && $request instanceof Request) {
+        if ($request instanceof Request && !preg_match('/^https?:\/\//', $path)) {
             $path = $request->getUriForPath('/' . ltrim($path, '/'));
         }
 

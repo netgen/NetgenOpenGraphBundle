@@ -15,5 +15,5 @@ interface CollectorInterface
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function collect(Content $content);
+    public function collect(Content $content): array;
 }

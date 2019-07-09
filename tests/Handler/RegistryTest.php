@@ -21,7 +21,7 @@ class RegistryTest extends TestCase
         $this->registry = new Registry();
     }
 
-    public function testAddingHandlers()
+    public function testAddingHandlers(): void
     {
         $handler = $this->getMockForAbstractClass(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
@@ -29,7 +29,7 @@ class RegistryTest extends TestCase
         self::assertSame($this->registry->getHandler('some_handler'), $handler);
     }
 
-    public function testGettingHandlers()
+    public function testGettingHandlers(): void
     {
         $handler = $this->getMockForAbstractClass(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
@@ -39,7 +39,7 @@ class RegistryTest extends TestCase
         self::assertSame($handler, $returnedHandler);
     }
 
-    public function testGettingNonExistentHandler()
+    public function testGettingNonExistentHandler(): void
     {
         $this->expectException(HandlerNotFoundException::class);
         $this->expectExceptionMessage("Meta tag handler with 'some_handler' identifier not found.");
