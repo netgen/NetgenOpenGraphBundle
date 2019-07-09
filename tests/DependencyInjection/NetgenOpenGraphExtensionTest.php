@@ -16,14 +16,14 @@ class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
         $this->load();
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return array(
             new NetgenOpenGraphExtension(),
         );
     }
 
-    protected function getMinimalConfiguration()
+    protected function getMinimalConfiguration(): array
     {
         return array(
             'system' => array(
