@@ -17,8 +17,8 @@ class Configuration extends SiteAccessConfiguration
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('netgen_open_graph')
+        $treeBuilder = new TreeBuilder('netgen_open_graph');
+        $rootNode = $treeBuilder->getRootNode()
             ->fixXmlConfig('content_type_handler')
             ->fixXmlConfig('global_handler');
 
