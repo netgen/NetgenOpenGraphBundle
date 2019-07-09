@@ -40,7 +40,7 @@ class TextLineTest extends HandlerBaseTest
         $this->textLine = new TextLine($this->fieldHelper, $this->translationHelper);
         $this->textLine->setContent($this->content);
 
-        $this->field = new Field(['value' => new Value()]);
+        $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
     }
 
     public function testInstanceOfHandlerInterface(): void
@@ -71,11 +71,11 @@ class TextLineTest extends HandlerBaseTest
     public function testGettingTagsWithUnsupportedField(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\TextLine field type handler does not support field with identifier ''.");
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\TextLine field type handler does not support field with identifier 'field'.");
 
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
-            ->willReturn(new Field());
+            ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
         $this->textLine->getMetaTags('some_tag', ['some_value']);
     }

@@ -75,7 +75,7 @@ class ImageTest extends HandlerBaseTest
         $this->image = new Image($this->fieldHelper, $this->translationHelper, $this->variationHandler, $this->requestStack, $this->logger);
         $this->image->setContent($this->content);
 
-        $this->field = new Field(['value' => new Value()]);
+        $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
     }
 
     public function testInstanceOfHandlerInterface(): void
@@ -106,11 +106,11 @@ class ImageTest extends HandlerBaseTest
     public function testGettingTagsWithUnsupportedField(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\Image field type handler does not support field with identifier ''.");
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\Image field type handler does not support field with identifier 'field'.");
 
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
-            ->willReturn(new Field());
+            ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
         $this->image->getMetaTags('some_tag', ['some_value']);
     }
@@ -134,10 +134,7 @@ class ImageTest extends HandlerBaseTest
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $request = $this->getMockBuilder(Request::class)
-            ->disableOriginalConstructor()
-            ->setMethods([])
-            ->getMock();
+        $request = Request::create('/');
 
         $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
@@ -162,10 +159,7 @@ class ImageTest extends HandlerBaseTest
             ->method('getVariation')
             ->willReturn($variation);
 
-        $request = $this->getMockBuilder(Request::class)
-            ->disableOriginalConstructor()
-            ->setMethods([])
-            ->getMock();
+        $request = Request::create('/');
 
         $this->requestStack->expects(self::exactly(2))
             ->method('getCurrentRequest')
@@ -188,10 +182,7 @@ class ImageTest extends HandlerBaseTest
             ->method('getVariation')
             ->willThrowException(new InvalidVariationException('name', 'type'));
 
-        $request = $this->getMockBuilder(Request::class)
-            ->disableOriginalConstructor()
-            ->setMethods([])
-            ->getMock();
+        $request = Request::create('/');
 
         $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
@@ -217,10 +208,7 @@ class ImageTest extends HandlerBaseTest
             ->method('getVariation')
             ->willThrowException(new SourceImageNotFoundException('message'));
 
-        $request = $this->getMockBuilder(Request::class)
-            ->disableOriginalConstructor()
-            ->setMethods([])
-            ->getMock();
+        $request = Request::create('/');
 
         $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')

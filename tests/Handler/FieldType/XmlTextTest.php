@@ -40,7 +40,7 @@ class XmlTextTest extends HandlerBaseTest
         $this->xmlText = new XmlText($this->fieldHelper, $this->translationHelper);
         $this->xmlText->setContent($this->content);
 
-        $this->field = new Field(['value' => new Value()]);
+        $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
     }
 
     public function testInstanceOfHandlerInterface(): void
@@ -71,11 +71,11 @@ class XmlTextTest extends HandlerBaseTest
     public function testGettingTagsWithUnsupportedField(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\XmlText field type handler does not support field with identifier ''.");
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\XmlText field type handler does not support field with identifier 'field'.");
 
         $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
-            ->willReturn(new Field());
+            ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
         $this->xmlText->getMetaTags('some_tag', ['some_value']);
     }
