@@ -129,7 +129,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testRenderOpenGraphTagsWithThrowedException()
     {
-        $this->expectException(Exception:class);
+        $this->expectException(Exception::class);
 
         $this->collector->expects($this->once())
             ->method('collect')
