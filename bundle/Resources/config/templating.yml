@@ -1,13 +1,11 @@
 services:
     netgen_open_graph.templating.twig.extension:
         class: Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
-        public: false
         tags:
             - { name: twig.extension }
 
     netgen_open_graph.templating.twig.runtime:
         class: Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
-        # public: false
         arguments:
             - "@netgen_open_graph.meta_tag_collector"
             - "@netgen_open_graph.meta_tag_renderer"
@@ -21,6 +19,5 @@ services:
 
     netgen_open_graph.templating.twig.runtime.loader:
         class: Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntimeLoader
-        public: false
         arguments:
             - "@netgen_open_graph.templating.twig.runtime"
