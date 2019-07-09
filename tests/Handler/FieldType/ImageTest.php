@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
 use eZ\Bundle\EzPublishCoreBundle\Imagine\AliasGenerator;
@@ -41,44 +43,44 @@ class ImageTest extends HandlerBaseTest
      */
     protected $logger;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('isFieldEmpty'))
+            ->setMethods(['isFieldEmpty'])
             ->getMock();
 
         $this->translationHelper = $this->getMockBuilder(TranslationHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getTranslatedField'))
+            ->setMethods(['getTranslatedField'])
             ->getMock();
 
-        $this->content = new Content(array('versionInfo' => new VersionInfo()));
+        $this->content = new Content(['versionInfo' => new VersionInfo()]);
 
         $this->variationHandler = $this->getMockBuilder(AliasGenerator::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getVariation'))
+            ->setMethods(['getVariation'])
             ->getMock();
 
         $this->requestStack = $this->getMockBuilder(RequestStack::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getCurrentRequest'))
+            ->setMethods(['getCurrentRequest'])
             ->getMock();
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods(array())
+            ->setMethods([])
             ->getMock();
 
         $this->image = new Image($this->fieldHelper, $this->translationHelper, $this->variationHandler, $this->requestStack, $this->logger);
         $this->image->setContent($this->content);
 
-        $this->field = new Field(array('value' => new Value()));
+        $this->field = new Field(['value' => new Value()]);
     }
 
     public function testInstanceOfHandlerInterface()
     {
-        $this->assertInstanceOf(HandlerInterface::class, $this->image);
+        self::assertInstanceOf(HandlerInterface::class, $this->image);
     }
 
     public function testGettingTagsWithoutFieldIdentifier()
@@ -86,7 +88,7 @@ class ImageTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field type handlers require at least a field identifier.");
 
-        $this->image->getMetaTags('some_tag', array());
+        $this->image->getMetaTags('some_tag', []);
     }
 
     public function testGettingTagsWithNonExistentField()
@@ -94,148 +96,148 @@ class ImageTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field 'some_value' does not exist in content.");
 
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn(null);
 
-        $this->image->getMetaTags('some_tag', array('some_value'));
+        $this->image->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithUnsupportedField()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image field type handler does not support field with identifier ''.");
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\Image field type handler does not support field with identifier ''.");
 
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn(new Field());
 
-        $this->image->getMetaTags('some_tag', array('some_value'));
+        $this->image->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithEmptyField()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $this->fieldHelper->expects($this->once())
+        $this->fieldHelper->expects(self::once())
             ->method('isFieldEmpty')
             ->willReturn(true);
 
-        $this->image->getMetaTags('some_tag', array('some_value'));
+        $this->image->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithExceptionThrownByVariationHandler()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
         $request = $this->getMockBuilder(Request::class)
             ->disableOriginalConstructor()
-            ->setMethods(array())
+            ->setMethods([])
             ->getMock();
 
-        $this->requestStack->expects($this->once())
+        $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
             ->willReturn($request);
 
-        $this->image->getMetaTags('some_tag', array('some_value', 'some_value_2', 'some_value_3'));
+        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2', 'some_value_3']);
     }
 
     public function testGettingTags()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $this->fieldHelper->expects($this->once())
+        $this->fieldHelper->expects(self::once())
             ->method('isFieldEmpty')
             ->willReturn(false);
 
-        $variation = new Variation(array('uri' => '/some/uri'));
+        $variation = new Variation(['uri' => '/some/uri']);
 
-        $this->variationHandler->expects($this->once())
+        $this->variationHandler->expects(self::once())
             ->method('getVariation')
             ->willReturn($variation);
 
         $request = $this->getMockBuilder(Request::class)
             ->disableOriginalConstructor()
-            ->setMethods(array())
+            ->setMethods([])
             ->getMock();
 
-        $this->requestStack->expects($this->exactly(2))
+        $this->requestStack->expects(self::exactly(2))
             ->method('getCurrentRequest')
             ->willReturn($request);
 
-        $this->image->getMetaTags('some_tag', array('some_value', 'some_value_2', 'some_value_3'));
+        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2', 'some_value_3']);
     }
 
     public function testGettingTagsWithVariationServiceThrowsInvalidVariationException()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $this->fieldHelper->expects($this->once())
+        $this->fieldHelper->expects(self::once())
             ->method('isFieldEmpty')
             ->willReturn(false);
 
-        $this->variationHandler->expects($this->once())
+        $this->variationHandler->expects(self::once())
             ->method('getVariation')
             ->willThrowException(new InvalidVariationException('name', 'type'));
 
         $request = $this->getMockBuilder(Request::class)
             ->disableOriginalConstructor()
-            ->setMethods(array())
+            ->setMethods([])
             ->getMock();
 
-        $this->requestStack->expects($this->once())
+        $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
             ->willReturn($request);
 
-        $this->logger->expects($this->once())
+        $this->logger->expects(self::once())
             ->method('error');
 
-        $this->image->getMetaTags('some_tag', array('some_value', 'some_value_2', 'some_value_3'));
+        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2', 'some_value_3']);
     }
 
     public function testGettingTagsWithVariationServiceThrowsSourceImageNotFoundException()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $this->fieldHelper->expects($this->once())
+        $this->fieldHelper->expects(self::once())
             ->method('isFieldEmpty')
             ->willReturn(false);
 
-        $this->variationHandler->expects($this->once())
+        $this->variationHandler->expects(self::once())
             ->method('getVariation')
             ->willThrowException(new SourceImageNotFoundException('message'));
 
         $request = $this->getMockBuilder(Request::class)
             ->disableOriginalConstructor()
-            ->setMethods(array())
+            ->setMethods([])
             ->getMock();
 
-        $this->requestStack->expects($this->once())
+        $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
             ->willReturn($request);
 
-        $this->logger->expects($this->once())
+        $this->logger->expects(self::once())
             ->method('error');
 
-        $this->image->getMetaTags('some_tag', array('some_value', 'some_value_2', 'some_value_3'));
+        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2', 'some_value_3']);
     }
 
     public function testGettingTagsWithMultipleArgumentsInArray()
     {
-        $this->translationHelper->expects($this->once())
+        $this->translationHelper->expects(self::once())
             ->method('getTranslatedField')
             ->willReturn($this->field);
 
-        $this->image->getMetaTags('some_tag', array('some_value', 'some_value_2'));
+        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2']);
     }
 }

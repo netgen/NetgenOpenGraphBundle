@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
@@ -12,77 +14,77 @@ class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
      */
     public function testItSetsValidContainerParameters()
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', array());
+        $this->container->setParameter('ezpublish.siteaccess.list', []);
         $this->load();
     }
 
     protected function getContainerExtensions(): array
     {
-        return array(
+        return [
             new NetgenOpenGraphExtension(),
-        );
+        ];
     }
 
     protected function getMinimalConfiguration(): array
     {
-        return array(
-            'system' => array(
-                'default' => array(
-                    'content_type_handlers' => array(
-                        'content_type_one' => array(
-                            array(
+        return [
+            'system' => [
+                'default' => [
+                    'content_type_handlers' => [
+                        'content_type_one' => [
+                            [
                                 'handler' => 'literal/text',
                                 'tag' => 'og:type',
-                                'params' => array(
+                                'params' => [
                                     'one',
                                     'two',
                                     'three',
-                                ),
-                            ),
-                            array(
+                                ],
+                            ],
+                            [
                                 'handler' => 'field_type/ezstring',
                                 'tag' => 'og:title',
-                                'params' => array(
+                                'params' => [
                                     'one',
                                     'two',
                                     'three',
-                                ),
-                            ),
-                        ),
-                        'content_type_two' => array(
-                            array(
+                                ],
+                            ],
+                        ],
+                        'content_type_two' => [
+                            [
                                 'handler' => 'field_type/ezstring',
                                 'tag' => 'og:title',
-                                'params' => array(
+                                'params' => [
                                     'one',
                                     'two',
                                     'three',
-                                ),
-                            ),
-                        ),
-                    ),
-                    'global_handlers' => array(
-                        array(
+                                ],
+                            ],
+                        ],
+                    ],
+                    'global_handlers' => [
+                        [
                             'handler' => 'literal/text',
                             'tag' => 'og:type',
-                            'params' => array(
+                            'params' => [
                                 'one',
                                 'two',
                                 'three',
-                            ),
-                        ),
-                        array(
+                            ],
+                        ],
+                        [
                             'handler' => 'field_type/ezstring',
                             'tag' => 'og:title',
-                            'params' => array(
+                            'params' => [
                                 'one',
                                 'two',
                                 'three',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }

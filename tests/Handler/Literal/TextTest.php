@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\Literal;
 
 use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
@@ -15,14 +17,14 @@ class TextTest extends TestCase
      */
     protected $text;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->text = new Text();
     }
 
     public function testInstanceOfHandlerInterface()
     {
-        $this->assertInstanceOf(HandlerInterface::class, $this->text);
+        self::assertInstanceOf(HandlerInterface::class, $this->text);
     }
 
     public function testGettingTagsWithEmptyParams()
@@ -30,16 +32,16 @@ class TextTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal text handler requires the text to output.");
 
-        $this->text->getMetaTags('some_tag', array());
+        $this->text->getMetaTags('some_tag', []);
     }
 
     public function testGettingTagsWithValidResult()
     {
-        $result = $this->text->getMetaTags('some_tag', array('some_param'));
+        $result = $this->text->getMetaTags('some_tag', ['some_param']);
 
-        $this->assertIsArray($result);
-        $this->assertInstanceOf(Item::class, $result[0]);
-        $this->assertEquals('some_tag', $result[0]->getTagName());
-        $this->assertEquals('some_param', $result[0]->getTagValue());
+        self::assertIsArray($result);
+        self::assertInstanceOf(Item::class, $result[0]);
+        self::assertSame('some_tag', $result[0]->getTagName());
+        self::assertSame('some_param', $result[0]->getTagValue());
     }
 }

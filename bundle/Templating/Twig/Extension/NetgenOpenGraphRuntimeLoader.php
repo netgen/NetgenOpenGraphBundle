@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
 use Twig\RuntimeLoader\RuntimeLoaderInterface;

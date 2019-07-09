@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 use eZ\Publish\API\Repository\ContentTypeService;
@@ -49,24 +51,24 @@ class Collector implements CollectorInterface
      */
     public function collect(Content $content)
     {
-        $metaTags = array();
+        $metaTags = [];
 
         $allHandlers = $this->configResolver->hasParameter('global_handlers', 'netgen_open_graph') ?
             $this->configResolver->getParameter('global_handlers', 'netgen_open_graph') :
-            array();
+            [];
 
         $contentType = $this->contentTypeService->loadContentType($content->contentInfo->contentTypeId);
         $contentTypeHandlers = $this->configResolver->hasParameter('content_type_handlers', 'netgen_open_graph') ?
             $this->configResolver->getParameter('content_type_handlers', 'netgen_open_graph') :
-            array();
+            [];
 
         if (isset($contentTypeHandlers[$contentType->identifier])) {
             $allHandlers = array_merge(
-                isset($allHandlers['all_content_types']) ? $allHandlers['all_content_types'] : array(),
+                $allHandlers['all_content_types'] ?? [],
                 $contentTypeHandlers[$contentType->identifier]
             );
         } else {
-            $allHandlers = isset($allHandlers['all_content_types']) ? $allHandlers['all_content_types'] : array();
+            $allHandlers = $allHandlers['all_content_types'] ?? [];
         }
 
         foreach ($allHandlers as $handler) {
@@ -80,7 +82,8 @@ class Collector implements CollectorInterface
                 if (!$metaTag instanceof Item) {
                     throw new LogicException(
                         '\'' . $handler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.');
+                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.'
+                    );
                 }
 
                 $metaTagValue = $metaTag->getTagValue();

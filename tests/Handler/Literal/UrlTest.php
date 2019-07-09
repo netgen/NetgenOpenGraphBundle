@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\Literal;
 
 use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ class UrlTest extends TestCase
      */
     protected $requestStack;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->requestStack = new RequestStack();
         $this->url = new Url($this->requestStack);
@@ -30,7 +32,7 @@ class UrlTest extends TestCase
 
     public function testInstanceOfHandlerInterface()
     {
-        $this->assertInstanceOf(HandlerInterface::class, $this->url);
+        self::assertInstanceOf(HandlerInterface::class, $this->url);
     }
 
     public function testGettingTagsWithEmptyParams()
@@ -38,7 +40,7 @@ class UrlTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal URL handler requires the path to output.");
 
-        $this->url->getMetaTags('some_tag', array());
+        $this->url->getMetaTags('some_tag', []);
     }
 
     /**
@@ -53,24 +55,24 @@ class UrlTest extends TestCase
 
         $this->requestStack->push($request);
 
-        $result = $this->url->getMetaTags('some_tag', array($input));
+        $result = $this->url->getMetaTags('some_tag', [$input]);
 
-        $this->assertIsArray($result);
-        $this->assertInstanceOf(Item::class, $result[0]);
-        $this->assertEquals('some_tag', $result[0]->getTagName());
-        $this->assertEquals($output, $result[0]->getTagValue());
+        self::assertIsArray($result);
+        self::assertInstanceOf(Item::class, $result[0]);
+        self::assertSame('some_tag', $result[0]->getTagName());
+        self::assertSame($output, $result[0]->getTagValue());
     }
 
     public function validResultProvider()
     {
-        return array(
-            array('https://other.domain.com/some/path', 'https://other.domain.com/some/path'),
-            array('http://other.domain.com/some/path', 'http://other.domain.com/some/path'),
-            array('/some/path', 'https://domain.com/some/path'),
-            array('some/path', 'https://domain.com/some/path'),
-            array('/', 'https://domain.com/'),
-            array('', 'https://domain.com/'),
-        );
+        return [
+            ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
+            ['http://other.domain.com/some/path', 'http://other.domain.com/some/path'],
+            ['/some/path', 'https://domain.com/some/path'],
+            ['some/path', 'https://domain.com/some/path'],
+            ['/', 'https://domain.com/'],
+            ['', 'https://domain.com/'],
+        ];
     }
 
     /**
@@ -81,23 +83,23 @@ class UrlTest extends TestCase
      */
     public function testGettingTagsWithValidResultAndWithoutRequest($input, $output)
     {
-        $result = $this->url->getMetaTags('some_tag', array($input));
+        $result = $this->url->getMetaTags('some_tag', [$input]);
 
-        $this->assertIsArray($result);
-        $this->assertInstanceOf(Item::class, $result[0]);
-        $this->assertEquals('some_tag', $result[0]->getTagName());
-        $this->assertEquals($output, $result[0]->getTagValue());
+        self::assertIsArray($result);
+        self::assertInstanceOf(Item::class, $result[0]);
+        self::assertSame('some_tag', $result[0]->getTagName());
+        self::assertSame($output, $result[0]->getTagValue());
     }
 
     public function validResultProviderWithoutRequest()
     {
-        return array(
-            array('https://other.domain.com/some/path', 'https://other.domain.com/some/path'),
-            array('http://other.domain.com/some/path', 'http://other.domain.com/some/path'),
-            array('/some/path', '/some/path'),
-            array('some/path', 'some/path'),
-            array('/', '/'),
-            array('', ''),
-        );
+        return [
+            ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
+            ['http://other.domain.com/some/path', 'http://other.domain.com/some/path'],
+            ['/some/path', '/some/path'],
+            ['some/path', 'some/path'],
+            ['/', '/'],
+            ['', ''],
+        ];
     }
 }

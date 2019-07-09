@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
@@ -20,9 +22,9 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'twig',
             'addRuntimeLoader',
-            array(
+            [
                 new Reference('netgen_open_graph.templating.twig.runtime.loader'),
-            )
+            ]
         );
     }
 
@@ -34,7 +36,7 @@ class TwigRuntimePassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         // Fake assertion to disable risky warning
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     protected function registerCompilerPass(ContainerBuilder $container): void

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
 use Exception;
@@ -100,6 +102,6 @@ class NetgenOpenGraphRuntime
             $this->logger->error($e->getMessage());
         }
 
-        return array();
+        return [];
     }
 }

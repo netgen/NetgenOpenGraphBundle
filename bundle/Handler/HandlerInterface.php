@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler;
 
 interface HandlerInterface
@@ -12,5 +14,5 @@ interface HandlerInterface
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags($tagName, array $params = array());
+    public function getMetaTags($tagName, array $params = []);
 }

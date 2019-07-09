@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use Exception;
@@ -65,7 +67,7 @@ class Image extends Handler
      *
      * @return string
      */
-    protected function getFieldValue(Field $field, $tagName, array $params = array())
+    protected function getFieldValue(Field $field, $tagName, array $params = [])
     {
         if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
             $variationName = !empty($params[1]) ? $params[1] : 'opengraph';
@@ -108,7 +110,7 @@ class Image extends Handler
      *
      * @return string
      */
-    protected function getFallbackValue($tagName, array $params = array())
+    protected function getFallbackValue($tagName, array $params = [])
     {
         if (!empty($params[2]) && ($request = $this->requestStack->getCurrentRequest()) !== null) {
             return $request->getUriForPath('/' . ltrim($params[2], '/'));

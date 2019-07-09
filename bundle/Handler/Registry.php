@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler;
 
 use Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException;
@@ -9,7 +11,7 @@ class Registry
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface[]
      */
-    protected $metaTagHandlers = array();
+    protected $metaTagHandlers = [];
 
     /**
      * Adds a handler to the registry.

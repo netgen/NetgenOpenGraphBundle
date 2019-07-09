@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigResolver;
@@ -39,21 +41,21 @@ class CollectorTest extends TestCase
      */
     protected $config;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->registry = $this->getMockBuilder(Registry::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getHandler'))
+            ->setMethods(['getHandler'])
             ->getMock();
 
         $this->contentTypeService = $this->getMockBuilder(ContentTypeService::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('loadContentType'))
+            ->setMethods(['loadContentType'])
             ->getMock();
 
         $this->config = $this->getMockBuilder(ConfigResolver::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('hasParameter', 'getParameter'))
+            ->setMethods(['hasParameter', 'getParameter'])
             ->getMock();
 
         $this->collector = new Collector($this->registry, $this->contentTypeService, $this->config);
@@ -61,92 +63,92 @@ class CollectorTest extends TestCase
 
     public function testInstanceOfCollectorInterface()
     {
-        $this->assertInstanceOf(CollectorInterface::class, $this->collector);
+        self::assertInstanceOf(CollectorInterface::class, $this->collector);
     }
 
     public function testCollect()
     {
-        $this->config->expects($this->at(0))
+        $this->config->expects(self::at(0))
             ->method('hasParameter')
             ->willReturn(true);
 
-        $this->config->expects($this->at(1))
+        $this->config->expects(self::at(1))
             ->method('getParameter')
-            ->willReturn(array());
+            ->willReturn([]);
 
-        $this->config->expects($this->at(2))
+        $this->config->expects(self::at(2))
             ->method('hasParameter')
             ->willReturn(true);
 
-        $handlers = array(
-            'article' => array(
-                array(
+        $handlers = [
+            'article' => [
+                [
                     'handler' => 'literal/text',
                     'tag' => 'og:type',
-                    'params' => array(
+                    'params' => [
                         'article',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
-        $this->config->expects($this->at(3))
+        $this->config->expects(self::at(3))
             ->method('getParameter')
             ->willReturn($handlers);
 
         $versionInfo = new VersionInfo(
-            array(
+            [
                 'contentInfo' => new ContentInfo(
-                    array(
+                    [
                         'id' => 123,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $content = new Content(
-            array(
+            [
                 'versionInfo' => $versionInfo,
-            )
+            ]
         );
 
         $contentType = new ContentType(
-            array(
+            [
                 'id' => 123,
                 'identifier' => 'article',
-                'fieldDefinitions' => array(
+                'fieldDefinitions' => [
                     new FieldDefinition(
-                        array(
+                        [
                             'id' => 'id',
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
-                        )
+                        ]
                     ),
-                ),
-            )
+                ],
+            ]
         );
 
-        $this->contentTypeService->expects($this->once())
+        $this->contentTypeService->expects(self::once())
             ->method('loadContentType')
             ->willReturn($contentType);
 
         $handler = $this->getMockBuilder(TextLine::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getMetaTags'))
+            ->setMethods(['getMetaTags'])
             ->getMock();
 
-        $items = array(
+        $items = [
             new Item(
                 'og:type',
-                array('article')
+                ['article']
             ),
-        );
+        ];
 
-        $handler->expects($this->once())
+        $handler->expects(self::once())
             ->method('getMetaTags')
             ->willReturn($items);
 
-        $this->registry->expects($this->once())
+        $this->registry->expects(self::once())
             ->method('getHandler')
             ->willReturn($handler);
 
@@ -156,78 +158,78 @@ class CollectorTest extends TestCase
     public function testCollectWithLogicException()
     {
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage("'literal/text' handler returned wrong value. Expected 'Netgen\Bundle\OpenGraphBundle\MetaTag\Item', got 'stdClass'.");
+        $this->expectExceptionMessage("'literal/text' handler returned wrong value. Expected 'Netgen\\Bundle\\OpenGraphBundle\\MetaTag\\Item', got 'stdClass'.");
 
-        $handlerArray = array(
-            array(
+        $handlerArray = [
+            [
                 'handler' => 'literal/text',
                 'tag' => 'og:type',
-                'params' => array(
+                'params' => [
                     'article',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
-        $handlers = array('all_content_types' => $handlerArray);
+        $handlers = ['all_content_types' => $handlerArray];
 
-        $this->config->expects($this->at(0))
+        $this->config->expects(self::at(0))
             ->method('hasParameter')
             ->willReturn(true);
 
-        $this->config->expects($this->at(1))
+        $this->config->expects(self::at(1))
             ->method('getParameter')
             ->willReturn($handlers);
 
-        $this->config->expects($this->at(2))
+        $this->config->expects(self::at(2))
             ->method('hasParameter')
             ->willReturn(false);
 
         $versionInfo = new VersionInfo(
-            array(
+            [
                 'contentInfo' => new ContentInfo(
-                    array(
+                    [
                         'id' => 123,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $content = new Content(
-            array(
+            [
                 'versionInfo' => $versionInfo,
-            )
+            ]
         );
 
         $contentType = new ContentType(
-            array(
+            [
                 'id' => 123,
                 'identifier' => 'article',
-                'fieldDefinitions' => array(
+                'fieldDefinitions' => [
                     new FieldDefinition(
-                        array(
+                        [
                             'id' => 'id',
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
-                        )
+                        ]
                     ),
-                ),
-            )
+                ],
+            ]
         );
 
-        $this->contentTypeService->expects($this->once())
+        $this->contentTypeService->expects(self::once())
             ->method('loadContentType')
             ->willReturn($contentType);
 
         $handler = $this->getMockBuilder(TextLine::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('getMetaTags'))
+            ->setMethods(['getMetaTags'])
             ->getMock();
 
-        $handler->expects($this->once())
+        $handler->expects(self::once())
             ->method('getMetaTags')
-            ->willReturn(array(new \stdClass()));
+            ->willReturn([new \stdClass()]);
 
-        $this->registry->expects($this->once())
+        $this->registry->expects(self::once())
             ->method('getHandler')
             ->willReturn($handler);
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -27,10 +29,10 @@ class MetaTagHandlersCompilerPass implements CompilerPassInterface
                 }
                 $handlerRegistry->addMethodCall(
                     'addHandler',
-                    array(
+                    [
                         $metaTagHandler[0]['alias'],
                         new Reference($serviceId),
-                    )
+                    ]
                 );
             }
         }

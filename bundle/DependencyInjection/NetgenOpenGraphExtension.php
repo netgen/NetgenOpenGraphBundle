@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
@@ -37,9 +39,9 @@ class NetgenOpenGraphExtension extends Extension
         if (!empty($config['system'])) {
             foreach ($config['system'] as $scope => &$handlers) {
                 if (!empty($handlers['global_handlers'])) {
-                    $handlers['global_handlers'] = array(
+                    $handlers['global_handlers'] = [
                         'all_content_types' => $handlers['global_handlers'],
-                    );
+                    ];
                 }
             }
         }
@@ -47,7 +49,7 @@ class NetgenOpenGraphExtension extends Extension
         $processor = new ConfigurationProcessor($container, 'netgen_open_graph');
         $processor->mapConfig(
             $config,
-            function ($scopeSettings, $currentScope, ContextualizerInterface $contextualizer) {
+            static function ($scopeSettings, $currentScope, ContextualizerInterface $contextualizer) {
                 foreach ($scopeSettings as $key => $value) {
                     $contextualizer->setContextualParameter($key, $currentScope, $value);
                 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
@@ -18,7 +20,7 @@ class NetgenOpenGraphRuntimeLoaderTest extends TestCase
      */
     protected $runtime;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->runtime = $this->createMock(NetgenOpenGraphRuntime::class);
         $this->loader = new NetgenOpenGraphRuntimeLoader($this->runtime);
@@ -27,11 +29,11 @@ class NetgenOpenGraphRuntimeLoaderTest extends TestCase
     public function testLoad()
     {
         $runtime = $this->loader->load(NetgenOpenGraphRuntime::class);
-        $this->assertSame($this->runtime, $runtime);
+        self::assertSame($this->runtime, $runtime);
     }
 
     public function testLoadWithStdClass()
     {
-        $this->assertNull($this->loader->load(\stdClass::class));
+        self::assertNull($this->loader->load(\stdClass::class));
     }
 }

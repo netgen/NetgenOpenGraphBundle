@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
@@ -19,7 +21,7 @@ class XmlText extends Handler
      *
      * @return string
      */
-    protected function getFieldValue(Field $field, $tagName, array $params = array())
+    protected function getFieldValue(Field $field, $tagName, array $params = [])
     {
         if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
             return trim(str_replace("\n", ' ', strip_tags($field->value->xml->saveXML())));

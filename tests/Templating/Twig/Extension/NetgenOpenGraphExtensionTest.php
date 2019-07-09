@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension;
@@ -14,20 +16,20 @@ class NetgenOpenGraphExtensionTest extends TestCase
      */
     protected $extension;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->extension = new NetgenOpenGraphExtension();
     }
 
     public function testInstanceOfTwigExtensionInterface()
     {
-        $this->assertInstanceOf(ExtensionInterface::class, $this->extension);
+        self::assertInstanceOf(ExtensionInterface::class, $this->extension);
     }
 
     public function testGetFunctions()
     {
         foreach ($this->extension->getFunctions() as $function) {
-            $this->assertInstanceOf(TwigFunction::class, $function);
+            self::assertInstanceOf(TwigFunction::class, $function);
         }
     }
 }

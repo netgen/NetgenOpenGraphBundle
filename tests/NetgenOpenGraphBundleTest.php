@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests;
 
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCompilerPass;
@@ -14,14 +16,14 @@ class NetgenOpenGraphBundleTest extends TestCase
     {
         $container = $this->getMockBuilder(ContainerBuilder::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('addCompilerPass'))
+            ->setMethods(['addCompilerPass'])
             ->getMock();
 
-        $container->expects($this->at(0))
+        $container->expects(self::at(0))
             ->method('addCompilerPass')
             ->with(new MetaTagHandlersCompilerPass());
 
-        $container->expects($this->at(1))
+        $container->expects(self::at(1))
             ->method('addCompilerPass')
             ->with(new TwigRuntimePass());
 

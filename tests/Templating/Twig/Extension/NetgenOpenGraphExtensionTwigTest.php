@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
@@ -38,16 +40,16 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
      */
     protected $logger;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         /** @var Item[] $items */
-        $items = array(
+        $items = [
             new Item('tag1', 'some_value'),
-        );
+        ];
 
         $this->collector = $this->getMockBuilder(Collector::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('collect'))
+            ->setMethods(['collect'])
             ->getMock();
 
         $this->collector->method('collect')
@@ -55,7 +57,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
         $this->renderer = $this->getMockBuilder(Renderer::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('render'))
+            ->setMethods(['render'])
             ->getMock();
 
         $html = '';
@@ -68,7 +70,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('error'))
+            ->setMethods(['error'])
             ->getMock();
 
         $this->extension = new NetgenOpenGraphExtension();
@@ -85,19 +87,19 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
     protected function getExtensions()
     {
-        return array($this->extension);
+        return [$this->extension];
     }
 
     protected function getRuntimeLoaders()
     {
-        return array(
+        return [
             new FactoryRuntimeLoader(
-                array(
+                [
                     NetgenOpenGraphRuntime::class => function () {
                         return $this->runtime;
                     },
-                )
+                ]
             ),
-        );
+        ];
     }
 }

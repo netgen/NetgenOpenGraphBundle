@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
@@ -30,7 +32,7 @@ class Url implements HandlerInterface
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags($tagName, array $params = array())
+    public function getMetaTags($tagName, array $params = [])
     {
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
@@ -46,11 +48,11 @@ class Url implements HandlerInterface
             $path = $request->getUriForPath('/' . ltrim($path, '/'));
         }
 
-        return array(
+        return [
             new Item(
                 $tagName,
                 $path
             ),
-        );
+        ];
     }
 }

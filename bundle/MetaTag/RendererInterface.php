@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 interface RendererInterface
@@ -11,5 +13,5 @@ interface RendererInterface
      *
      * @return string
      */
-    public function render(array $metaTags = array());
+    public function render(array $metaTags = []);
 }

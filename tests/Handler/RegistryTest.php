@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler;
 
 use Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException;
@@ -14,7 +16,7 @@ class RegistryTest extends TestCase
      */
     protected $registry;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->registry = new Registry();
     }
@@ -24,7 +26,7 @@ class RegistryTest extends TestCase
         $handler = $this->getMockForAbstractClass(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
 
-        $this->assertEquals($this->registry->getHandler('some_handler'), $handler);
+        self::assertSame($this->registry->getHandler('some_handler'), $handler);
     }
 
     public function testGettingHandlers()
@@ -34,7 +36,7 @@ class RegistryTest extends TestCase
 
         $returnedHandler = $this->registry->getHandler('some_handler');
 
-        $this->assertSame($handler, $returnedHandler);
+        self::assertSame($handler, $returnedHandler);
     }
 
     public function testGettingNonExistentHandler()

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
-use eZ\Publish\Core\Repository\Values\Content\Content;
 use Exception;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
@@ -33,21 +35,21 @@ class NetgenOpenGraphRuntimeTest extends TestCase
      */
     protected $logger;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->collector = $this->getMockBuilder(Collector::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('collect'))
+            ->setMethods(['collect'])
             ->getMock();
 
         $this->renderer = $this->getMockBuilder(Renderer::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('render'))
+            ->setMethods(['render'])
             ->getMock();
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('error'))
+            ->setMethods(['error'])
             ->getMock();
 
         $this->runtime = new NetgenOpenGraphRuntime($this->collector, $this->renderer, $this->logger);
@@ -55,7 +57,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testInstanceOfTwigExtensionInterface()
     {
-        $this->assertInstanceOf(NetgenOpenGraphRuntime::class, $this->runtime);
+        self::assertInstanceOf(NetgenOpenGraphRuntime::class, $this->runtime);
     }
 
     /**
@@ -68,24 +70,24 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testGetOpenGraphTags()
     {
-        $items = array(
+        $items = [
             new Item('tag1', 'some_value'),
-        );
+        ];
 
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
             ->willReturn($items);
 
         $result = $this->runtime->getOpenGraphTags(new Content());
 
-        $this->assertEquals($items, $result);
+        self::assertSame($items, $result);
     }
 
     public function testGetOpenGraphTagsWithThrowedException()
     {
         $this->expectException(Exception::class);
 
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
             ->willThrowException(new \Exception());
 
@@ -95,11 +97,11 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testGetOpenGraphTagsWithLoggedException()
     {
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
             ->willThrowException(new \Exception());
 
-        $this->logger->expects($this->once())
+        $this->logger->expects(self::once())
             ->method('error');
 
         $this->runtime->setThrowExceptions(false);
@@ -108,34 +110,34 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testRenderOpenGraphTags()
     {
-        $items = array(
+        $items = [
             new Item('tag1', 'some_value'),
-        );
+        ];
 
         $resultString = '<meta property="tag1" content="some_value" />';
 
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
             ->willReturn($items);
 
-        $this->renderer->expects($this->once())
+        $this->renderer->expects(self::once())
             ->method('render')
             ->willReturn($resultString);
 
         $result = $this->runtime->renderOpenGraphTags(new Content());
 
-        $this->assertEquals($resultString, $result);
+        self::assertSame($resultString, $result);
     }
 
     public function testRenderOpenGraphTagsWithThrowedException()
     {
         $this->expectException(Exception::class);
 
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
-            ->willReturn(array());
+            ->willReturn([]);
 
-        $this->renderer->expects($this->once())
+        $this->renderer->expects(self::once())
             ->method('render')
             ->willThrowException(new \Exception());
 
@@ -145,15 +147,15 @@ class NetgenOpenGraphRuntimeTest extends TestCase
 
     public function testRenderOpenGraphTagsWithLoggedException()
     {
-        $this->collector->expects($this->once())
+        $this->collector->expects(self::once())
             ->method('collect')
-            ->willReturn(array());
+            ->willReturn([]);
 
-        $this->renderer->expects($this->once())
+        $this->renderer->expects(self::once())
             ->method('render')
             ->willThrowException(new \Exception());
 
-        $this->logger->expects($this->once())
+        $this->logger->expects(self::once())
             ->method('error');
 
         $this->runtime->setThrowExceptions(false);

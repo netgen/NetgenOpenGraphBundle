@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
@@ -44,7 +46,7 @@ abstract class Handler extends BaseHandler
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags($tagName, array $params = array())
+    public function getMetaTags($tagName, array $params = [])
     {
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
@@ -53,7 +55,7 @@ abstract class Handler extends BaseHandler
             );
         }
 
-        $fieldIdentifiers = is_array($params[0]) ? $params[0] : array($params[0]);
+        $fieldIdentifiers = is_array($params[0]) ? $params[0] : [$params[0]];
         $fieldValue = $this->getFallbackValue($tagName, $params);
 
         foreach ($fieldIdentifiers as $fieldIdentifier) {
@@ -61,18 +63,19 @@ abstract class Handler extends BaseHandler
 
             try {
                 $fieldValue = $this->getFieldValue($field, $tagName, $params);
+
                 break;
             } catch (FieldEmptyException $e) {
                 // do nothing
             }
         }
 
-        return array(
+        return [
             new Item(
                 $tagName,
                 $fieldValue
             ),
-        );
+        ];
     }
 
     /**
@@ -86,7 +89,7 @@ abstract class Handler extends BaseHandler
      *
      * @return string
      */
-    protected function getFieldValue(Field $field, $tagName, array $params = array())
+    protected function getFieldValue(Field $field, $tagName, array $params = [])
     {
         if (!$this->fieldHelper->isFieldEmpty($this->content, $field->fieldDefIdentifier)) {
             return (string) $field->value;
@@ -103,7 +106,7 @@ abstract class Handler extends BaseHandler
      *
      * @return string
      */
-    protected function getFallbackValue($tagName, array $params = array())
+    protected function getFallbackValue($tagName, array $params = [])
     {
         if (!empty($params[1])) {
             return (string) $params[1];

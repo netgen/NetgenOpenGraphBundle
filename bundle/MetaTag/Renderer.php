@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
@@ -16,7 +18,7 @@ class Renderer implements RendererInterface
      *
      * @return string
      */
-    public function render(array $metaTags = array())
+    public function render(array $metaTags = [])
     {
         $html = '';
 
@@ -29,7 +31,7 @@ class Renderer implements RendererInterface
             $tagValue = htmlspecialchars($metaTag->getTagValue(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
             if (!empty($tagName) && !empty($tagValue)) {
-                $html .= "<meta property=\"$tagName\" content=\"$tagValue\" />\n";
+                $html .= "<meta property=\"{$tagName}\" content=\"{$tagValue}\" />\n";
             }
         }
 

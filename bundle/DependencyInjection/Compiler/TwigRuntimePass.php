@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -24,9 +26,9 @@ class TwigRuntimePass implements CompilerPassInterface
 
         $twig->addMethodCall(
             'addRuntimeLoader',
-            array(
+            [
                 new Reference('netgen_open_graph.templating.twig.runtime.loader'),
-            )
+            ]
         );
     }
 }

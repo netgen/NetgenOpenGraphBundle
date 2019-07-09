@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
@@ -11,7 +13,7 @@ class ItemTest extends TestCase
     {
         $item = new Item('name', 'value');
 
-        $this->assertEquals('name', $item->getTagName());
-        $this->assertEquals('value', $item->getTagValue());
+        self::assertSame('name', $item->getTagName());
+        self::assertSame('value', $item->getTagValue());
     }
 }
