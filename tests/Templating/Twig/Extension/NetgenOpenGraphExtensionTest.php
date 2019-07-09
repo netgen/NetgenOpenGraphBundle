@@ -14,7 +14,7 @@ class NetgenOpenGraphExtensionTest extends TestCase
      */
     protected $extension;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->extension = new NetgenOpenGraphExtension();
     }

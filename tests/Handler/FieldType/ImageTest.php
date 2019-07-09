@@ -40,7 +40,7 @@ class ImageTest extends HandlerBaseTest
      */
     protected $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()

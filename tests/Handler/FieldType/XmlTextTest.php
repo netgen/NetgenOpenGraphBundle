@@ -17,7 +17,7 @@ class XmlTextTest extends HandlerBaseTest
      */
     protected $xmlText;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()

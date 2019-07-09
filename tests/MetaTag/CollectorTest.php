@@ -38,7 +38,7 @@ class CollectorTest extends TestCase
      */
     protected $config;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->registry = $this->getMockBuilder(Registry::class)
             ->disableOriginalConstructor()

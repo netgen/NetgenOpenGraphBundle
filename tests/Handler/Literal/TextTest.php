@@ -14,7 +14,7 @@ class TextTest extends TestCase
      */
     protected $text;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->text = new Text();
     }

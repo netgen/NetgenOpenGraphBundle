@@ -38,7 +38,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
      */
     protected $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         /** @var Item[] $items */
         $items = array(

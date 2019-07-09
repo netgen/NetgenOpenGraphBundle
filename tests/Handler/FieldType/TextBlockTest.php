@@ -17,7 +17,7 @@ class TextBlockTest extends HandlerBaseTest
      */
     protected $textBlock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()

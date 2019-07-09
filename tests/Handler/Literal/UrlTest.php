@@ -21,7 +21,7 @@ class UrlTest extends TestCase
      */
     protected $requestStack;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->requestStack = new RequestStack();
         $this->url = new Url($this->requestStack);

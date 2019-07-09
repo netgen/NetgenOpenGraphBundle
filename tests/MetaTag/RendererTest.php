@@ -14,7 +14,7 @@ class RendererTest extends TestCase
      */
     protected $renderer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->renderer = new Renderer();
     }

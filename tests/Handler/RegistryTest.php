@@ -13,7 +13,7 @@ class RegistryTest extends TestCase
      */
     protected $registry;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->registry = new Registry();
     }

@@ -32,7 +32,7 @@ class NetgenOpenGraphRuntimeTest extends TestCase
      */
     protected $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->collector = $this->getMockBuilder(Collector::class)
             ->disableOriginalConstructor()

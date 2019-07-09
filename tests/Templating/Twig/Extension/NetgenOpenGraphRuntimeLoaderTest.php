@@ -18,7 +18,7 @@ class NetgenOpenGraphRuntimeLoaderTest extends TestCase
      */
     protected $runtime;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->runtime = $this->createMock(NetgenOpenGraphRuntime::class);
         $this->loader = new NetgenOpenGraphRuntimeLoader($this->runtime);
