@@ -6,6 +6,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Reference;
 
 class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
@@ -44,12 +45,11 @@ class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\LogicException
-     * @expectedExceptionMessage netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.
-     */
     public function testCompilerPassMustThrowExceptionIfActionServiceHasntGotAlias()
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.');
+
         $handlerRegistry = new Definition();
         $this->setDefinition('netgen_open_graph.handler_registry', $handlerRegistry);
 

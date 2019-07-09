@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
@@ -31,12 +32,11 @@ class RendererTest extends TestCase
         $this->assertEquals('', $result);
     }
 
-    /**
-     * @expectedException  \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
-     * @expectedExceptionMessage Argument 'metaTags' is invalid: Cannot render meta tag, not an instance of \Netgen\Bundle\OpenGraphBundle\MetaTag\Item
-     */
     public function testRenderWithInvalidItem()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Argument 'metaTags' is invalid: Cannot render meta tag, not an instance of \Netgen\Bundle\OpenGraphBundle\MetaTag\Item");
+
         $this->renderer->render(array('test'));
     }
 

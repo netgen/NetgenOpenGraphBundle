@@ -9,6 +9,7 @@ use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
+use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
@@ -152,12 +153,11 @@ class CollectorTest extends TestCase
         $this->collector->collect($content);
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage 'literal/text' handler returned wrong value. Expected 'Netgen\Bundle\OpenGraphBundle\MetaTag\Item', got 'stdClass'.
-     */
     public function testCollectWithLogicException()
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage("'literal/text' handler returned wrong value. Expected 'Netgen\Bundle\OpenGraphBundle\MetaTag\Item', got 'stdClass'.");
+
         $handlerArray = array(
             array(
                 'handler' => 'literal/text',

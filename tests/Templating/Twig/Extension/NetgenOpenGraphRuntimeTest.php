@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
+use Exception;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
@@ -80,11 +81,10 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         $this->assertEquals($items, $result);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testGetOpenGraphTagsWithThrowedException()
     {
+        $this->expectException(Exception::class);
+
         $this->collector->expects($this->once())
             ->method('collect')
             ->willThrowException(new \Exception());
@@ -127,11 +127,10 @@ class NetgenOpenGraphRuntimeTest extends TestCase
         $this->assertEquals($resultString, $result);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testRenderOpenGraphTagsWithThrowedException()
     {
+        $this->expectException(Exception:class);
+
         $this->collector->expects($this->once())
             ->method('collect')
             ->willReturn(array());

@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\XmlText\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
@@ -45,21 +46,19 @@ class XmlTextTest extends HandlerBaseTest
         $this->assertInstanceOf(HandlerInterface::class, $this->xmlText);
     }
 
-    /**
-     * @expectedException \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
-     * @expectedExceptionMessage Argument '$params[0]' is invalid: Field type handlers require at least a field identifier.
-     */
     public function testGettingTagsWithoutFieldIdentifier()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field type handlers require at least a field identifier.");
+
         $this->xmlText->getMetaTags('some_tag', array());
     }
 
-    /**
-     * @expectedException \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
-     * @expectedExceptionMessage Argument '$params[0]' is invalid: Field 'some_value' does not exist in content.
-     */
     public function testGettingTagsWithNonExistentField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field 'some_value' does not exist in content.");
+
         $this->translationHelper->expects($this->once())
             ->method('getTranslatedField')
             ->willReturn(null);
@@ -67,12 +66,11 @@ class XmlTextTest extends HandlerBaseTest
         $this->xmlText->getMetaTags('some_tag', array('some_value'));
     }
 
-    /**
-     * @expectedException \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
-     * @expectedExceptionMessage Argument '$params[0]' is invalid: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText field type handler does not support field with identifier ''.
-     */
     public function testGettingTagsWithUnsupportedField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText field type handler does not support field with identifier ''.");
+
         $this->translationHelper->expects($this->once())
             ->method('getTranslatedField')
             ->willReturn(new Field());

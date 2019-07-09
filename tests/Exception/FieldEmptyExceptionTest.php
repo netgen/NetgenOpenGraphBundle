@@ -7,12 +7,11 @@ use PHPUnit\Framework\TestCase;
 
 class FieldEmptyExceptionTest extends TestCase
 {
-    /**
-     * @expectedException \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException
-     * @expectedExceptionMessage Field with identifier 'test' has empty value.
-     */
     public function testExceptionThrow()
     {
+        $this->expectException(FieldEmptyException::class);
+        $this->expectExceptionMessage("Field with identifier 'test' has empty value.");
+
         throw new FieldEmptyException('test');
     }
 }

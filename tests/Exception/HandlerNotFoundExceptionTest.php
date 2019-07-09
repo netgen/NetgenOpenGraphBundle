@@ -7,12 +7,11 @@ use PHPUnit\Framework\TestCase;
 
 class HandlerNotFoundExceptionTest extends TestCase
 {
-    /**
-     * @expectedException \Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException
-     * @expectedExceptionMessage Meta tag handler with 'test' identifier not found.
-     */
     public function testExceptionThrow()
     {
+        $this->expectException(HandlerNotFoundException::class);
+        $this->expectExceptionMessage("Meta tag handler with 'test' identifier not found.");
+
         throw new HandlerNotFoundException('test');
     }
 }

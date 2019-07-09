@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\Literal;
 
+use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Literal\Url;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
@@ -32,12 +33,11 @@ class UrlTest extends TestCase
         $this->assertInstanceOf(HandlerInterface::class, $this->url);
     }
 
-    /**
-     * @expectedException \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
-     * @expectedExceptionMessage Argument '$params[0]' is invalid: Literal URL handler requires the path to output.
-     */
     public function testGettingTagsWithEmptyParams()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal URL handler requires the path to output.");
+
         $this->url->getMetaTags('some_tag', array());
     }
 
@@ -55,7 +55,7 @@ class UrlTest extends TestCase
 
         $result = $this->url->getMetaTags('some_tag', array($input));
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
         $this->assertInstanceOf(Item::class, $result[0]);
         $this->assertEquals('some_tag', $result[0]->getTagName());
         $this->assertEquals($output, $result[0]->getTagValue());
@@ -83,7 +83,7 @@ class UrlTest extends TestCase
     {
         $result = $this->url->getMetaTags('some_tag', array($input));
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
         $this->assertInstanceOf(Item::class, $result[0]);
         $this->assertEquals('some_tag', $result[0]->getTagName());
         $this->assertEquals($output, $result[0]->getTagValue());

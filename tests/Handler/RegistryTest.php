@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler;
 
+use Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use PHPUnit\Framework\TestCase;
@@ -36,12 +37,11 @@ class RegistryTest extends TestCase
         $this->assertSame($handler, $returnedHandler);
     }
 
-    /**
-     * @expectedException  \Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException
-     * @expectedExceptionMessage Meta tag handler with 'some_handler' identifier not found.
-     */
     public function testGettingNonExistentHandler()
     {
+        $this->expectException(HandlerNotFoundException::class);
+        $this->expectExceptionMessage("Meta tag handler with 'some_handler' identifier not found.");
+
         $this->registry->getHandler('some_handler');
     }
 }
