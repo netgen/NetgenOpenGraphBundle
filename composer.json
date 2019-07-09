@@ -1,6 +1,6 @@
 {
     "name": "netgen/open-graph-bundle",
-    "description": "Netgen Open Graph Bundle is an eZ Publish / eZ Platform bundle that allows simple integration with Open Graph protocol.",
+    "description": "Netgen Open Graph Bundle is an eZ Platform bundle that allows simple integration with Open Graph protocol.",
     "type": "ezplatform-bundle",
     "keywords": [
         "netgen",
@@ -28,6 +28,8 @@
         "matthiasnoback/symfony-config-test": "^4.0",
         "matthiasnoback/symfony-dependency-injection-test": "^3.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Netgen\\Bundle\\OpenGraphBundle\\": "bundle"
