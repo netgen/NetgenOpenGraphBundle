@@ -14,10 +14,3 @@ services:
             - [setThrowExceptions, ["%kernel.debug%"]]
         tags:
             - { name: twig.runtime }
-
-    # Runtime loader for Symfony 2.8
-
-    netgen_open_graph.templating.twig.runtime.loader:
-        class: Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntimeLoader
-        arguments:
-            - "@netgen_open_graph.templating.twig.runtime"
