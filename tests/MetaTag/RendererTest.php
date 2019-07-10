@@ -29,7 +29,7 @@ class RendererTest extends TestCase
 
     public function testRenderWithEmptyArray(): void
     {
-        $result = $this->renderer->render([]);
+        $result = $this->renderer->render();
 
         self::assertSame('', $result);
     }

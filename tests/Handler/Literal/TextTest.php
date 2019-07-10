@@ -32,7 +32,7 @@ class TextTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Literal text handler requires the text to output.");
 
-        $this->text->getMetaTags('some_tag', []);
+        $this->text->getMetaTags('some_tag');
     }
 
     public function testGettingTagsWithValidResult(): void
