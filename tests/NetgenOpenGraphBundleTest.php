@@ -15,7 +15,7 @@ class NetgenOpenGraphBundleTest extends TestCase
     {
         $container = $this->getMockBuilder(ContainerBuilder::class)
             ->disableOriginalConstructor()
-            ->setMethods(['addCompilerPass'])
+            ->onlyMethods(['addCompilerPass'])
             ->getMock();
 
         $container->expects(self::at(0))

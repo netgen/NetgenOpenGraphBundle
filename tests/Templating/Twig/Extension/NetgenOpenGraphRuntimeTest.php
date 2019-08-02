@@ -39,17 +39,17 @@ class NetgenOpenGraphRuntimeTest extends TestCase
     {
         $this->collector = $this->getMockBuilder(Collector::class)
             ->disableOriginalConstructor()
-            ->setMethods(['collect'])
+            ->onlyMethods(['collect'])
             ->getMock();
 
         $this->renderer = $this->getMockBuilder(Renderer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['render'])
+            ->onlyMethods(['render'])
             ->getMock();
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods(['error'])
+            ->onlyMethods(['error'])
             ->getMock();
 
         $this->runtime = new NetgenOpenGraphRuntime($this->collector, $this->renderer, $this->logger);

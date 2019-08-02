@@ -47,29 +47,28 @@ class ImageTest extends HandlerBaseTest
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(['isFieldEmpty'])
+            ->onlyMethods(['isFieldEmpty'])
             ->getMock();
 
         $this->translationHelper = $this->getMockBuilder(TranslationHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getTranslatedField'])
+            ->onlyMethods(['getTranslatedField'])
             ->getMock();
 
         $this->content = new Content(['versionInfo' => new VersionInfo()]);
 
         $this->variationHandler = $this->getMockBuilder(AliasGenerator::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getVariation'])
+            ->onlyMethods(['getVariation'])
             ->getMock();
 
         $this->requestStack = $this->getMockBuilder(RequestStack::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getCurrentRequest'])
+            ->onlyMethods(['getCurrentRequest'])
             ->getMock();
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods([])
             ->getMock();
 
         $this->image = new Image($this->fieldHelper, $this->translationHelper, $this->variationHandler, $this->requestStack, $this->logger);

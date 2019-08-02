@@ -45,17 +45,17 @@ class CollectorTest extends TestCase
     {
         $this->registry = $this->getMockBuilder(Registry::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getHandler'])
+            ->onlyMethods(['getHandler'])
             ->getMock();
 
         $this->contentTypeService = $this->getMockBuilder(ContentTypeService::class)
             ->disableOriginalConstructor()
-            ->setMethods(['loadContentType'])
+            ->onlyMethods(['loadContentType'])
             ->getMock();
 
         $this->config = $this->getMockBuilder(ConfigResolver::class)
             ->disableOriginalConstructor()
-            ->setMethods(['hasParameter', 'getParameter'])
+            ->onlyMethods(['hasParameter', 'getParameter'])
             ->getMock();
 
         $this->collector = new Collector($this->registry, $this->contentTypeService, $this->config);
@@ -129,7 +129,7 @@ class CollectorTest extends TestCase
 
         $handler = $this->getMockBuilder(TextLine::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getMetaTags'])
+            ->onlyMethods(['getMetaTags'])
             ->getMock();
 
         $items = [
@@ -217,7 +217,7 @@ class CollectorTest extends TestCase
 
         $handler = $this->getMockBuilder(TextLine::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getMetaTags'])
+            ->onlyMethods(['getMetaTags'])
             ->getMock();
 
         $handler->expects(self::once())

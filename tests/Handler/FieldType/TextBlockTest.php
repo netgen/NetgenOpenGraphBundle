@@ -24,17 +24,16 @@ class TextBlockTest extends HandlerBaseTest
     {
         $this->fieldHelper = $this->getMockBuilder(FieldHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(['isFieldEmpty'])
+            ->onlyMethods(['isFieldEmpty'])
             ->getMock();
 
         $this->translationHelper = $this->getMockBuilder(TranslationHelper::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getTranslatedField'])
+            ->onlyMethods(['getTranslatedField'])
             ->getMock();
 
         $this->content = $this->getMockBuilder(Content::class)
             ->disableOriginalConstructor()
-            ->setMethods([])
             ->getMock();
 
         $this->textBlock = new TextBlock($this->fieldHelper, $this->translationHelper);

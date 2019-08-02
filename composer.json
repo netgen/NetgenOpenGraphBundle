@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "ezsystems/ezplatform-xmltext-fieldtype": "^2.0",
-        "phpunit/phpunit": "^8.2",
+        "phpunit/phpunit": "^8.3",
         "matthiasnoback/symfony-config-test": "^4.0.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0"
     },

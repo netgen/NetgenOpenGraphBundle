@@ -49,7 +49,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
         $this->collector = $this->getMockBuilder(Collector::class)
             ->disableOriginalConstructor()
-            ->setMethods(['collect'])
+            ->onlyMethods(['collect'])
             ->getMock();
 
         $this->collector->method('collect')
@@ -57,7 +57,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
         $this->renderer = $this->getMockBuilder(Renderer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['render'])
+            ->onlyMethods(['render'])
             ->getMock();
 
         $html = '';
@@ -70,7 +70,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 
         $this->logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
-            ->setMethods(['error'])
+            ->onlyMethods(['error'])
             ->getMock();
 
         $this->extension = new NetgenOpenGraphExtension();
