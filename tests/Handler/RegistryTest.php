@@ -9,12 +9,12 @@ use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use PHPUnit\Framework\TestCase;
 
-class RegistryTest extends TestCase
+final class RegistryTest extends TestCase
 {
     /**
      * @var Registry
      */
-    protected $registry;
+    private $registry;
 
     protected function setUp(): void
     {

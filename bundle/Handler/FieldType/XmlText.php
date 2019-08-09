@@ -9,7 +9,7 @@ use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
 use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 
-class XmlText extends Handler
+final class XmlText extends Handler
 {
     protected function getFieldValue(Field $field, string $tagName, array $params = []): string
     {

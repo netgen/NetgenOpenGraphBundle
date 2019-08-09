@@ -11,20 +11,20 @@ abstract class HandlerBaseTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $fieldHelper;
+    private $fieldHelper;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $translationHelper;
+    private $translationHelper;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $content;
+    private $content;
 
     /**
      * @var \eZ\Publish\API\Repository\Values\Content\Field
      */
-    protected $field;
+    private $field;
 }

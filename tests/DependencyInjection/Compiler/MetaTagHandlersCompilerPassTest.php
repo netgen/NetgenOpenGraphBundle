@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Reference;
 
-class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
+final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
 {
     public function testCompilerPassCollectsValidServices(): void
     {

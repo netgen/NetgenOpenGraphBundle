@@ -6,7 +6,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Exception;
 
 use Exception;
 
-class FieldEmptyException extends Exception
+final class FieldEmptyException extends Exception
 {
     public function __construct(string $fieldIdentifier)
     {

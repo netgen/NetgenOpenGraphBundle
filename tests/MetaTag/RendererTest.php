@@ -10,12 +10,12 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use PHPUnit\Framework\TestCase;
 
-class RendererTest extends TestCase
+final class RendererTest extends TestCase
 {
     /**
      * @var Renderer
      */
-    protected $renderer;
+    private $renderer;
 
     protected function setUp(): void
     {

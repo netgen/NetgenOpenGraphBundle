@@ -6,7 +6,7 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
-class Renderer implements RendererInterface
+final class Renderer implements RendererInterface
 {
     public function render(array $metaTags = []): string
     {

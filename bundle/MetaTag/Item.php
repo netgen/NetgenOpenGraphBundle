@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
-class Item
+final class Item
 {
     /**
      * @var string
      */
-    protected $tagName;
+    private $tagName;
 
     /**
      * @var string
      */
-    protected $tagValue;
+    private $tagValue;
 
     public function __construct(string $tagName, string $tagValue)
     {

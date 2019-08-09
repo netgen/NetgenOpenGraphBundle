@@ -13,12 +13,12 @@ use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 
-class TextBlockTest extends HandlerBaseTest
+final class TextBlockTest extends HandlerBaseTest
 {
     /**
      * @var TextBlock
      */
-    protected $textBlock;
+    private $textBlock;
 
     protected function setUp(): void
     {

@@ -17,22 +17,22 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class Image extends Handler
+final class Image extends Handler
 {
     /**
      * @var \eZ\Publish\SPI\Variation\VariationHandler
      */
-    protected $imageVariationService;
+    private $imageVariationService;
 
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     /**
      * @var \Psr\Log\LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     public function __construct(
         FieldHelper $fieldHelper,

@@ -4,41 +4,41 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
 use Psr\Log\NullLogger;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 use Twig\Test\IntegrationTestCase;
 
-class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
+final class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
      */
-    protected $extension;
+    private $extension;
 
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
      */
-    protected $runtime;
+    private $runtime;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $collector;
+    private $collector;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $renderer;
+    private $renderer;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $logger;
+    private $logger;
 
     protected function setUp(): void
     {
@@ -47,7 +47,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
             new Item('tag1', 'some_value'),
         ];
 
-        $this->collector = $this->getMockBuilder(Collector::class)
+        $this->collector = $this->getMockBuilder(CollectorInterface::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['collect'])
             ->getMock();
@@ -55,7 +55,7 @@ class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
         $this->collector->method('collect')
             ->willReturn($items);
 
-        $this->renderer = $this->getMockBuilder(Renderer::class)
+        $this->renderer = $this->getMockBuilder(RendererInterface::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['render'])
             ->getMock();

@@ -8,7 +8,7 @@ use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 
-class Text implements HandlerInterface
+final class Text implements HandlerInterface
 {
     public function getMetaTags(string $tagName, array $params = []): array
     {

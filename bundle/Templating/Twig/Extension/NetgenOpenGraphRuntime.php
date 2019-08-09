@@ -11,27 +11,27 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
-class NetgenOpenGraphRuntime
+final class NetgenOpenGraphRuntime
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface
      */
-    protected $tagCollector;
+    private $tagCollector;
 
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface
      */
-    protected $tagRenderer;
+    private $tagRenderer;
 
     /**
      * @var \Psr\Log\LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     /**
      * @var bool
      */
-    protected $throwExceptions = true;
+    private $throwExceptions = true;
 
     public function __construct(
         CollectorInterface $tagCollector,

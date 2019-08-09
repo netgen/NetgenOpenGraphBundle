@@ -7,7 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\NetgenOpenGraphExtension;
 
-class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
+final class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
 {
     /**
      * @doesNotPerformAssertions

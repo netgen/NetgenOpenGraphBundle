@@ -7,7 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class NetgenOpenGraphExtension extends AbstractExtension
+final class NetgenOpenGraphExtension extends AbstractExtension
 {
     public function getFunctions(): array
     {

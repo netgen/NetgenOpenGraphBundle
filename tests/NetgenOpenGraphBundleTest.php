@@ -9,7 +9,7 @@ use Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class NetgenOpenGraphBundleTest extends TestCase
+final class NetgenOpenGraphBundleTest extends TestCase
 {
     public function testItAddsCompilerPass(): void
     {

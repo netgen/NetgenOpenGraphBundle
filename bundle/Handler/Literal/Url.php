@@ -10,12 +10,12 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class Url implements HandlerInterface
+final class Url implements HandlerInterface
 {
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     public function __construct(RequestStack $requestStack)
     {

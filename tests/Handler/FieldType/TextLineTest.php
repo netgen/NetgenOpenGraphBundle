@@ -13,12 +13,12 @@ use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 
-class TextLineTest extends HandlerBaseTest
+final class TextLineTest extends HandlerBaseTest
 {
     /**
      * @var TextLine
      */
-    protected $textLine;
+    private $textLine;
 
     protected function setUp(): void
     {

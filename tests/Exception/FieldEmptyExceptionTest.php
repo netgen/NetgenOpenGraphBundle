@@ -7,7 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Exception;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use PHPUnit\Framework\TestCase;
 
-class FieldEmptyExceptionTest extends TestCase
+final class FieldEmptyExceptionTest extends TestCase
 {
     public function testExceptionThrow(): void
     {

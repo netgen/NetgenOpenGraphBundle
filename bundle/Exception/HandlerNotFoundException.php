@@ -6,7 +6,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Exception;
 
 use Exception;
 
-class HandlerNotFoundException extends Exception
+final class HandlerNotFoundException extends Exception
 {
     public function __construct(string $handlerIdentifier)
     {

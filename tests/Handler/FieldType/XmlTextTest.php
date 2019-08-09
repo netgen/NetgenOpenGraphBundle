@@ -13,12 +13,12 @@ use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 
-class XmlTextTest extends HandlerBaseTest
+final class XmlTextTest extends HandlerBaseTest
 {
     /**
      * @var XmlText
      */
-    protected $xmlText;
+    private $xmlText;
 
     protected function setUp(): void
     {

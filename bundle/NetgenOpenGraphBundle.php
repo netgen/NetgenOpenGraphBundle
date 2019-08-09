@@ -8,7 +8,7 @@ use Netgen\Bundle\OpenGraphBundle\DependencyInjection\Compiler\MetaTagHandlersCo
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class NetgenOpenGraphBundle extends Bundle
+final class NetgenOpenGraphBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

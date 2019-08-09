@@ -9,12 +9,12 @@ use PHPUnit\Framework\TestCase;
 use Twig\Extension\ExtensionInterface;
 use Twig\TwigFunction;
 
-class NetgenOpenGraphExtensionTest extends TestCase
+final class NetgenOpenGraphExtensionTest extends TestCase
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
      */
-    protected $extension;
+    private $extension;
 
     protected function setUp(): void
     {

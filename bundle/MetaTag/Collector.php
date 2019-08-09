@@ -11,22 +11,22 @@ use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 
-class Collector implements CollectorInterface
+final class Collector implements CollectorInterface
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Handler\Registry
      */
-    protected $metaTagHandlers;
+    private $metaTagHandlers;
 
     /**
      * @var \eZ\Publish\API\Repository\ContentTypeService
      */
-    protected $contentTypeService;
+    private $contentTypeService;
 
     /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    protected $configResolver;
+    private $configResolver;
 
     public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
     {

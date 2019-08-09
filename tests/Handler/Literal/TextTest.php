@@ -10,12 +10,12 @@ use Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
+final class TextTest extends TestCase
 {
     /**
      * @var Text
      */
-    protected $text;
+    private $text;
 
     protected function setUp(): void
     {

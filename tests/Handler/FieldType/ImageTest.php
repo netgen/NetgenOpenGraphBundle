@@ -21,27 +21,27 @@ use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ImageTest extends HandlerBaseTest
+final class ImageTest extends HandlerBaseTest
 {
     /**
      * @var Image
      */
-    protected $image;
+    private $image;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $variationHandler;
+    private $variationHandler;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $requestStack;
+    private $requestStack;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $logger;
+    private $logger;
 
     protected function setUp(): void
     {

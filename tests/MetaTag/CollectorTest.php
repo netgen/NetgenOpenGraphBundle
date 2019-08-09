@@ -12,41 +12,37 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
 use LogicException;
-use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+use Netgen\Bundle\OpenGraphBundle\Tests\Stubs\Handler;
+use Netgen\Bundle\OpenGraphBundle\Tests\Stubs\InvalidHandler;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
-class CollectorTest extends TestCase
+final class CollectorTest extends TestCase
 {
     /**
      * @var Collector
      */
-    protected $collector;
+    private $collector;
+
+    /**
+     * @var Registry
+     */
+    private $registry;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $registry;
+    private $contentTypeService;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $contentTypeService;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $config;
+    private $config;
 
     protected function setUp(): void
     {
-        $this->registry = $this->getMockBuilder(Registry::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['getHandler'])
-            ->getMock();
+        $this->registry = new Registry();
 
         $this->contentTypeService = $this->getMockBuilder(ContentTypeService::class)
             ->disableOriginalConstructor()
@@ -127,25 +123,7 @@ class CollectorTest extends TestCase
             ->method('loadContentType')
             ->willReturn($contentType);
 
-        $handler = $this->getMockBuilder(TextLine::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['getMetaTags'])
-            ->getMock();
-
-        $items = [
-            new Item(
-                'og:type',
-                'article'
-            ),
-        ];
-
-        $handler->expects(self::once())
-            ->method('getMetaTags')
-            ->willReturn($items);
-
-        $this->registry->expects(self::once())
-            ->method('getHandler')
-            ->willReturn($handler);
+        $this->registry->addHandler('literal/text', new Handler());
 
         $this->collector->collect($content);
     }
@@ -215,18 +193,7 @@ class CollectorTest extends TestCase
             ->method('loadContentType')
             ->willReturn($contentType);
 
-        $handler = $this->getMockBuilder(TextLine::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['getMetaTags'])
-            ->getMock();
-
-        $handler->expects(self::once())
-            ->method('getMetaTags')
-            ->willReturn([new stdClass()]);
-
-        $this->registry->expects(self::once())
-            ->method('getHandler')
-            ->willReturn($handler);
+        $this->registry->addHandler('literal/text', new InvalidHandler());
 
         $this->collector->collect($content);
     }

@@ -7,7 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use PHPUnit\Framework\TestCase;
 
-class ItemTest extends TestCase
+final class ItemTest extends TestCase
 {
     public function testItemGettersAndConstruct(): void
     {

@@ -6,12 +6,12 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler;
 
 use Netgen\Bundle\OpenGraphBundle\Exception\HandlerNotFoundException;
 
-class Registry
+final class Registry
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface[]
      */
-    protected $metaTagHandlers = [];
+    private $metaTagHandlers = [];
 
     /**
      * Adds a handler to the registry.

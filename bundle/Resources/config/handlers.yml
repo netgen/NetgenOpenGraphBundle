@@ -12,14 +12,12 @@ services:
     netgen_open_graph.handler.literal.text:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text
         parent: netgen_open_graph.handler.abstract
-        lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: literal/text }
 
     netgen_open_graph.handler.literal.url:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Url
         parent: netgen_open_graph.handler.abstract
-        lazy: true
         arguments:
             - "@request_stack"
         tags:
@@ -28,21 +26,18 @@ services:
     netgen_open_graph.handler.field_type.text_line:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
         parent: netgen_open_graph.handler.field_type.abstract
-        lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezstring }
 
     netgen_open_graph.handler.field_type.text_block:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock
         parent: netgen_open_graph.handler.field_type.abstract
-        lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/eztext }
 
     netgen_open_graph.handler.field_type.xml_text:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
         parent: netgen_open_graph.handler.field_type.abstract
-        lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezrichtext }
@@ -50,7 +45,6 @@ services:
     netgen_open_graph.handler.field_type.image:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
         parent: netgen_open_graph.handler.field_type.abstract
-        lazy: true
         arguments:
             - "@ezpublish.fieldType.ezimage.variation_service"
             - "@request_stack"

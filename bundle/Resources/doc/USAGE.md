@@ -185,7 +185,7 @@ namespace Vendor\Bundle\SiteBundle\OpenGraphHandler;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 
-class MyCustomHandler extends Handler
+final class MyCustomHandler extends Handler
 {
     /**
      * Returns the array of meta tags
@@ -297,7 +297,6 @@ To register the handlers in the container, you can tag them something like this:
 site_bundle.meta_tag_handler.my_custom_handler:
     class: Vendor\Bundle\SiteBundle\OpenGraphHandler\MyCustomHandler
     parent: netgen_open_graph.handler.abstract
-    lazy: true
     tags:
         - { name: netgen_open_graph.meta_tag_handler, alias: my_site/my_handler }
 ```

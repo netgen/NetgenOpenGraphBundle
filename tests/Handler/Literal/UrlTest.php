@@ -12,17 +12,17 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class UrlTest extends TestCase
+final class UrlTest extends TestCase
 {
     /**
      * @var Url
      */
-    protected $url;
+    private $url;
 
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     protected function setUp(): void
     {

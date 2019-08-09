@@ -7,7 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\TextLine\Value;
 
-class TextLine extends Handler
+final class TextLine extends Handler
 {
     protected function supports(Field $field): bool
     {

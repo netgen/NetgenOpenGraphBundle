@@ -6,43 +6,43 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use Exception;
 use eZ\Publish\Core\Repository\Values\Content\Content;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
-use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
+use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
-class NetgenOpenGraphRuntimeTest extends TestCase
+final class NetgenOpenGraphRuntimeTest extends TestCase
 {
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
      */
-    protected $runtime;
+    private $runtime;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $collector;
+    private $collector;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $renderer;
+    private $renderer;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $logger;
+    private $logger;
 
     protected function setUp(): void
     {
-        $this->collector = $this->getMockBuilder(Collector::class)
+        $this->collector = $this->getMockBuilder(CollectorInterface::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['collect'])
             ->getMock();
 
-        $this->renderer = $this->getMockBuilder(Renderer::class)
+        $this->renderer = $this->getMockBuilder(RendererInterface::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['render'])
             ->getMock();
