@@ -1,6 +1,15 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 1.3.2 (09.08.2019)
+
+* Support `ezrichtext` field type
+* Remove eZ kernel 8 support added in error
+
+## 1.3.1 (06.07.2019)
+
+* Add eZ kernel 8 support
+
 ## 1.3.0 (08.03.2018)
 
 * Added `literal/url` handler which can generate the absolute URL based on current request
