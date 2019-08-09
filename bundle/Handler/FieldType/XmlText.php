@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\XmlText\Value;
+use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
+use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 
 class XmlText extends Handler
@@ -21,6 +22,6 @@ class XmlText extends Handler
 
     protected function supports(Field $field): bool
     {
-        return $field->value instanceof Value;
+        return $field->value instanceof XmlTextValue || $field->value instanceof RichTextValue;
     }
 }
