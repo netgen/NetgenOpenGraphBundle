@@ -20,18 +20,21 @@ class MetaTagHandlersCompilerPass implements CompilerPassInterface
         if (!empty($metaTagHandlers) && $container->hasDefinition('netgen_open_graph.handler_registry')) {
             $handlerRegistry = $container->getDefinition('netgen_open_graph.handler_registry');
             foreach ($metaTagHandlers as $serviceId => $metaTagHandler) {
-                if (!isset($metaTagHandler[0]['alias'])) {
-                    throw new LogicException(
-                        'netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.'
+                foreach ($metaTagHandler as $tag) {
+                    if (!isset($tag['alias'])) {
+                        throw new LogicException(
+                            'netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.'
+                        );
+                    }
+
+                    $handlerRegistry->addMethodCall(
+                        'addHandler',
+                        [
+                            $tag['alias'],
+                            new Reference($serviceId),
+                        ]
                     );
                 }
-                $handlerRegistry->addMethodCall(
-                    'addHandler',
-                    array(
-                        $metaTagHandler[0]['alias'],
-                        new Reference($serviceId),
-                    )
-                );
             }
         }
     }

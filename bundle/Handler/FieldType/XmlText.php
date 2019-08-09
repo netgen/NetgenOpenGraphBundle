@@ -3,7 +3,9 @@
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\XmlText\Value;
+use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
+use eZ\Publish\Core\FieldType\RichText\Value as LegacyRichTextValue;
+use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 
 class XmlText extends Handler
@@ -37,6 +39,8 @@ class XmlText extends Handler
      */
     protected function supports(Field $field)
     {
-        return $field->value instanceof Value;
+        return $field->value instanceof XmlTextValue ||
+            $field->value instanceof LegacyRichTextValue ||
+            $field->value instanceof RichTextValue;
     }
 }

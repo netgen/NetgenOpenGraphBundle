@@ -52,6 +52,7 @@ services:
         lazy: true
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezrichtext }
 
     netgen_open_graph.handler.field_type.image:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
