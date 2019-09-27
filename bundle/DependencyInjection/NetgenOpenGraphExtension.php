@@ -19,10 +19,10 @@ final class NetgenOpenGraphExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
-        $loader->load('handlers.yml');
-        $loader->load('defaults.yml');
-        $loader->load('templating.yml');
+        $loader->load('services.yaml');
+        $loader->load('handlers.yaml');
+        $loader->load('defaults.yaml');
+        $loader->load('templating.yaml');
 
         // The following block is a workaround for eZ Publish configuration processor
         // not being able to merge arrays with numeric indexes.
