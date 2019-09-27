@@ -20,7 +20,7 @@
     ],
     "require": {
         "ezsystems/ezpublish-kernel": "^8.0",
-        "twig/twig": "^2.4.4"
+        "twig/twig": "^2.11.3"
     },
     "require-dev": {
         "ezsystems/ezplatform-xmltext-fieldtype": "^2.0",
