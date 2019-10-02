@@ -7,7 +7,6 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
@@ -19,15 +18,9 @@ abstract class Handler extends BaseHandler
      */
     protected $fieldHelper;
 
-    /**
-     * @var \eZ\Publish\Core\Helper\TranslationHelper
-     */
-    protected $translationHelper;
-
-    public function __construct(FieldHelper $fieldHelper, TranslationHelper $translationHelper)
+    public function __construct(FieldHelper $fieldHelper)
     {
         $this->fieldHelper = $fieldHelper;
-        $this->translationHelper = $translationHelper;
     }
 
     public function getMetaTags(string $tagName, array $params = []): array
@@ -95,7 +88,7 @@ abstract class Handler extends BaseHandler
      */
     protected function validateField(string $fieldIdentifier): Field
     {
-        $field = $this->translationHelper->getTranslatedField($this->content, $fieldIdentifier);
+        $field = $this->content->getField($fieldIdentifier);
         if (!$field instanceof Field) {
             throw new InvalidArgumentException('$params[0]', 'Field \'' . $fieldIdentifier . '\' does not exist in content.');
         }

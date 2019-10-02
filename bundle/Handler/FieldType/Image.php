@@ -9,7 +9,6 @@ use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\Image\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
 use eZ\Publish\SPI\Variation\VariationHandler;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
@@ -36,12 +35,11 @@ final class Image extends Handler
 
     public function __construct(
         FieldHelper $fieldHelper,
-        TranslationHelper $translationHelper,
         VariationHandler $imageVariationService,
         RequestStack $requestStack,
         ?LoggerInterface $logger = null
     ) {
-        parent::__construct($fieldHelper, $translationHelper);
+        parent::__construct($fieldHelper);
 
         $this->imageVariationService = $imageVariationService;
         $this->requestStack = $requestStack;

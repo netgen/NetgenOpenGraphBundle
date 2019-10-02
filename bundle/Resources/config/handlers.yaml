@@ -7,7 +7,6 @@ services:
         parent: netgen_open_graph.handler.abstract
         arguments:
             - "@ezpublish.field_helper"
-            - "@ezpublish.translation_helper"
 
     netgen_open_graph.handler.literal.text:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text
