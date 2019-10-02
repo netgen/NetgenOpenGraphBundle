@@ -10,21 +10,36 @@ use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\Image\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\SPI\Variation\Values\Variation;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class ImageTest extends HandlerBaseTest
+final class ImageTest extends TestCase
 {
     /**
-     * @var Image
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $fieldHelper;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $content;
+
+    /**
+     * @var \eZ\Publish\API\Repository\Values\Content\Field
+     */
+    private $field;
+
+    /**
+     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
      */
     private $image;
 
@@ -50,12 +65,13 @@ final class ImageTest extends HandlerBaseTest
             ->onlyMethods(['isFieldEmpty'])
             ->getMock();
 
-        $this->translationHelper = $this->getMockBuilder(TranslationHelper::class)
+        $this->content = $this->getMockBuilder(Content::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['getTranslatedField'])
             ->getMock();
 
-        $this->content = new Content(['versionInfo' => new VersionInfo()]);
+        $this->content->expects(self::any())
+            ->method('getVersionInfo')
+            ->willReturn(new VersionInfo());
 
         $this->variationHandler = $this->getMockBuilder(AliasGenerator::class)
             ->disableOriginalConstructor()
@@ -71,7 +87,7 @@ final class ImageTest extends HandlerBaseTest
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->image = new Image($this->fieldHelper, $this->translationHelper, $this->variationHandler, $this->requestStack, $this->logger);
+        $this->image = new Image($this->fieldHelper, $this->variationHandler, $this->requestStack, $this->logger);
         $this->image->setContent($this->content);
 
         $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
@@ -95,8 +111,8 @@ final class ImageTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field 'some_value' does not exist in content.");
 
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn(null);
 
         $this->image->getMetaTags('some_tag', ['some_value']);
@@ -107,8 +123,8 @@ final class ImageTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\Image field type handler does not support field with identifier 'field'.");
 
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
         $this->image->getMetaTags('some_tag', ['some_value']);
@@ -116,8 +132,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTagsWithEmptyField(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->fieldHelper->expects(self::once())
@@ -129,8 +145,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTagsWithExceptionThrownByVariationHandler(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $request = Request::create('/');
@@ -144,8 +160,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTags(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->fieldHelper->expects(self::once())
@@ -169,8 +185,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTagsWithVariationServiceThrowsInvalidVariationException(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->fieldHelper->expects(self::once())
@@ -195,8 +211,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTagsWithVariationServiceThrowsSourceImageNotFoundException(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->fieldHelper->expects(self::once())
@@ -221,8 +237,8 @@ final class ImageTest extends HandlerBaseTest
 
     public function testGettingTagsWithMultipleArgumentsInArray(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2']);

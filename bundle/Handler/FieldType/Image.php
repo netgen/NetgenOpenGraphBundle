@@ -52,7 +52,7 @@ final class Image extends Handler
             $variationName = !empty($params[1]) ? $params[1] : 'opengraph';
 
             try {
-                $variationUri = $this->imageVariationService->getVariation($field, $this->content->versionInfo, $variationName)->uri;
+                $variationUri = $this->imageVariationService->getVariation($field, $this->content->getVersionInfo(), $variationName)->uri;
 
                 if (mb_strpos($variationUri, '/') === 0 && ($request = $this->requestStack->getCurrentRequest()) !== null) {
                     $variationUri = $request->getUriForPath('/' . ltrim($variationUri, '/'));

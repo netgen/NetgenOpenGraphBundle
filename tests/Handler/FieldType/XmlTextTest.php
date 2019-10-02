@@ -8,15 +8,30 @@ use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\XmlText\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
+use PHPUnit\Framework\TestCase;
 
-final class XmlTextTest extends HandlerBaseTest
+final class XmlTextTest extends TestCase
 {
     /**
-     * @var XmlText
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $fieldHelper;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $content;
+
+    /**
+     * @var \eZ\Publish\API\Repository\Values\Content\Field
+     */
+    private $field;
+
+    /**
+     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
      */
     private $xmlText;
 
@@ -27,16 +42,11 @@ final class XmlTextTest extends HandlerBaseTest
             ->onlyMethods(['isFieldEmpty'])
             ->getMock();
 
-        $this->translationHelper = $this->getMockBuilder(TranslationHelper::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['getTranslatedField'])
-            ->getMock();
-
         $this->content = $this->getMockBuilder(Content::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->xmlText = new XmlText($this->fieldHelper, $this->translationHelper);
+        $this->xmlText = new XmlText($this->fieldHelper);
         $this->xmlText->setContent($this->content);
 
         $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
@@ -60,8 +70,8 @@ final class XmlTextTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field 'some_value' does not exist in content.");
 
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn(null);
 
         $this->xmlText->getMetaTags('some_tag', ['some_value']);
@@ -72,8 +82,8 @@ final class XmlTextTest extends HandlerBaseTest
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\XmlText field type handler does not support field with identifier 'field'.");
 
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
         $this->xmlText->getMetaTags('some_tag', ['some_value']);
@@ -81,8 +91,8 @@ final class XmlTextTest extends HandlerBaseTest
 
     public function testGettingTagsWithEmptyField(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->fieldHelper->expects(self::once())
@@ -94,8 +104,8 @@ final class XmlTextTest extends HandlerBaseTest
 
     public function testGettingTags(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->xmlText->getMetaTags('some_tag', ['some_value']);
@@ -103,8 +113,8 @@ final class XmlTextTest extends HandlerBaseTest
 
     public function testGettingTagsWithMultipleArgumentsInArray(): void
     {
-        $this->translationHelper->expects(self::once())
-            ->method('getTranslatedField')
+        $this->content->expects(self::once())
+            ->method('getField')
             ->willReturn($this->field);
 
         $this->xmlText->getMetaTags('some_tag', ['some_value', 'some_value_2']);
