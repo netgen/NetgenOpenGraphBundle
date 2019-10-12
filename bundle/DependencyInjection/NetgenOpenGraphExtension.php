@@ -24,7 +24,7 @@ final class NetgenOpenGraphExtension extends Extension
         $loader->load('defaults.yaml');
         $loader->load('templating.yaml');
 
-        // The following block is a workaround for eZ Publish configuration processor
+        // The following block is a workaround for eZ Platform configuration processor
         // not being able to merge arrays with numeric indexes.
         // It works by inserting a dummy 'all_content_types' subkey, basically converting
         // the array from numeric based indexes to string based indexes.
