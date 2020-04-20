@@ -90,17 +90,13 @@ abstract class Handler extends BaseHandler
     {
         $field = $this->content->getField($fieldIdentifier);
         if (!$field instanceof Field) {
-            throw new InvalidArgumentException('$params[0]', sprintf('Field "%s" does not exist in content.', $fieldIdentifier));
+            throw new InvalidArgumentException('$params[0]', 'Field \'' . $fieldIdentifier . '\' does not exist in content.');
         }
 
         if (!$this->supports($field)) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                sprintf(
-                    '"%s" field type handler does not support field with identifier "%s".',
-                    static::class,
-                    $field->fieldDefIdentifier
-                )
+                static::class . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
             );
         }
 
