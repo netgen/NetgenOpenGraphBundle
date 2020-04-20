@@ -18,14 +18,14 @@
         }
     ],
     "require": {
-        "ezsystems/ezpublish-kernel": "^8.0",
-        "twig/twig": "^2.11.3"
+        "ezsystems/ezplatform-kernel": "^1.0",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "ezsystems/ezplatform-xmltext-fieldtype": "^2.0",
-        "phpunit/phpunit": "^8.3",
-        "matthiasnoback/symfony-config-test": "^4.0.1",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.0"
+        "phpunit/phpunit": "^8.5",
+        "matthiasnoback/symfony-config-test": "^4.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

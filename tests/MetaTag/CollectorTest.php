@@ -92,6 +92,7 @@ final class CollectorTest extends TestCase
                 'contentInfo' => new ContentInfo(
                     [
                         'id' => 123,
+                        'contentTypeId' => 42,
                     ]
                 ),
             ]
@@ -105,7 +106,7 @@ final class CollectorTest extends TestCase
 
         $contentType = new ContentType(
             [
-                'id' => 123,
+                'id' => 42,
                 'identifier' => 'article',
                 'fieldDefinitions' => [
                     new FieldDefinition(
@@ -121,6 +122,7 @@ final class CollectorTest extends TestCase
 
         $this->contentTypeService->expects(self::once())
             ->method('loadContentType')
+            ->with(self::equalTo(42))
             ->willReturn($contentType);
 
         $this->registry->addHandler('literal/text', new Handler());
@@ -162,6 +164,7 @@ final class CollectorTest extends TestCase
                 'contentInfo' => new ContentInfo(
                     [
                         'id' => 123,
+                        'contentTypeId' => 42,
                     ]
                 ),
             ]
@@ -175,7 +178,7 @@ final class CollectorTest extends TestCase
 
         $contentType = new ContentType(
             [
-                'id' => 123,
+                'id' => 42,
                 'identifier' => 'article',
                 'fieldDefinitions' => [
                     new FieldDefinition(
@@ -191,6 +194,7 @@ final class CollectorTest extends TestCase
 
         $this->contentTypeService->expects(self::once())
             ->method('loadContentType')
+            ->with(self::equalTo(42))
             ->willReturn($contentType);
 
         $this->registry->addHandler('literal/text', new InvalidHandler());

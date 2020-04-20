@@ -67,8 +67,12 @@ final class Collector implements CollectorInterface
             foreach ($newMetaTags as $metaTag) {
                 if (!$metaTag instanceof Item) {
                     throw new LogicException(
-                        '\'' . $handler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.'
+                        sprintf(
+                            '"%s" handler returned wrong value. Expected "%s", got "%s".',
+                            $handler['handler'],
+                            Item::class,
+                            get_class($metaTag)
+                        )
                     );
                 }
 
