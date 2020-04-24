@@ -8,6 +8,9 @@ use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
 use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
+use function str_replace;
+use function strip_tags;
+use function trim;
 
 final class XmlText extends Handler
 {
