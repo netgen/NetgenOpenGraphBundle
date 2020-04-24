@@ -245,7 +245,7 @@ implemented `getFieldValue`, the default implementation of this method simply ca
 
 For example, `ezimage` field type handler has the following custom implementation:
 
-```
+```php
 protected function getFallbackValue(string $tagName, array $params = []): string
 {
     if (!empty($params[2]) && ($request = $this->requestStack->getCurrentRequest()) !== null) {
