@@ -1,6 +1,12 @@
 Netgen Open Graph Bundle changelog
 ==================================
 
+## 2.0.0 (24.04.2020)
+
+* Added support for eZ Platform 3.x
+* Removed support for eZ Platform 1.x & 2.x
+* Scalar and return typehints are added to all classes and interfaces
+
 ## 1.3.2 (09.08.2019)
 
 * Support `ezrichtext` field type

@@ -145,13 +145,13 @@ The following config:
 Will result in following meta tag:
 
 ```html
-<meta property="og:image" content="http://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_my_variation.png" />
+<meta property="og:image" content="https://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_my_variation.png" />
 ```
 
 In cases where `image` field is empty, meta tag will look like this:
 
 ```html
-<meta property="og:image" content="http://mysite.com/bundles/site/images/opengraph_default_image.png" />
+<meta property="og:image" content="https://mysite.com/bundles/site/images/opengraph_default_image.png" />
 ```
 
 ## Implementing your own handlers
@@ -188,19 +188,14 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 final class MyCustomHandler extends Handler
 {
     /**
-     * Returns the array of meta tags
-     *
-     * @param string $tagName
-     * @param array $params
-     *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */
-    public function getMetaTags( $tagName, array $params = array() )
+    public function getMetaTags(string $tagName, array $params = []): array
     {
         $tagValue = ....;
 
         return array(
-            new Item( $tagName, $tagValue )
+            new Item($tagName, $tagValue)
         );
     }
 }
@@ -221,14 +216,7 @@ In your handler, you need to at least implement `supports()` method, which defin
 supports, for example:
 
 ```php
-/**
- * Returns if this field type handler supports current field
- *
- * @param \eZ\Publish\API\Repository\Values\Content\Field $field
- *
- * @return bool
- */
-protected function supports( Field $field )
+protected function supports(Field $field): bool
 {
     return $field->value instanceof \Vendor\Bundle\MyBundle\MyCustomFieldType\Value;
 }
@@ -239,25 +227,13 @@ which will cast the field value to string. If you require something more complic
 the method `getFieldValue()`. For example `XmlText` field type handler has the following implementation:
 
 ```php
-/**
- * Returns the field value, converted to string
- *
- * @param \eZ\Publish\API\Repository\Values\Content\Field $field
- * @param string $tagName
- * @param array $params
- *
- * @throws \Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException If field is empty
- *
- * @return string
- */
-protected function getFieldValue( Field $field, $tagName, array $params = array() )
+protected function getFieldValue(Field $field, string $tagName, array $params = []): string
 {
-    if ( !$this->fieldHelper->isFieldEmpty( $this->content, $params[0] ) )
-    {
-        return trim( str_replace( "\n", " ", strip_tags( $field->value->xml->saveXML() ) ) );
+    if (!$this->fieldHelper->isFieldEmpty($this->content, $params[0])) {
+        return trim(str_replace("\n", " ", strip_tags($field->value->xml->saveXML())));
     }
 
-    throw new FieldEmptyException( $field->fieldDefIdentifier );
+    throw new FieldEmptyException($field->fieldDefIdentifier);
 }
 ```
 
@@ -270,19 +246,10 @@ implemented `getFieldValue`, the default implementation of this method simply ca
 For example, `ezimage` field type handler has the following custom implementation:
 
 ```
-/**
- * Returns fallback value
- *
- * @param string $tagName
- * @param array $params
- *
- * @return string
- */
-protected function getFallbackValue( $tagName, array $params = array() )
+protected function getFallbackValue(string $tagName, array $params = []): string
 {
-    if ( !empty( $params[2] ) && ( $request = $this->requestStack->getCurrentRequest() ) !== null )
-    {
-        return $request->getUriForPath( '/' . ltrim( $params[2], '/' ) );
+    if (!empty($params[2]) && ($request = $this->requestStack->getCurrentRequest()) !== null) {
+        return $request->getUriForPath('/' . ltrim($params[2], '/'));
     }
 
     return '';
@@ -305,4 +272,4 @@ Take care to specify the right parent for your handler type. If you're creating 
 needs to be `netgen_open_graph.handler.abstract`. Alternatively, if you're developing a field type handler, you
 need to specify `netgen_open_graph.handler.field_type.abstract` as a parent.
 
-[1]: https://doc.ez.no/display/EZP/How+to+expose+SiteAccess+aware+configuration+for+your+bundle
+[1]: https://doc.ezplatform.com/en/latest/guide/siteaccess/#exposing-siteaccess-aware-configuration-for-your-bundle

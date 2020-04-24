@@ -4,7 +4,7 @@ Netgen Open Graph Bundle installation instructions
 Requirements
 ------------
 
-* eZ Platform 1.0+
+* eZ Platform 3+
 
 Installation steps
 ------------------
@@ -19,7 +19,7 @@ $ composer require netgen/open-graph-bundle
 
 ### Activate the bundle
 
-Activate the `Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle` bundle in `app/AppKernel.php` file.
+Activate the `Netgen\Bundle\OpenGraphBundle\NetgenOpenGraphBundle` bundle in `config/bundles.php` file.
 
 ### Use the bundle
 
