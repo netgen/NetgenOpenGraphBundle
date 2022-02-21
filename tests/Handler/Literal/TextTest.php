@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\Literal;
 
-use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
