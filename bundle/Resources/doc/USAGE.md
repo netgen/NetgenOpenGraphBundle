@@ -23,7 +23,7 @@ netgen_open_graph:
                 article:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
                     - { handler: field_type/ezstring, tag: 'og:title', params: ['short_title'] }
-                    - { handler: field_type/ezxmltext, tag: 'og:description', params: ['short_intro'] }
+                    - { handler: field_type/ezrichtext, tag: 'og:description', params: ['short_intro'] }
                     - { handler: field_type/ezimage, tag: 'og:image', params: ['line_image', 'opengraph'] }
 ```
 
@@ -105,15 +105,15 @@ In cases where `short_description` field is empty, meta tag will look like this:
 <meta property="og:description" content="My fallback description" />
 ```
 
-### field_type/ezxmltext
+### field_type/ezrichtext
 
-This handler will return the value of `XmlText` field type. You can specify the field definition identifier
+This handler will return the value of `RichText` field type. You can specify the field definition identifier
 as a first parameter, and optionally, a fallback value if the field is empty.
 
 The following config:
 
 ```yaml
-{ handler: field_type/ezxmltext, tag: 'og:description', params: ['description', 'My fallback description'] }
+{ handler: field_type/ezrichtext, tag: 'og:description', params: ['description', 'My fallback description'] }
 ```
 
 Will result in following meta tag:
@@ -204,7 +204,7 @@ final class MyCustomHandler extends Handler
 ### Field type handlers
 
 One special category of meta tag handlers are field type handlers. The bundle provides couple of those
-(for `TextLine`, `TextBlock`, `XmlText` and `Image` field types), and of course, you can implement your own.
+(for `TextLine`, `TextBlock`, `RichText` and `Image` field types), and of course, you can implement your own.
 
 The process is similar when implementing generic handlers, but this time around, you need to extend the provided
 `Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler` abstract handler. This handler will give you access to
@@ -224,7 +224,7 @@ protected function supports(Field $field): bool
 
 As for getting the field value for the meta tag, abstract handler has a default and trivial implementation,
 which will cast the field value to string. If you require something more complicated than that, you can override
-the method `getFieldValue()`. For example `XmlText` field type handler has the following implementation:
+the method `getFieldValue()`. For example `RichText` field type handler has the following implementation:
 
 ```php
 protected function getFieldValue(Field $field, string $tagName, array $params = []): string

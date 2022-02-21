@@ -80,7 +80,7 @@ final class RichTextTest extends TestCase
     public function testGettingTagsWithUnsupportedField(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\XmlText field type handler does not support field with identifier 'field'.");
+        $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Netgen\\Bundle\\OpenGraphBundle\\Handler\\FieldType\\RichText field type handler does not support field with identifier 'field'.");
 
         $this->content->expects(self::once())
             ->method('getField')
