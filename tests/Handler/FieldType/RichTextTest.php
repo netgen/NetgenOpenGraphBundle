@@ -6,14 +6,14 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
-use Ibexa\Core\FieldType\XmlText\Value;
 use Ibexa\Core\Helper\FieldHelper;
 use Ibexa\Core\Repository\Values\Content\Content;
-use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText;
+use Ibexa\FieldTypeRichText\FieldType\RichText\Value;
+use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\RichText;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use PHPUnit\Framework\TestCase;
 
-final class XmlTextTest extends TestCase
+final class RichTextTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
@@ -31,9 +31,9 @@ final class XmlTextTest extends TestCase
     private $field;
 
     /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
+     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\RichText
      */
-    private $xmlText;
+    private $richText;
 
     protected function setUp(): void
     {
@@ -46,15 +46,15 @@ final class XmlTextTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->xmlText = new XmlText($this->fieldHelper);
-        $this->xmlText->setContent($this->content);
+        $this->richText = new RichText($this->fieldHelper);
+        $this->richText->setContent($this->content);
 
         $this->field = new Field(['value' => new Value(), 'fieldDefIdentifier' => 'field']);
     }
 
     public function testInstanceOfHandlerInterface(): void
     {
-        self::assertInstanceOf(HandlerInterface::class, $this->xmlText);
+        self::assertInstanceOf(HandlerInterface::class, $this->richText);
     }
 
     public function testGettingTagsWithoutFieldIdentifier(): void
@@ -62,7 +62,7 @@ final class XmlTextTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Argument '\$params[0]' is invalid: Field type handlers require at least a field identifier.");
 
-        $this->xmlText->getMetaTags('some_tag');
+        $this->richText->getMetaTags('some_tag');
     }
 
     public function testGettingTagsWithNonExistentField(): void
@@ -74,7 +74,7 @@ final class XmlTextTest extends TestCase
             ->method('getField')
             ->willReturn(null);
 
-        $this->xmlText->getMetaTags('some_tag', ['some_value']);
+        $this->richText->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithUnsupportedField(): void
@@ -86,7 +86,7 @@ final class XmlTextTest extends TestCase
             ->method('getField')
             ->willReturn(new Field(['fieldDefIdentifier' => 'field']));
 
-        $this->xmlText->getMetaTags('some_tag', ['some_value']);
+        $this->richText->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithEmptyField(): void
@@ -99,7 +99,7 @@ final class XmlTextTest extends TestCase
             ->method('isFieldEmpty')
             ->willReturn(true);
 
-        $this->xmlText->getMetaTags('some_tag', ['some_value']);
+        $this->richText->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTags(): void
@@ -108,7 +108,7 @@ final class XmlTextTest extends TestCase
             ->method('getField')
             ->willReturn($this->field);
 
-        $this->xmlText->getMetaTags('some_tag', ['some_value']);
+        $this->richText->getMetaTags('some_tag', ['some_value']);
     }
 
     public function testGettingTagsWithMultipleArgumentsInArray(): void
@@ -117,6 +117,6 @@ final class XmlTextTest extends TestCase
             ->method('getField')
             ->willReturn($this->field);
 
-        $this->xmlText->getMetaTags('some_tag', ['some_value', 'some_value_2']);
+        $this->richText->getMetaTags('some_tag', ['some_value', 'some_value_2']);
     }
 }
