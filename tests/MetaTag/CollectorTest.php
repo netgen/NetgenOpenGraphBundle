@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\ConfigResolver;
+use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Core\Repository\ContentTypeService;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
