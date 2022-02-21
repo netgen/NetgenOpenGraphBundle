@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension;
 
 use Exception;
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Psr\Log\LoggerInterface;
@@ -74,7 +74,7 @@ final class NetgenOpenGraphRuntime
     /**
      * Returns Open Graph tags for provided content.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */

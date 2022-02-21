@@ -11,7 +11,7 @@ interface RendererInterface
      *
      * @param \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If meta tag is not an instance of
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If meta tag is not an instance of
      *         \Netgen\Bundle\OpenGraphBundle\MetaTag\Item
      *
      * @return string

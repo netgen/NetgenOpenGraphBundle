@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
-use eZ\Bundle\EzPublishCoreBundle\Imagine\AliasGenerator;
-use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
-use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Image\Value;
-use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use eZ\Publish\SPI\Variation\Values\Variation;
+use Ibexa\Bundle\Core\Imagine\AliasGenerator;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidVariationException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Image\Value;
+use Ibexa\Core\Helper\FieldHelper;
+use Ibexa\Core\MVC\Exception\SourceImageNotFoundException;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Contracts\Core\Variation\Values\Variation;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use PHPUnit\Framework\TestCase;
@@ -34,7 +34,7 @@ final class ImageTest extends TestCase
     private $content;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\Content\Field
+     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
      */
     private $field;
 

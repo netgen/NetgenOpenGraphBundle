@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
@@ -21,12 +21,12 @@ final class Collector implements CollectorInterface
     private $metaTagHandlers;
 
     /**
-     * @var \eZ\Publish\API\Repository\ContentTypeService
+     * @var \Ibexa\Contracts\Core\Repository\ContentTypeService
      */
     private $contentTypeService;
 
     /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
+     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
      */
     private $configResolver;
 

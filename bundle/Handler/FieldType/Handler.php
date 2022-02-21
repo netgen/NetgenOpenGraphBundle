@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\Helper\FieldHelper;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Helper\FieldHelper;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
@@ -15,7 +15,7 @@ use function is_array;
 abstract class Handler extends BaseHandler
 {
     /**
-     * @var \eZ\Publish\Core\Helper\FieldHelper
+     * @var \Ibexa\Core\Helper\FieldHelper
      */
     protected $fieldHelper;
 
@@ -85,7 +85,7 @@ abstract class Handler extends BaseHandler
     /**
      * Validates field by field identifier.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If field does not exist, or the handler does not support it
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If field does not exist, or the handler does not support it
      */
     protected function validateField(string $fieldIdentifier): Field
     {

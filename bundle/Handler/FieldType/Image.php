@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
 use Exception;
-use eZ\Publish\API\Repository\Exceptions\InvalidVariationException;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Image\Value;
-use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\MVC\Exception\SourceImageNotFoundException;
-use eZ\Publish\SPI\Variation\VariationHandler;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidVariationException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Image\Value;
+use Ibexa\Core\Helper\FieldHelper;
+use Ibexa\Core\MVC\Exception\SourceImageNotFoundException;
+use Ibexa\Contracts\Core\Variation\VariationHandler;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -21,7 +21,7 @@ use function mb_strpos;
 final class Image extends Handler
 {
     /**
-     * @var \eZ\Publish\SPI\Variation\VariationHandler
+     * @var \Ibexa\Contracts\Core\Variation\VariationHandler
      */
     private $imageVariationService;
 

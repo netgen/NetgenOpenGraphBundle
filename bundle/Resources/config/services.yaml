@@ -6,8 +6,8 @@ services:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Collector
         arguments:
             - "@netgen_open_graph.handler_registry"
-            - "@ezpublish.api.service.content_type"
-            - "@ezpublish.config.resolver"
+            - "@ibexa.api.service.content_type"
+            - "@ibexa.config.resolver"
 
     netgen_open_graph.meta_tag_renderer:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer

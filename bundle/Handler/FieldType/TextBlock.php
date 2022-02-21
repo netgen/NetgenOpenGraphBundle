@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\TextBlock\Value;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\TextBlock\Value;
 
 final class TextBlock extends Handler
 {

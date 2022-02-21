@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 
 abstract class Handler implements HandlerInterface, ContentAware
 {
     /**
-     * @var \eZ\Publish\API\Repository\Values\Content\Content
+     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Content
      */
     protected $content;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
-use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;

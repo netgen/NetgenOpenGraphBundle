@@ -9,7 +9,7 @@ Netgen Open Graph Bundle
 [![License](https://img.shields.io/github/license/netgen/NetgenOpenGraphBundle.svg?style=flat-square)](LICENSE)
 [![PHP](https://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg?style=flat-square)](https://secure.php.net/)
 
-Netgen Open Graph Bundle is an eZ Platform bundle that provides simple integration with Open Graph protocol.
+Netgen Open Graph Bundle is an Ibexa Platform bundle that provides simple integration with Open Graph protocol.
 It uses `Content` object which is currently displayed to generate Open Graph meta tags, according to configuration.
 
 ## Documentation

@@ -1,10 +1,10 @@
 {
     "name": "netgen/open-graph-bundle",
-    "description": "Netgen Open Graph Bundle is an eZ Platform bundle that allows simple integration with Open Graph protocol.",
-    "type": "ezplatform-bundle",
+    "description": "Netgen Open Graph Bundle is an Ibexa Platform bundle that allows simple integration with Open Graph protocol.",
+    "type": "ibexa-bundle",
     "keywords": [
         "netgen",
-        "ezplatform",
+        "ibexa",
         "open-graph-bundle",
         "open-graph",
         "open graph"
@@ -18,11 +18,10 @@
         }
     ],
     "require": {
-        "ezsystems/ezplatform-kernel": "^1.0",
+        "ibexa/core": "^4.0",
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "ezsystems/ezplatform-xmltext-fieldtype": "^2.0",
         "phpunit/phpunit": "^8.5",
         "matthiasnoback/symfony-config-test": "^4.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1"

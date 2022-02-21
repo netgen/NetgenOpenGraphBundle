@@ -6,7 +6,7 @@ services:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler
         parent: netgen_open_graph.handler.abstract
         arguments:
-            - "@ezpublish.field_helper"
+            - "@Ibexa\\Core\\Helper\\FieldHelper"
 
     netgen_open_graph.handler.literal.text:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\Text
@@ -34,18 +34,17 @@ services:
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/eztext }
 
-    netgen_open_graph.handler.field_type.xml_text:
-        class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
+    netgen_open_graph.handler.field_type.rich_text:
+        class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\RichText
         parent: netgen_open_graph.handler.field_type.abstract
         tags:
-            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezrichtext }
 
     netgen_open_graph.handler.field_type.image:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
         parent: netgen_open_graph.handler.field_type.abstract
         arguments:
-            - "@ezpublish.fieldType.ezimage.variation_service"
+            - "@Ibexa\\Contracts\\Core\\Variation\\VariationHandler"
             - "@request_stack"
             - "@?logger"
         tags:

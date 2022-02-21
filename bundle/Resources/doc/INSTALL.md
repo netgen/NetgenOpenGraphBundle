@@ -4,7 +4,7 @@ Netgen Open Graph Bundle installation instructions
 Requirements
 ------------
 
-* eZ Platform 3+
+* Ibexa Platform 4.0+
 
 Installation steps
 ------------------

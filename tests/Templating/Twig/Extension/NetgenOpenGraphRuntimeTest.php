@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Templating\Twig\Extension;
 
 use Exception;
-use eZ\Publish\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;

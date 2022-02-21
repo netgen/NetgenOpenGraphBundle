@@ -145,7 +145,7 @@ The following config:
 Will result in following meta tag:
 
 ```html
-<meta property="og:image" content="https://mysite.com/var/ezdemo_site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_my_variation.png" />
+<meta property="og:image" content="https://mysite.com/var/site/storage/images/portfolio/design-and-architecture/503-44-eng-EU/Design-and-Architecture_my_variation.png" />
 ```
 
 In cases where `image` field is empty, meta tag will look like this:
@@ -272,4 +272,4 @@ Take care to specify the right parent for your handler type. If you're creating 
 needs to be `netgen_open_graph.handler.abstract`. Alternatively, if you're developing a field type handler, you
 need to specify `netgen_open_graph.handler.field_type.abstract` as a parent.
 
-[1]: https://doc.ezplatform.com/en/latest/guide/siteaccess/#exposing-siteaccess-aware-configuration-for-your-bundle
+[1]: https://doc.ibexa.co/en/latest/guide/multisite/siteaccess_aware_configuration/

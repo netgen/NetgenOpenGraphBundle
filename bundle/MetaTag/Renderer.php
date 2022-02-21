@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use function htmlspecialchars;
 use const ENT_QUOTES;
 use const ENT_SUBSTITUTE;

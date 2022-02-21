@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
-use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\FieldTypeRichText\FieldType\RichText\Value as RichTextValue;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use function str_replace;
 use function strip_tags;
 use function trim;
 
-final class XmlText extends Handler
+final class RichText extends Handler
 {
     protected function getFieldValue(Field $field, string $tagName, array $params = []): string
     {
@@ -25,6 +24,6 @@ final class XmlText extends Handler
 
     protected function supports(Field $field): bool
     {
-        return $field->value instanceof XmlTextValue || $field->value instanceof RichTextValue;
+        return $field->value instanceof RichTextValue;
     }
 }

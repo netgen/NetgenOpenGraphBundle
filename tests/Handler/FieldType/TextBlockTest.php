@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Tests\Handler\FieldType;
 
-use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\TextBlock\Value;
-use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\TextBlock\Value;
+use Ibexa\Core\Helper\FieldHelper;
+use Ibexa\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextBlock;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ final class TextBlockTest extends TestCase
     private $content;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\Content\Field
+     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
      */
     private $field;
 
