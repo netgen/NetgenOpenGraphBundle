@@ -22,6 +22,7 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
+        "ibexa/fieldtype-richtext": "^4.0",
         "phpunit/phpunit": "^8.5",
         "matthiasnoback/symfony-config-test": "^4.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1"
