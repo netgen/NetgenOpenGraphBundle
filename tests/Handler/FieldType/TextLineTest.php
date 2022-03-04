@@ -11,29 +11,18 @@ use Ibexa\Core\Helper\FieldHelper;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class TextLineTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $fieldHelper;
+    private MockObject $fieldHelper;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $content;
+    private MockObject $content;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
-     */
-    private $field;
+    private Field $field;
 
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
-     */
-    private $textLine;
+    private TextLine $textLine;
 
     protected function setUp(): void
     {

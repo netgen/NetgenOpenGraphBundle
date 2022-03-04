@@ -16,29 +16,18 @@ use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Collector;
 use Netgen\Bundle\OpenGraphBundle\Tests\Stubs\Handler;
 use Netgen\Bundle\OpenGraphBundle\Tests\Stubs\InvalidHandler;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class CollectorTest extends TestCase
 {
-    /**
-     * @var Collector
-     */
-    private $collector;
+    private Collector $collector;
 
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeService;
+    private MockObject $contentTypeService;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $config;
+    private MockObject $config;
 
     protected function setUp(): void
     {

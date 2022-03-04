@@ -14,15 +14,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class UrlTest extends TestCase
 {
-    /**
-     * @var Url
-     */
-    private $url;
+    private Url $url;
 
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     protected function setUp(): void
     {

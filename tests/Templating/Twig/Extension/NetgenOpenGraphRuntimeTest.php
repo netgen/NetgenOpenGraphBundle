@@ -10,30 +10,19 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
 final class NetgenOpenGraphRuntimeTest extends TestCase
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
-     */
-    private $runtime;
+    private NetgenOpenGraphRuntime $runtime;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $collector;
+    private MockObject $collector;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $renderer;
+    private MockObject $renderer;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $logger;
+    private MockObject $logger;
 
     protected function setUp(): void
     {

@@ -13,25 +13,13 @@ use Psr\Log\NullLogger;
 
 final class NetgenOpenGraphRuntime
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\CollectorInterface
-     */
-    private $tagCollector;
+    private CollectorInterface $tagCollector;
 
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface
-     */
-    private $tagRenderer;
+    private RendererInterface $tagRenderer;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /**
-     * @var bool
-     */
-    private $throwExceptions = true;
+    private bool $throwExceptions = true;
 
     public function __construct(
         CollectorInterface $tagCollector,
@@ -73,8 +61,6 @@ final class NetgenOpenGraphRuntime
 
     /**
      * Returns Open Graph tags for provided content.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */

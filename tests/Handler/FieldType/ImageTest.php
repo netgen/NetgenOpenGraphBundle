@@ -16,6 +16,7 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,40 +24,19 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class ImageTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $fieldHelper;
+    private MockObject $fieldHelper;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $content;
+    private MockObject $content;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
-     */
-    private $field;
+    private Field $field;
 
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
-     */
-    private $image;
+    private Image $image;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $variationHandler;
+    private MockObject $variationHandler;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $requestStack;
+    private MockObject $requestStack;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $logger;
+    private MockObject $logger;
 
     protected function setUp(): void
     {

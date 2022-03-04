@@ -9,8 +9,7 @@ interface HandlerInterface
     /**
      * Returns the array of meta tags.
      *
-     * @param string $tagName
-     * @param array $params
+     * @param array<string, mixed> $params
      *
      * @return \Netgen\Bundle\OpenGraphBundle\MetaTag\Item[]
      */

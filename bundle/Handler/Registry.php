@@ -11,7 +11,7 @@ final class Registry
     /**
      * @var \Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface[]
      */
-    private $metaTagHandlers = [];
+    private array $metaTagHandlers = [];
 
     /**
      * Adds a handler to the registry.

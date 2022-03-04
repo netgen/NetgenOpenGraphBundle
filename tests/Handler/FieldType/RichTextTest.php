@@ -11,29 +11,18 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\FieldTypeRichText\FieldType\RichText\Value;
 use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\RichText;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class RichTextTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $fieldHelper;
+    private MockObject $fieldHelper;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $content;
+    private MockObject $content;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
-     */
-    private $field;
+    private Field $field;
 
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Handler\FieldType\RichText
-     */
-    private $richText;
+    private RichText $richText;
 
     protected function setUp(): void
     {

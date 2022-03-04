@@ -11,10 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class RegistryTest extends TestCase
 {
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
     protected function setUp(): void
     {

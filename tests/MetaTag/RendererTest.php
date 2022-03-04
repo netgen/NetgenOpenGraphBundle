@@ -12,10 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class RendererTest extends TestCase
 {
-    /**
-     * @var Renderer
-     */
-    private $renderer;
+    private Renderer $renderer;
 
     protected function setUp(): void
     {

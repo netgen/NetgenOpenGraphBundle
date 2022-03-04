@@ -6,15 +6,9 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 final class Item
 {
-    /**
-     * @var string
-     */
-    private $tagName;
+    private string $tagName;
 
-    /**
-     * @var string
-     */
-    private $tagValue;
+    private string $tagValue;
 
     public function __construct(string $tagName, string $tagValue)
     {

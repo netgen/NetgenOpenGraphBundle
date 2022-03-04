@@ -9,36 +9,22 @@ use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\RendererInterface;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension;
 use Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 use Twig\Test\IntegrationTestCase;
 
 final class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
-     */
-    private $extension;
+    private NetgenOpenGraphExtension $extension;
 
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphRuntime
-     */
-    private $runtime;
+    private NetgenOpenGraphRuntime $runtime;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $collector;
+    private MockObject $collector;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $renderer;
+    private MockObject $renderer;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $logger;
+    private MockObject $logger;
 
     protected function setUp(): void
     {
@@ -92,9 +78,7 @@ final class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
         return [
             new FactoryRuntimeLoader(
                 [
-                    NetgenOpenGraphRuntime::class => function () {
-                        return $this->runtime;
-                    },
+                    NetgenOpenGraphRuntime::class => fn (): NetgenOpenGraphRuntime => $this->runtime,
                 ]
             ),
         ];

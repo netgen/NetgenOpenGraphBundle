@@ -10,8 +10,6 @@ interface ContentAware
 {
     /**
      * Sets the content.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      */
     public function setContent(Content $content): void;
 }

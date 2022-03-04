@@ -11,10 +11,7 @@ use Twig\TwigFunction;
 
 final class NetgenOpenGraphExtensionTest extends TestCase
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Templating\Twig\Extension\NetgenOpenGraphExtension
-     */
-    private $extension;
+    private NetgenOpenGraphExtension $extension;
 
     protected function setUp(): void
     {

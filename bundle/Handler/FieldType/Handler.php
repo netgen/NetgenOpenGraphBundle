@@ -14,10 +14,7 @@ use function is_array;
 
 abstract class Handler extends BaseHandler
 {
-    /**
-     * @var \Ibexa\Core\Helper\FieldHelper
-     */
-    protected $fieldHelper;
+    protected FieldHelper $fieldHelper;
 
     public function __construct(FieldHelper $fieldHelper)
     {

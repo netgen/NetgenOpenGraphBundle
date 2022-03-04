@@ -13,8 +13,6 @@ interface RendererInterface
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException If meta tag is not an instance of
      *         \Netgen\Bundle\OpenGraphBundle\MetaTag\Item
-     *
-     * @return string
      */
     public function render(array $metaTags = []): string;
 }

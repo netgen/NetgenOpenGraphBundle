@@ -8,10 +8,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 
 abstract class Handler implements HandlerInterface, ContentAware
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Content
-     */
-    protected $content;
+    protected Content $content;
 
     public function setContent(Content $content): void
     {

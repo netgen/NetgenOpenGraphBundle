@@ -20,20 +20,11 @@ use function mb_strpos;
 
 final class Image extends Handler
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Variation\VariationHandler
-     */
-    private $imageVariationService;
+    private VariationHandler $imageVariationService;
 
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
     public function __construct(
         FieldHelper $fieldHelper,

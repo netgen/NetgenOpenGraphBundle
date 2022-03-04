@@ -12,10 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class TextTest extends TestCase
 {
-    /**
-     * @var Text
-     */
-    private $text;
+    private Text $text;
 
     protected function setUp(): void
     {

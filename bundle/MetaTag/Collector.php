@@ -15,20 +15,11 @@ use function get_class;
 
 final class Collector implements CollectorInterface
 {
-    /**
-     * @var \Netgen\Bundle\OpenGraphBundle\Handler\Registry
-     */
-    private $metaTagHandlers;
+    private Registry $metaTagHandlers;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\ContentTypeService
-     */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
-    /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
     {
