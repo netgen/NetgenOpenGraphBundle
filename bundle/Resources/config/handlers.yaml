@@ -40,6 +40,12 @@ services:
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezrichtext }
 
+    netgen_open_graph.handler.field_type.xml_text:
+        class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\XmlText
+        parent: netgen_open_graph.handler.field_type.abstract
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezxmltext }
+
     netgen_open_graph.handler.field_type.image:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
         parent: netgen_open_graph.handler.field_type.abstract
