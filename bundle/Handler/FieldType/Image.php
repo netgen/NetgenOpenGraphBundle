@@ -15,6 +15,7 @@ use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\RequestStack;
+
 use function ltrim;
 use function mb_strpos;
 

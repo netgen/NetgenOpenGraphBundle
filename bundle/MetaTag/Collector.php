@@ -10,6 +10,7 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use LogicException;
 use Netgen\Bundle\OpenGraphBundle\Handler\ContentAware;
 use Netgen\Bundle\OpenGraphBundle\Handler\Registry;
+
 use function array_merge;
 use function get_class;
 

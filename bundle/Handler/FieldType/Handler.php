@@ -10,6 +10,7 @@ use Ibexa\Core\Helper\FieldHelper;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
 use Netgen\Bundle\OpenGraphBundle\Handler\Handler as BaseHandler;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+
 use function is_array;
 
 abstract class Handler extends BaseHandler

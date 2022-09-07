@@ -7,6 +7,7 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\FieldType;
 use eZ\Publish\Core\FieldType\XmlText\Value as XmlTextValue;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Netgen\Bundle\OpenGraphBundle\Exception\FieldEmptyException;
+
 use function str_replace;
 use function strip_tags;
 use function trim;
