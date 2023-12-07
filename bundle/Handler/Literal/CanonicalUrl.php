@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 
+use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -21,7 +22,7 @@ final class CanonicalUrl implements HandlerInterface
     public function getMetaTags($tagName, array $params = []): array
     {
         $value = $this->router->generate(
-            'ibexa.url.alias',
+            UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             [
                 'locationId' => $this->content->contentInfo->mainLocationId,
             ],
