@@ -22,6 +22,13 @@ services:
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: literal/url }
 
+    netgen_open_graph.handler.literal.canonical_url:
+        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
+        arguments:
+            - "@router"
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: literal/canonical_url }
+
     netgen_open_graph.handler.field_type.text_line:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\TextLine
         parent: netgen_open_graph.handler.field_type.abstract
@@ -55,10 +62,3 @@ services:
             - "@?logger"
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezimage }
-
-    netgen_open_graph.handler.literal.canonical_url:
-        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
-        arguments:
-            - "@router"
-        tags:
-            - { name: netgen_open_graph.meta_tag_handler, alias: literal/canonical_url }
