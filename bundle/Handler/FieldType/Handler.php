@@ -27,7 +27,7 @@ abstract class Handler extends BaseHandler
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                'Field type handlers require at least a field identifier.'
+                'Field type handlers require at least a field identifier.',
             );
         }
 
@@ -49,7 +49,7 @@ abstract class Handler extends BaseHandler
         return [
             new Item(
                 $tagName,
-                $fieldValue
+                $fieldValue,
             ),
         ];
     }
@@ -95,7 +95,7 @@ abstract class Handler extends BaseHandler
         if (!$this->supports($field)) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                static::class . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.'
+                static::class . ' field type handler does not support field with identifier \'' . $field->fieldDefIdentifier . '\'.',
             );
         }
 

@@ -34,7 +34,7 @@ final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
             [
                 'field_type/eztext',
                 new Reference('handler_one'),
-            ]
+            ],
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
@@ -43,7 +43,7 @@ final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
             [
                 'literal/text',
                 new Reference('handler_two'),
-            ]
+            ],
         );
     }
 
@@ -66,7 +66,7 @@ final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
             'addHandler',
             [
                 new Reference('handler_one'),
-            ]
+            ],
         );
     }
 

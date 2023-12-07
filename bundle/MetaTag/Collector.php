@@ -45,7 +45,7 @@ final class Collector implements CollectorInterface
         if (isset($contentTypeHandlers[$contentType->identifier])) {
             $allHandlers = array_merge(
                 $allHandlers['all_content_types'] ?? [],
-                $contentTypeHandlers[$contentType->identifier]
+                $contentTypeHandlers[$contentType->identifier],
             );
         } else {
             $allHandlers = $allHandlers['all_content_types'] ?? [];
@@ -62,7 +62,7 @@ final class Collector implements CollectorInterface
                 if (!$metaTag instanceof Item) {
                     throw new LogicException(
                         '\'' . $handler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.'
+                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.',
                     );
                 }
 

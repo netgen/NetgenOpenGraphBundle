@@ -15,14 +15,14 @@ final class Text implements HandlerInterface
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                'Literal text handler requires the text to output.'
+                'Literal text handler requires the text to output.',
             );
         }
 
         return [
             new Item(
                 $tagName,
-                $params[0]
+                $params[0],
             ),
         ];
     }

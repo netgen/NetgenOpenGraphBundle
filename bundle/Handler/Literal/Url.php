@@ -27,7 +27,7 @@ final class Url implements HandlerInterface
         if (!isset($params[0])) {
             throw new InvalidArgumentException(
                 '$params[0]',
-                'Literal URL handler requires the path to output.'
+                'Literal URL handler requires the path to output.',
             );
         }
 
@@ -41,7 +41,7 @@ final class Url implements HandlerInterface
         return [
             new Item(
                 $tagName,
-                $path
+                $path,
             ),
         ];
     }

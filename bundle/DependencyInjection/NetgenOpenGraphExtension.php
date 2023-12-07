@@ -45,7 +45,7 @@ final class NetgenOpenGraphExtension extends Extension
                 foreach ($scopeSettings as $key => $value) {
                     $contextualizer->setContextualParameter($key, $currentScope, $value);
                 }
-            }
+            },
         );
 
         $processor->mapConfigArray('content_type_handlers', $config);

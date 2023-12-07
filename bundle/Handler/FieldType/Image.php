@@ -31,7 +31,7 @@ final class Image extends Handler
         FieldHelper $fieldHelper,
         VariationHandler $imageVariationService,
         RequestStack $requestStack,
-        ?LoggerInterface $logger = null
+        ?LoggerInterface $logger = null,
     ) {
         parent::__construct($fieldHelper);
 
@@ -57,11 +57,11 @@ final class Image extends Handler
                 $this->logger->error("Open Graph image handler: Couldn't get variation '{$variationName}' for image with id {$field->value->id}");
             } catch (SourceImageNotFoundException $e) {
                 $this->logger->error(
-                    "Open Graph image handler: Couldn't create variation '{$variationName}' for image with id {$field->value->id} because source image can't be found"
+                    "Open Graph image handler: Couldn't create variation '{$variationName}' for image with id {$field->value->id} because source image can't be found",
                 );
             } catch (Exception $e) {
                 $this->logger->error(
-                    "Open Graph image handler: Error while getting variation '{$variationName}' for image with id {$field->value->id}: " . $e->getMessage()
+                    "Open Graph image handler: Error while getting variation '{$variationName}' for image with id {$field->value->id}: " . $e->getMessage(),
                 );
             }
         }

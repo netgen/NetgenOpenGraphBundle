@@ -24,7 +24,7 @@ final class NetgenOpenGraphRuntime
     public function __construct(
         CollectorInterface $tagCollector,
         RendererInterface $tagRenderer,
-        ?LoggerInterface $logger = null
+        ?LoggerInterface $logger = null,
     ) {
         $this->tagCollector = $tagCollector;
         $this->tagRenderer = $tagRenderer;
@@ -46,7 +46,7 @@ final class NetgenOpenGraphRuntime
     {
         try {
             return $this->tagRenderer->render(
-                $this->getOpenGraphTags($content)
+                $this->getOpenGraphTags($content),
             );
         } catch (Exception $e) {
             if ($this->throwExceptions) {

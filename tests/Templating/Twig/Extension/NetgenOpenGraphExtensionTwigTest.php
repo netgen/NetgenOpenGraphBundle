@@ -79,7 +79,7 @@ final class NetgenOpenGraphExtensionTwigTest extends IntegrationTestCase
             new FactoryRuntimeLoader(
                 [
                     NetgenOpenGraphRuntime::class => fn (): NetgenOpenGraphRuntime => $this->runtime,
-                ]
+                ],
             ),
         ];
     }

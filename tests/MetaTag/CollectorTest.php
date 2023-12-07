@@ -82,15 +82,15 @@ final class CollectorTest extends TestCase
                     [
                         'id' => 123,
                         'contentTypeId' => 42,
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $content = new Content(
             [
                 'versionInfo' => $versionInfo,
-            ]
+            ],
         );
 
         $contentType = new ContentType(
@@ -103,10 +103,10 @@ final class CollectorTest extends TestCase
                             'id' => 'id',
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
-                        ]
+                        ],
                     ),
                 ],
-            ]
+            ],
         );
 
         $this->contentTypeService->expects(self::once())
@@ -154,15 +154,15 @@ final class CollectorTest extends TestCase
                     [
                         'id' => 123,
                         'contentTypeId' => 42,
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $content = new Content(
             [
                 'versionInfo' => $versionInfo,
-            ]
+            ],
         );
 
         $contentType = new ContentType(
@@ -175,10 +175,10 @@ final class CollectorTest extends TestCase
                             'id' => 'id',
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
-                        ]
+                        ],
                     ),
                 ],
-            ]
+            ],
         );
 
         $this->contentTypeService->expects(self::once())

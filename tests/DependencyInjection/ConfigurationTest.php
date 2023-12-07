@@ -75,7 +75,7 @@ final class ConfigurationTest extends TestCase
                         ],
                     ],
                 ],
-            ]
+            ],
         );
     }
 
@@ -142,7 +142,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one',
         );
     }
 
@@ -210,7 +210,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one',
         );
     }
 
@@ -272,7 +272,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one',
         );
     }
 
@@ -335,7 +335,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.content_type_handlers.content_type_one'
+            'netgen_open_graph.system.default.content_type_handlers.content_type_one',
         );
     }
 
@@ -402,7 +402,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.global_handlers'
+            'netgen_open_graph.system.default.global_handlers',
         );
     }
 
@@ -470,7 +470,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.global_handlers'
+            'netgen_open_graph.system.default.global_handlers',
         );
     }
 
@@ -537,7 +537,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.global_handlers'
+            'netgen_open_graph.system.default.global_handlers',
         );
     }
 
@@ -605,7 +605,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'netgen_open_graph.system.default.global_handlers'
+            'netgen_open_graph.system.default.global_handlers',
         );
     }
 

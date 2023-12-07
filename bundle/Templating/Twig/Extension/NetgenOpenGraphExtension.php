@@ -15,11 +15,11 @@ final class NetgenOpenGraphExtension extends AbstractExtension
             new TwigFunction(
                 'render_netgen_open_graph',
                 [NetgenOpenGraphRuntime::class, 'renderOpenGraphTags'],
-                ['is_safe' => ['html']]
+                ['is_safe' => ['html']],
             ),
             new TwigFunction(
                 'get_netgen_open_graph',
-                [NetgenOpenGraphRuntime::class, 'getOpenGraphTags']
+                [NetgenOpenGraphRuntime::class, 'getOpenGraphTags'],
             ),
         ];
     }

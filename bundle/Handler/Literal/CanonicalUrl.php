@@ -32,7 +32,7 @@ final class CanonicalUrl implements HandlerInterface
         return [
             new Item(
                 $tagName,
-                $value
+                $value,
             ),
         ];
     }

@@ -23,7 +23,7 @@ final class MetaTagHandlersCompilerPass implements CompilerPassInterface
                 foreach ($metaTagHandler as $tag) {
                     if (!isset($tag['alias'])) {
                         throw new LogicException(
-                            'netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.'
+                            'netgen_open_graph.meta_tag_handler service tag needs an "alias" attribute to identify the handler. None given.',
                         );
                     }
 
@@ -32,7 +32,7 @@ final class MetaTagHandlersCompilerPass implements CompilerPassInterface
                         [
                             $tag['alias'],
                             new Reference($serviceId),
-                        ]
+                        ],
                     );
                 }
             }

@@ -54,7 +54,7 @@ final class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProvider(): array
+    public function validResultProvider(): iterable
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
@@ -79,7 +79,7 @@ final class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProviderWithoutRequest(): array
+    public function validResultProviderWithoutRequest(): iterable
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],

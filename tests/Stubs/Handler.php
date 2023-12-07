@@ -14,7 +14,7 @@ final class Handler implements HandlerInterface
         return [
             new Item(
                 'og:type',
-                'article'
+                'article',
             ),
         ];
     }
