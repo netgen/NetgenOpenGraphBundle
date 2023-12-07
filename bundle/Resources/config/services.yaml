@@ -14,8 +14,6 @@ services:
 
     app.opengraph.handler.url:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
-        public: false
-        lazy: true
         arguments:
             - "@router"
         tags:
