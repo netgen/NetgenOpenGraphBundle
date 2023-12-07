@@ -11,5 +11,3 @@ services:
 
     netgen_open_graph.meta_tag_renderer:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
-
-
