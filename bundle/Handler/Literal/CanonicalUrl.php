@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Field;
-use Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Handler;
+use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-final class CanonicalUrl extends Handler
+final class CanonicalUrl implements HandlerInterface
 {
     private RouterInterface $router;
 
@@ -35,10 +34,5 @@ final class CanonicalUrl extends Handler
                 $value
             ),
         ];
-    }
-
-    protected function supports(Field $field): bool
-    {
-        return true;
     }
 }
