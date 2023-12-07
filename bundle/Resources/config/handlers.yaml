@@ -61,4 +61,4 @@ services:
         arguments:
             - "@router"
         tags:
-            - { name: netgen_open_graph.meta_tag_handler, alias: ngsite/canonical }
+            - { name: netgen_open_graph.meta_tag_handler, alias: literal/canonical_url }
