@@ -18,14 +18,15 @@
         }
     ],
     "require": {
-        "ibexa/core": "^4.0",
+        "php": "^8.1",
+        "ibexa/core": "^4.4",
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "ibexa/fieldtype-richtext": "^4.0",
-        "phpunit/phpunit": "^8.5",
-        "matthiasnoback/symfony-config-test": "^4.1",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.1"
+        "ibexa/fieldtype-richtext": "^4.4",
+        "phpunit/phpunit": "^9.6",
+        "matthiasnoback/symfony-config-test": "^5.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^5.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -45,7 +46,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "3.1.x-dev"
         }
     }
 }
