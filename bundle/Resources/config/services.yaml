@@ -12,9 +12,4 @@ services:
     netgen_open_graph.meta_tag_renderer:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
 
-    app.opengraph.handler.url:
-        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
-        arguments:
-            - "@router"
-        tags:
-            - { name: netgen_open_graph.meta_tag_handler, alias: ngsite/canonical }
+

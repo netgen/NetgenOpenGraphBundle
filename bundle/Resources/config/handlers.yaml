@@ -55,3 +55,10 @@ services:
             - "@?logger"
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: field_type/ezimage }
+
+    netgen_open_graph.handler.literal.canonical_url:
+        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
+        arguments:
+            - "@router"
+        tags:
+            - { name: netgen_open_graph.meta_tag_handler, alias: ngsite/canonical }
