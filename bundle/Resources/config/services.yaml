@@ -21,4 +21,4 @@ services:
             - '@Ibexa\Core\Helper\TranslationHelper'
             - "@ibexa.api.service.content"
         tags:
-            - { name: netgen_open_graph.meta_tag_handler, alias: app/canonical }
+            - { name: netgen_open_graph.meta_tag_handler, alias: ngsite/canonical }
