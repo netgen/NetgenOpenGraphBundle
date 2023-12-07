@@ -13,12 +13,10 @@ services:
         class: Netgen\Bundle\OpenGraphBundle\MetaTag\Renderer
 
     app.opengraph.handler.url:
-        class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\CanonicalUrl
+        class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
         public: false
         lazy: true
         arguments:
             - "@router"
-            - '@Ibexa\Core\Helper\TranslationHelper'
-            - "@ibexa.api.service.content"
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: ngsite/canonical }
