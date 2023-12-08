@@ -25,6 +25,7 @@ services:
     netgen_open_graph.handler.literal.canonical_url:
         class: Netgen\Bundle\OpenGraphBundle\Handler\Literal\CanonicalUrl
         arguments:
+            - "@request_stack"
             - "@router"
         tags:
             - { name: netgen_open_graph.meta_tag_handler, alias: literal/canonical_url }

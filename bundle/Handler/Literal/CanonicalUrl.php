@@ -7,24 +7,40 @@ namespace Netgen\Bundle\OpenGraphBundle\Handler\Literal;
 use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
+use Netgen\IbexaSiteApi\API\Values\Content as SiteApiContent;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content as IbexaContent;
 
 final class CanonicalUrl implements HandlerInterface
 {
-    private RouterInterface $router;
+    private RequestStack $requestStack;
 
-    public function __construct(RouterInterface $router)
+    private UrlGeneratorInterface $urlGenerator;
+
+    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $urlGenerator)
     {
-        $this->router = $router;
+        $this->requestStack = $requestStack;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function getMetaTags($tagName, array $params = []): array
     {
-        $value = $this->router->generate(
+        $currentRequest = $this->requestStack->getCurrentRequest();
+        if (!$currentRequest instanceof Request) {
+            return [];
+        }
+
+        $content = $currentRequest->attributes->get('content');
+        if (!$content instanceof IbexaContent && !$content instanceof SiteApiContent) {
+            return [];
+        }
+
+        $value = $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             [
-                'locationId' => $this->content->contentInfo->mainLocationId,
+                'locationId' => $content->contentInfo->mainLocationId,
             ],
             UrlGeneratorInterface::ABSOLUTE_URL,
         );
