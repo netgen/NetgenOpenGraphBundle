@@ -44,6 +44,9 @@
         "test": "@php vendor/bin/phpunit --colors=always",
         "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit --colors=always"
     },
+    "config": {
+        "allow-plugins": false
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.1.x-dev"
