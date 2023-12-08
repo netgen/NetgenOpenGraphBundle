@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\OpenGraphBundle\Tests\MetaTag;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\ConfigResolver;
-use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\Repository\ContentTypeService;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
