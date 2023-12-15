@@ -19,7 +19,7 @@ final class CanonicalUrl implements HandlerInterface
         $this->router = $router;
     }
 
-    public function getMetaTags($tagName, array $params = []): array
+    public function getMetaTags(string $tagName, array $params = []): array
     {
         $value = $this->router->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
