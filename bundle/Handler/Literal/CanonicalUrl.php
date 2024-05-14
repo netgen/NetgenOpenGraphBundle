@@ -37,6 +37,10 @@ final class CanonicalUrl implements HandlerInterface
             return [];
         }
 
+        if ($content->contentInfo->mainLocationId === null) {
+            return [];
+        }
+
         $value = $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             [
