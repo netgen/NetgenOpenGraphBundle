@@ -8,6 +8,7 @@ use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Netgen\Bundle\OpenGraphBundle\Handler\HandlerInterface;
 use Netgen\Bundle\OpenGraphBundle\Handler\Literal\Url;
 use Netgen\Bundle\OpenGraphBundle\MetaTag\Item;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -37,9 +38,7 @@ final class UrlTest extends TestCase
         $this->url->getMetaTags('some_tag');
     }
 
-    /**
-     * @dataProvider validResultProvider
-     */
+    #[DataProvider('validResultProvider')]
     public function testGettingTagsWithValidResult(string $input, string $output): void
     {
         $request = Request::create('https://domain.com');
@@ -54,7 +53,7 @@ final class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProvider(): iterable
+    public static function validResultProvider(): iterable
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
@@ -66,9 +65,7 @@ final class UrlTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider validResultProviderWithoutRequest
-     */
+    #[DataProvider('validResultProviderWithoutRequest')]
     public function testGettingTagsWithValidResultAndWithoutRequest(string $input, string $output): void
     {
         $result = $this->url->getMetaTags('some_tag', [$input]);
@@ -79,7 +76,7 @@ final class UrlTest extends TestCase
         self::assertSame($output, $result[0]->getTagValue());
     }
 
-    public function validResultProviderWithoutRequest(): iterable
+    public static function validResultProviderWithoutRequest(): iterable
     {
         return [
             ['https://other.domain.com/some/path', 'https://other.domain.com/some/path'],
