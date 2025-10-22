@@ -29,6 +29,7 @@ return (new PhpCsFixer\Config())
         'single_line_comment_style' => false,
         'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments', 'match', 'parameters']],
         'yoda_style' => false,
+        'fully_qualified_strict_types' => false,
 
         // Additional rules
         'date_time_immutable' => true,
