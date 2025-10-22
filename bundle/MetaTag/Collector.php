@@ -16,18 +16,11 @@ use function get_class;
 
 final class Collector implements CollectorInterface
 {
-    private Registry $metaTagHandlers;
-
-    private ContentTypeService $contentTypeService;
-
-    private ConfigResolverInterface $configResolver;
-
-    public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
-    {
-        $this->metaTagHandlers = $metaTagHandlers;
-        $this->contentTypeService = $contentTypeService;
-        $this->configResolver = $configResolver;
-    }
+    public function __construct(
+        private readonly Registry $metaTagHandlers,
+        private readonly ContentTypeService $contentTypeService,
+        private readonly ConfigResolverInterface $configResolver,
+    ) {}
 
     public function collect(Content $content): array
     {

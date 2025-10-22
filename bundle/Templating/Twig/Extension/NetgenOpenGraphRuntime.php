@@ -13,26 +13,18 @@ use Psr\Log\NullLogger;
 
 final class NetgenOpenGraphRuntime
 {
-    private CollectorInterface $tagCollector;
-
-    private RendererInterface $tagRenderer;
-
-    private LoggerInterface $logger;
-
     private bool $throwExceptions = true;
 
     public function __construct(
-        CollectorInterface $tagCollector,
-        RendererInterface $tagRenderer,
-        ?LoggerInterface $logger = null,
+        private readonly CollectorInterface $tagCollector,
+        private readonly RendererInterface $tagRenderer,
+        private ?LoggerInterface $logger = null,
     ) {
-        $this->tagCollector = $tagCollector;
-        $this->tagRenderer = $tagRenderer;
-        $this->logger = $logger ?? new NullLogger();
+        $this->logger ??= new NullLogger();
     }
 
     /**
-     * Sets the flag that determines if the exceptions will thrown instead of logged.
+     * Sets the flag that determines if the exceptions will be thrown instead of logged.
      */
     public function setThrowExceptions(bool $throwExceptions = true): void
     {
