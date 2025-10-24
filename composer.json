@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "ibexa/fieldtype-richtext": "^5.0",
-        "phpunit/phpunit": "^12.0",
+        "phpunit/phpunit": "^10.0",
         "matthiasnoback/symfony-config-test": "^6.0",
         "matthiasnoback/symfony-dependency-injection-test": "^6.0"
     },
