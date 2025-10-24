@@ -18,7 +18,7 @@ final class NetgenOpenGraphBundleTest extends TestCase
             ->onlyMethods(['addCompilerPass'])
             ->getMock();
 
-        $container->expects(self::exactly(0))
+        $container->expects(self::exactly(1))
             ->method('addCompilerPass')
             ->with(new MetaTagHandlersCompilerPass());
 
