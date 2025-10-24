@@ -48,17 +48,9 @@ final class CollectorTest extends TestCase
 
     public function testCollect(): void
     {
-        $this->config->expects(self::at(0))
+        $this->config
             ->method('hasParameter')
-            ->willReturn(true);
-
-        $this->config->expects(self::at(1))
-            ->method('getParameter')
-            ->willReturn([]);
-
-        $this->config->expects(self::at(2))
-            ->method('hasParameter')
-            ->willReturn(true);
+            ->willReturnOnConsecutiveCalls(true, true);
 
         $handlers = [
             'article' => [
@@ -72,9 +64,9 @@ final class CollectorTest extends TestCase
             ],
         ];
 
-        $this->config->expects(self::at(3))
+        $this->config
             ->method('getParameter')
-            ->willReturn($handlers);
+            ->willReturnOnConsecutiveCalls([], $handlers);
 
         $versionInfo = new VersionInfo(
             [
@@ -100,7 +92,7 @@ final class CollectorTest extends TestCase
                 'fieldDefinitions' => [
                     new FieldDefinition(
                         [
-                            'id' => 'id',
+                            'id' => 42,
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
                         ],
@@ -136,17 +128,13 @@ final class CollectorTest extends TestCase
 
         $handlers = ['all_content_types' => $handlerArray];
 
-        $this->config->expects(self::at(0))
+        $this->config
             ->method('hasParameter')
-            ->willReturn(true);
+            ->willReturnOnConsecutiveCalls(true, false);
 
-        $this->config->expects(self::at(1))
+        $this->config
             ->method('getParameter')
             ->willReturn($handlers);
-
-        $this->config->expects(self::at(2))
-            ->method('hasParameter')
-            ->willReturn(false);
 
         $versionInfo = new VersionInfo(
             [
@@ -172,7 +160,7 @@ final class CollectorTest extends TestCase
                 'fieldDefinitions' => [
                     new FieldDefinition(
                         [
-                            'id' => 'id',
+                            'id' => 42,
                             'identifier' => 'name',
                             'fieldTypeIdentifier' => 'eztext',
                         ],

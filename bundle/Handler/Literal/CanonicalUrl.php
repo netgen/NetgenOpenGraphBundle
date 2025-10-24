@@ -15,15 +15,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class CanonicalUrl implements HandlerInterface
 {
-    private RequestStack $requestStack;
-
-    private UrlGeneratorInterface $urlGenerator;
-
-    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $urlGenerator)
-    {
-        $this->requestStack = $requestStack;
-        $this->urlGenerator = $urlGenerator;
-    }
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly UrlGeneratorInterface $urlGenerator,
+    ) {}
 
     public function getMetaTags($tagName, array $params = []): array
     {

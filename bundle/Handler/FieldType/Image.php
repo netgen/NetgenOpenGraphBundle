@@ -17,27 +17,19 @@ use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 use function ltrim;
-use function mb_strpos;
+use function str_starts_with;
 
 final class Image extends Handler
 {
-    private VariationHandler $imageVariationService;
-
-    private RequestStack $requestStack;
-
-    private LoggerInterface $logger;
-
     public function __construct(
         FieldHelper $fieldHelper,
-        VariationHandler $imageVariationService,
-        RequestStack $requestStack,
-        ?LoggerInterface $logger = null,
+        private readonly VariationHandler $imageVariationService,
+        private readonly RequestStack $requestStack,
+        private ?LoggerInterface $logger = null,
     ) {
         parent::__construct($fieldHelper);
 
-        $this->imageVariationService = $imageVariationService;
-        $this->requestStack = $requestStack;
-        $this->logger = $logger ?? new NullLogger();
+        $this->logger ??= new NullLogger();
     }
 
     protected function getFieldValue(Field $field, string $tagName, array $params = []): string
@@ -48,7 +40,7 @@ final class Image extends Handler
             try {
                 $variationUri = $this->imageVariationService->getVariation($field, $this->content->getVersionInfo(), $variationName)->uri;
 
-                if (mb_strpos($variationUri, '/') === 0 && ($request = $this->requestStack->getCurrentRequest()) !== null) {
+                if (str_starts_with($variationUri, '/') && ($request = $this->requestStack->getCurrentRequest()) !== null) {
                     $variationUri = $request->getUriForPath('/' . ltrim($variationUri, '/'));
                 }
 

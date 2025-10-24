@@ -16,31 +16,24 @@ use function get_class;
 
 final class Collector implements CollectorInterface
 {
-    private Registry $metaTagHandlers;
-
-    private ContentTypeService $contentTypeService;
-
-    private ConfigResolverInterface $configResolver;
-
-    public function __construct(Registry $metaTagHandlers, ContentTypeService $contentTypeService, ConfigResolverInterface $configResolver)
-    {
-        $this->metaTagHandlers = $metaTagHandlers;
-        $this->contentTypeService = $contentTypeService;
-        $this->configResolver = $configResolver;
-    }
+    public function __construct(
+        private readonly Registry $metaTagHandlers,
+        private readonly ContentTypeService $contentTypeService,
+        private readonly ConfigResolverInterface $configResolver,
+    ) {}
 
     public function collect(Content $content): array
     {
         $metaTags = [];
 
-        $allHandlers = $this->configResolver->hasParameter('global_handlers', 'netgen_open_graph') ?
-            $this->configResolver->getParameter('global_handlers', 'netgen_open_graph') :
-            [];
+        $allHandlers = $this->configResolver->hasParameter('global_handlers', 'netgen_open_graph')
+            ? $this->configResolver->getParameter('global_handlers', 'netgen_open_graph')
+            : [];
 
         $contentType = $this->contentTypeService->loadContentType($content->contentInfo->contentTypeId);
-        $contentTypeHandlers = $this->configResolver->hasParameter('content_type_handlers', 'netgen_open_graph') ?
-            $this->configResolver->getParameter('content_type_handlers', 'netgen_open_graph') :
-            [];
+        $contentTypeHandlers = $this->configResolver->hasParameter('content_type_handlers', 'netgen_open_graph')
+            ? $this->configResolver->getParameter('content_type_handlers', 'netgen_open_graph')
+            : [];
 
         if (isset($contentTypeHandlers[$contentType->identifier])) {
             $allHandlers = array_merge(
@@ -61,8 +54,8 @@ final class Collector implements CollectorInterface
             foreach ($newMetaTags as $metaTag) {
                 if (!$metaTag instanceof Item) {
                     throw new LogicException(
-                        '\'' . $handler['handler'] . '\' handler returned wrong value.' .
-                        ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.',
+                        '\'' . $handler['handler'] . '\' handler returned wrong value.'
+                        . ' Expected \'Netgen\Bundle\OpenGraphBundle\MetaTag\Item\', got \'' . get_class($metaTag) . '\'.',
                     );
                 }
 
