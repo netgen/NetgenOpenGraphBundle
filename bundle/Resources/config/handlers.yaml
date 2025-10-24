@@ -58,6 +58,7 @@ services:
         class: Netgen\Bundle\OpenGraphBundle\Handler\FieldType\Image
         parent: netgen_open_graph.handler.field_type.abstract
         arguments:
+            - "@Ibexa\\Core\\Helper\\FieldHelper"
             - "@Ibexa\\Contracts\\Core\\Variation\\VariationHandler"
             - "@request_stack"
             - "@?logger"
