@@ -18,10 +18,8 @@ final class NetgenOpenGraphRuntime
     public function __construct(
         private CollectorInterface $tagCollector,
         private RendererInterface $tagRenderer,
-        private ?LoggerInterface $logger = null,
-    ) {
-        $this->logger ??= new NullLogger();
-    }
+        private LoggerInterface $logger = new NullLogger(),
+    ) {}
 
     /**
      * Sets the flag that determines if the exceptions will be thrown instead of logged.

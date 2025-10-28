@@ -25,11 +25,9 @@ final class Image extends Handler
         FieldHelper $fieldHelper,
         private VariationHandler $imageVariationService,
         private RequestStack $requestStack,
-        private ?LoggerInterface $logger = null,
+        private LoggerInterface $logger = new NullLogger(),
     ) {
         parent::__construct($fieldHelper);
-
-        $this->logger ??= new NullLogger();
     }
 
     protected function getFieldValue(Field $field, string $tagName, array $params = []): string
