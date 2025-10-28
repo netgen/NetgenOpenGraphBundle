@@ -12,6 +12,7 @@ return (new PhpCsFixer\Config())
 
         // Overrides for rules included in PhpCsFixer rule sets
         'concat_space' => ['spacing' => 'one'],
+        'fully_qualified_strict_types' => ['phpdoc_tags' => []],
         'method_chaining_indentation' => false,
         'multiline_whitespace_before_semicolons' => false,
         'native_function_invocation' => ['include' => ['@all']],
@@ -29,7 +30,6 @@ return (new PhpCsFixer\Config())
         'single_line_comment_style' => false,
         'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments', 'match', 'parameters']],
         'yoda_style' => false,
-        'fully_qualified_strict_types' => false,
 
         // Additional rules
         'date_time_immutable' => true,
