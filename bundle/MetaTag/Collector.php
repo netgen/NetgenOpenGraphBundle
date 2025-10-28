@@ -17,9 +17,9 @@ use function get_class;
 final class Collector implements CollectorInterface
 {
     public function __construct(
-        private readonly Registry $metaTagHandlers,
-        private readonly ContentTypeService $contentTypeService,
-        private readonly ConfigResolverInterface $configResolver,
+        private Registry $metaTagHandlers,
+        private ContentTypeService $contentTypeService,
+        private ConfigResolverInterface $configResolver,
     ) {}
 
     public function collect(Content $content): array

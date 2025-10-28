@@ -7,8 +7,8 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 final class Item
 {
     public function __construct(
-        private readonly string $tagName,
-        private readonly string $tagValue,
+        private string $tagName,
+        private string $tagValue,
     ) {}
 
     /**

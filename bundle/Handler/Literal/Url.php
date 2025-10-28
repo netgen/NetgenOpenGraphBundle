@@ -16,7 +16,7 @@ use function preg_match;
 final class Url implements HandlerInterface
 {
     public function __construct(
-        private readonly RequestStack $requestStack,
+        private RequestStack $requestStack,
     ) {}
 
     public function getMetaTags(string $tagName, array $params = []): array

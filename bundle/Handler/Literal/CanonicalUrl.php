@@ -16,8 +16,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 final class CanonicalUrl implements HandlerInterface
 {
     public function __construct(
-        private readonly RequestStack $requestStack,
-        private readonly UrlGeneratorInterface $urlGenerator,
+        private RequestStack $requestStack,
+        private UrlGeneratorInterface $urlGenerator,
     ) {}
 
     public function getMetaTags($tagName, array $params = []): array

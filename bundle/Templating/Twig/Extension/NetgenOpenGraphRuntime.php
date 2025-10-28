@@ -16,8 +16,8 @@ final class NetgenOpenGraphRuntime
     private bool $throwExceptions = true;
 
     public function __construct(
-        private readonly CollectorInterface $tagCollector,
-        private readonly RendererInterface $tagRenderer,
+        private CollectorInterface $tagCollector,
+        private RendererInterface $tagRenderer,
         private ?LoggerInterface $logger = null,
     ) {
         $this->logger ??= new NullLogger();

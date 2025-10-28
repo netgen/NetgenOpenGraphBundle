@@ -23,8 +23,8 @@ final class Image extends Handler
 {
     public function __construct(
         FieldHelper $fieldHelper,
-        private readonly VariationHandler $imageVariationService,
-        private readonly RequestStack $requestStack,
+        private VariationHandler $imageVariationService,
+        private RequestStack $requestStack,
         private ?LoggerInterface $logger = null,
     ) {
         parent::__construct($fieldHelper);
