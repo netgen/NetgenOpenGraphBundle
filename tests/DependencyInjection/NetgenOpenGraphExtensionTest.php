@@ -6,12 +6,11 @@ namespace Netgen\Bundle\OpenGraphBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\OpenGraphBundle\DependencyInjection\NetgenOpenGraphExtension;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 
 final class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testItSetsValidContainerParameters(): void
     {
         $this->container->setParameter('ibexa.site_access.list', []);

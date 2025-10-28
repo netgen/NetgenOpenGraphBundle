@@ -129,11 +129,22 @@ final class ImageTest extends TestCase
             ->method('getField')
             ->willReturn($this->field);
 
+        $this->fieldHelper->expects(self::once())
+            ->method('isFieldEmpty')
+            ->willReturn(false);
+
+        $this->variationHandler->expects(self::once())
+            ->method('getVariation')
+            ->willThrowException(new \Exception('Variation handler error'));
+
         $request = Request::create('/');
 
         $this->requestStack->expects(self::once())
             ->method('getCurrentRequest')
             ->willReturn($request);
+
+        $this->logger->expects(self::once())
+            ->method('error');
 
         $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2', 'some_value_3']);
     }
@@ -221,6 +232,27 @@ final class ImageTest extends TestCase
             ->method('getField')
             ->willReturn($this->field);
 
-        $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2']);
+        $this->fieldHelper->expects(self::once())
+            ->method('isFieldEmpty')
+            ->willReturn(false);
+
+        $variation = new Variation(['uri' => '/some/uri']);
+
+        $this->variationHandler->expects(self::once())
+            ->method('getVariation')
+            ->willReturn($variation);
+
+        $request = Request::create('/');
+
+        $this->requestStack->expects(self::exactly(1))
+            ->method('getCurrentRequest')
+            ->willReturn($request);
+
+        $result = $this->image->getMetaTags('some_tag', ['some_value', 'some_value_2']);
+
+        self::assertCount(1, $result);
+        self::assertInstanceOf('Netgen\Bundle\OpenGraphBundle\MetaTag\Item', $result[0]);
+        self::assertSame('some_tag', $result[0]->getTagName());
+        self::assertSame('http://localhost/some/uri', $result[0]->getTagValue());
     }
 }

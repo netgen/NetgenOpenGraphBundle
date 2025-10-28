@@ -6,15 +6,10 @@ namespace Netgen\Bundle\OpenGraphBundle\MetaTag;
 
 final class Item
 {
-    private string $tagName;
-
-    private string $tagValue;
-
-    public function __construct(string $tagName, string $tagValue)
-    {
-        $this->tagName = $tagName;
-        $this->tagValue = $tagValue;
-    }
+    public function __construct(
+        private readonly string $tagName,
+        private readonly string $tagValue,
+    ) {}
 
     /**
      * Returns tag name.

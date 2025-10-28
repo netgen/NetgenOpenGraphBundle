@@ -15,12 +15,9 @@ use function preg_match;
 
 final class Url implements HandlerInterface
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
+    public function __construct(
+        private readonly RequestStack $requestStack,
+    ) {}
 
     public function getMetaTags(string $tagName, array $params = []): array
     {

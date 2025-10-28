@@ -15,12 +15,9 @@ use function is_array;
 
 abstract class Handler extends BaseHandler
 {
-    protected FieldHelper $fieldHelper;
-
-    public function __construct(FieldHelper $fieldHelper)
-    {
-        $this->fieldHelper = $fieldHelper;
-    }
+    public function __construct(
+        protected FieldHelper $fieldHelper,
+    ) {}
 
     public function getMetaTags(string $tagName, array $params = []): array
     {

@@ -29,6 +29,7 @@ return (new PhpCsFixer\Config())
         'single_line_comment_style' => false,
         'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments', 'match', 'parameters']],
         'yoda_style' => false,
+        'fully_qualified_strict_types' => false,
 
         // Additional rules
         'date_time_immutable' => true,
@@ -39,7 +40,7 @@ return (new PhpCsFixer\Config())
             'import_functions' => true,
         ],
         'heredoc_indentation' => ['indentation' => 'same_as_start'],
-        'mb_str_functions' => true,
+        // 'mb_str_functions' => true,
         'native_constant_invocation' => true,
         'nullable_type_declaration_for_default_null_value' => true,
         'static_lambda' => true,

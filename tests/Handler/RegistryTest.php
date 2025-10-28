@@ -20,7 +20,7 @@ final class RegistryTest extends TestCase
 
     public function testAddingHandlers(): void
     {
-        $handler = $this->getMockForAbstractClass(HandlerInterface::class);
+        $handler = self::createStub(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
 
         self::assertSame($this->registry->getHandler('some_handler'), $handler);
@@ -28,7 +28,7 @@ final class RegistryTest extends TestCase
 
     public function testGettingHandlers(): void
     {
-        $handler = $this->getMockForAbstractClass(HandlerInterface::class);
+        $handler = self::createStub(HandlerInterface::class);
         $this->registry->addHandler('some_handler', $handler);
 
         $returnedHandler = $this->registry->getHandler('some_handler');
