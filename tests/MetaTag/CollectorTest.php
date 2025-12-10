@@ -94,7 +94,7 @@ final class CollectorTest extends TestCase
                         [
                             'id' => 42,
                             'identifier' => 'name',
-                            'fieldTypeIdentifier' => 'eztext',
+                            'fieldTypeIdentifier' => 'ibexa_text',
                         ],
                     ),
                 ],
@@ -162,7 +162,7 @@ final class CollectorTest extends TestCase
                         [
                             'id' => 42,
                             'identifier' => 'name',
-                            'fieldTypeIdentifier' => 'eztext',
+                            'fieldTypeIdentifier' => 'ibexa_text',
                         ],
                     ),
                 ],

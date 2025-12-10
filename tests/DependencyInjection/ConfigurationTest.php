@@ -31,7 +31,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -42,7 +42,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -63,7 +63,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -97,7 +97,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -108,7 +108,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -129,7 +129,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -165,7 +165,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -176,7 +176,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -197,7 +197,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -224,7 +224,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'params' => [
                                             'one',
                                             'two',
@@ -232,13 +232,13 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                     ],
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -259,7 +259,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -286,7 +286,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => '',
                                         'params' => [
                                             'one',
@@ -295,13 +295,13 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                     ],
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -322,7 +322,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -349,7 +349,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:type',
                                         'params' => [
                                             'one',
@@ -358,7 +358,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -369,7 +369,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -389,7 +389,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -416,7 +416,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:type',
                                         'params' => [
                                             'one',
@@ -425,7 +425,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -436,7 +436,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -457,7 +457,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -484,7 +484,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:type',
                                         'params' => [
                                             'one',
@@ -493,7 +493,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -504,7 +504,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -516,7 +516,7 @@ final class ConfigurationTest extends TestCase
                             ],
                             'global_handlers' => [
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'params' => [
                                         'one',
                                         'two',
@@ -524,7 +524,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',
@@ -551,7 +551,7 @@ final class ConfigurationTest extends TestCase
                             'content_type_handlers' => [
                                 'content_type_one' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:type',
                                         'params' => [
                                             'one',
@@ -560,7 +560,7 @@ final class ConfigurationTest extends TestCase
                                         ],
                                     ],
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -571,7 +571,7 @@ final class ConfigurationTest extends TestCase
                                 ],
                                 'content_type_two' => [
                                     [
-                                        'handler' => 'field_type/ezstring',
+                                        'handler' => 'field_type/ibexa_string',
                                         'tag' => 'og:title',
                                         'params' => [
                                             'one',
@@ -583,7 +583,7 @@ final class ConfigurationTest extends TestCase
                             ],
                             'global_handlers' => [
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => '',
                                     'params' => [
                                         'one',
@@ -592,7 +592,7 @@ final class ConfigurationTest extends TestCase
                                     ],
                                 ],
                                 [
-                                    'handler' => 'field_type/ezstring',
+                                    'handler' => 'field_type/ibexa_string',
                                     'tag' => 'og:title',
                                     'params' => [
                                         'one',

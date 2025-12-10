@@ -18,13 +18,13 @@ netgen_open_graph:
             content_type_handlers:
                 blog_post:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
-                    - { handler: field_type/ezstring, tag: 'og:title', params: ['title'] }
-                    - { handler: field_type/ezimage, tag: 'og:image', params: ['image', 'opengraph'] }
+                    - { handler: field_type/ibexa_string, tag: 'og:title', params: ['title'] }
+                    - { handler: field_type/ibexa_image, tag: 'og:image', params: ['image', 'opengraph'] }
                 article:
                     - { handler: literal/text, tag: 'og:type', params: ['article'] }
-                    - { handler: field_type/ezstring, tag: 'og:title', params: ['short_title'] }
-                    - { handler: field_type/ezrichtext, tag: 'og:description', params: ['short_intro'] }
-                    - { handler: field_type/ezimage, tag: 'og:image', params: ['line_image', 'opengraph'] }
+                    - { handler: field_type/ibexa_string, tag: 'og:title', params: ['short_title'] }
+                    - { handler: field_type/ibexa_richtext, tag: 'og:description', params: ['short_intro'] }
+                    - { handler: field_type/ibexa_image, tag: 'og:image', params: ['line_image', 'opengraph'] }
 ```
 
 What happens here is that each element in `content_type_handlers` array corresponds to one content type in your
@@ -55,7 +55,7 @@ Will result in following meta tag:
 <meta property="og:site_name" content="My super cool site" />
 ```
 
-### field_type/ezstring
+### field_type/ibexa_string
 
 This handler will return the value of `TextLine` field type. You can specify the field definition identifier
 as a first parameter, and optionally, a fallback value if the field is empty.
@@ -63,7 +63,7 @@ as a first parameter, and optionally, a fallback value if the field is empty.
 The following config:
 
 ```yaml
-{ handler: field_type/ezstring, tag: 'og:title', params: ['title', 'My fallback title'] }
+{ handler: field_type/ibexa_string, tag: 'og:title', params: ['title', 'My fallback title'] }
 ```
 
 Will result in following meta tag:
@@ -80,7 +80,7 @@ In cases where `title` field is empty, meta tag will look like this:
 <meta property="og:title" content="My fallback title" />
 ```
 
-### field_type/eztext
+### field_type/ibexa_text
 
 This handler will return the value of `TextBlock` field type. You can specify the field definition identifier
 as a first parameter, and optionally, a fallback value if the field is empty.
@@ -88,7 +88,7 @@ as a first parameter, and optionally, a fallback value if the field is empty.
 The following config:
 
 ```yaml
-{ handler: field_type/eztext, tag: 'og:description', params: ['short_description', 'My fallback description'] }
+{ handler: field_type/ibexa_text, tag: 'og:description', params: ['short_description', 'My fallback description'] }
 ```
 
 Will result in following meta tag:
@@ -105,7 +105,7 @@ In cases where `short_description` field is empty, meta tag will look like this:
 <meta property="og:description" content="My fallback description" />
 ```
 
-### field_type/ezrichtext
+### field_type/ibexa_richtext
 
 This handler will return the value of `RichText` field type. You can specify the field definition identifier
 as a first parameter, and optionally, a fallback value if the field is empty.
@@ -113,7 +113,7 @@ as a first parameter, and optionally, a fallback value if the field is empty.
 The following config:
 
 ```yaml
-{ handler: field_type/ezrichtext, tag: 'og:description', params: ['description', 'My fallback description'] }
+{ handler: field_type/ibexa_richtext, tag: 'og:description', params: ['description', 'My fallback description'] }
 ```
 
 Will result in following meta tag:
@@ -130,7 +130,7 @@ In cases where `description` field is empty, meta tag will look like this:
 <meta property="og:description" content="My fallback description" />
 ```
 
-### field_type/ezimage
+### field_type/ibexa_image
 
 This handler will return the path to the image stored in `Image` field type. You can specify the field definition
 identifier as a first parameter, and optionally, image variation to use as a second parameter (`opengraph` variation
@@ -139,7 +139,7 @@ will be used by default), and a fallback path to an image if the field is empty.
 The following config:
 
 ```yaml
-{ handler: field_type/ezimage, tag: 'og:image', params: ['image', 'my_variation', 'bundles/site/images/opengraph_default_image.png'] }
+{ handler: field_type/ibexa_image, tag: 'og:image', params: ['image', 'my_variation', 'bundles/site/images/opengraph_default_image.png'] }
 ```
 
 Will result in following meta tag:
@@ -243,7 +243,7 @@ Notice that in case of field value being empty `getFieldValue` method throws
 If you need more complicated handling of fallback value, you can also override `getFallbackValue` method. Just like already
 implemented `getFieldValue`, the default implementation of this method simply casts second parameter (`$params[1]`) to string.
 
-For example, `ezimage` field type handler has the following custom implementation:
+For example, `ibexa_image` field type handler has the following custom implementation:
 
 ```php
 protected function getFallbackValue(string $tagName, array $params = []): string

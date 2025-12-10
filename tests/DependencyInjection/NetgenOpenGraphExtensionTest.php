@@ -41,7 +41,7 @@ final class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
                                 ],
                             ],
                             [
-                                'handler' => 'field_type/ezstring',
+                                'handler' => 'field_type/ibexa_string',
                                 'tag' => 'og:title',
                                 'params' => [
                                     'one',
@@ -52,7 +52,7 @@ final class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
                         ],
                         'content_type_two' => [
                             [
-                                'handler' => 'field_type/ezstring',
+                                'handler' => 'field_type/ibexa_string',
                                 'tag' => 'og:title',
                                 'params' => [
                                     'one',
@@ -73,7 +73,7 @@ final class NetgenOpenGraphExtensionTest extends AbstractExtensionTestCase
                             ],
                         ],
                         [
-                            'handler' => 'field_type/ezstring',
+                            'handler' => 'field_type/ibexa_string',
                             'tag' => 'og:title',
                             'params' => [
                                 'one',

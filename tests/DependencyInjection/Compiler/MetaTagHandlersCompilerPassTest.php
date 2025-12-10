@@ -19,7 +19,7 @@ final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
         $this->setDefinition('netgen_open_graph.handler_registry', $handlerRegistry);
 
         $handlerOne = new Definition();
-        $handlerOne->addTag('netgen_open_graph.meta_tag_handler', ['alias' => 'field_type/eztext']);
+        $handlerOne->addTag('netgen_open_graph.meta_tag_handler', ['alias' => 'field_type/ibexa_text']);
         $this->setDefinition('handler_one', $handlerOne);
 
         $handlerTwo = new Definition();
@@ -32,7 +32,7 @@ final class MetaTagHandlersCompilerPassTest extends AbstractCompilerPassTestCase
             'netgen_open_graph.handler_registry',
             'addHandler',
             [
-                'field_type/eztext',
+                'field_type/ibexa_text',
                 new Reference('handler_one'),
             ],
         );
